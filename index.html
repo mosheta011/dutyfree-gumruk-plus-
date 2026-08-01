@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gümrük Plus — Kurtköy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F7F2E7;
+    --paper:#FFFDF8;
+    --kraft:#C9A66B;
+    --kraft-dark:#8C6C3D;
+    --ink:#1E211D;
+    --teal:#2F5D53;
+    --teal-dark:#1B3831;
+    --red:#C6362A;
+    --amber:#EFA23B;
+    --line:#DCD2B8;
+    --stone:#6E6A5C;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--cream);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle, rgba(30,33,29,0.055) 1px, transparent 1px);
+    background-size:16px 16px;
+  }
+  ::selection{background:var(--amber);color:var(--ink);}
+  h1,h2,h3{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:0.01em;}
+  a{color:inherit;text-decoration:none;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px;}
+  @media(max-width:640px){.wrap{padding:0 18px;}}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+  body.lang-tr .en{display:none;}
+  body.lang-en .tr{display:none;}
+
+  /* ---------- shared: photo placeholder ---------- */
+  .photo-placeholder{
+    width:100%;height:100%;
+    background:repeating-linear-gradient(135deg, #EFE7D2 0 10px, #E6DBBE 10px 20px);
+    border:2px dashed var(--kraft-dark);
+    display:flex;align-items:center;justify-content:center;position:relative;
+  }
+  .photo-placeholder span{
+    font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+    letter-spacing:0.12em;color:var(--kraft-dark);text-transform:uppercase;
+    background:var(--paper);padding:5px 11px;border-radius:2px;border:1px solid var(--kraft);
+    transform:rotate(-3deg);
+  }
+
+  /* ---------- packing-tape divider ---------- */
+  .tape{
+    background:repeating-linear-gradient(45deg, var(--amber) 0 22px, #E0932E 22px 44px);
+    color:var(--ink);padding:7px 0;overflow:hidden;
+    border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  }
+  .tape-track{display:flex;gap:40px;width:max-content;animation:tapeScroll 26s linear infinite;}
+  @keyframes tapeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .tape-track span{font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:0.05em;white-space:nowrap;}
+
+  /* ---------- TOPBAR ---------- */
+  .topbar{
+    background:var(--ink);color:var(--cream);font-size:12px;
+    display:flex;justify-content:space-between;align-items:center;padding:8px 32px;
+  }
+  @media(max-width:640px){.topbar{padding:8px 18px;font-size:10.5px;}}
+  .topbar .left{display:flex;gap:16px;align-items:center;opacity:0.85;}
+  .lang-switch{display:flex;gap:2px;background:rgba(255,255,255,0.12);border-radius:999px;padding:2px;}
+  .lang-switch button{border:none;background:none;color:var(--cream);font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;cursor:pointer;opacity:0.6;transition:all .25s var(--ease);}
+  .lang-switch button.active{background:var(--amber);color:var(--ink);opacity:1;}
+
+  /* ---------- HEADER ---------- */
+  header{background:var(--paper);border-bottom:3px solid var(--ink);position:sticky;top:0;z-index:100;}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;gap:24px;}
+  @media(max-width:640px){.header-inner{padding:12px 18px;}}
+  .logo-stamp{
+    width:52px;height:52px;border:3px solid var(--red);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;transform:rotate(-8deg);
+    flex-shrink:0;position:relative;
+  }
+  .logo-stamp::before{
+    content:'';position:absolute;inset:4px;border:1px dashed var(--red);border-radius:50%;
+  }
+  .logo-stamp span{font-family:'Anton',sans-serif;color:var(--red);font-size:10px;line-height:0.9;text-align:center;}
+  .logo-block{display:flex;align-items:center;gap:12px;}
+  .logo-text h1{font-size:24px;line-height:1;}
+  .logo-text h1 .plus{color:var(--red);}
+  .logo-text .loc{font-size:10.5px;color:var(--stone);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-top:2px;}
+  nav{display:flex;gap:2px;}
+  @media(max-width:1040px){nav{display:none;}}
+  nav a{
+    padding:9px 14px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.02em;
+    border-radius:3px;transition:all .2s var(--ease);position:relative;
+  }
+  nav a:hover{background:var(--ink);color:var(--cream);}
+  .header-actions{display:flex;align-items:center;gap:10px;}
+  .icon-btn{
+    width:38px;height:38px;border:2px solid var(--ink);border-radius:3px;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--paper);
+    transition:all .2s var(--ease);position:relative;
+  }
+  .icon-btn:hover{background:var(--ink);color:var(--cream);}
+  .cart-count{position:absolute;top:-8px;right:-8px;background:var(--red);color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--paper);}
+  .whatsapp-btn{display:flex;align-items:center;gap:8px;background:#25D366;color:#fff;padding:9px 16px;border-radius:3px;font-size:12px;font-weight:700;border:2px solid var(--ink);transition:transform .2s var(--ease);}
+  .whatsapp-btn:hover{transform:translateY(-2px) rotate(-1deg);}
+  @media(max-width:640px){.whatsapp-btn span{display:none;}}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- HERO — shipping label styled ---------- */
+  .hero{padding:54px 0 60px;position:relative;}
+  .hero-label{
+    background:var(--paper);border:3px solid var(--ink);border-radius:6px;
+    box-shadow:8px 8px 0 var(--ink);position:relative;overflow:hidden;
+  }
+  .hero-label::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:14px;
+    background:repeating-linear-gradient(180deg, var(--ink) 0 6px, transparent 6px 14px);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:0;}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+  .hero-text{padding:44px 44px 40px 56px;}
+  @media(max-width:640px){.hero-text{padding:32px 24px 28px 34px;}}
+  .label-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:26px;flex-wrap:wrap;gap:14px;}
+  .label-field{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--stone);text-transform:uppercase;letter-spacing:0.08em;}
+  .label-field b{display:block;color:var(--ink);font-size:12.5px;margin-top:2px;font-weight:700;}
+  .stamp-graphic{
+    width:104px;height:104px;border:3px solid var(--red);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    transform:rotate(11deg);opacity:0.92;mix-blend-mode:multiply;
+  }
+  .stamp-inner{border:1px dashed var(--red);border-radius:50%;width:88px;height:88px;display:flex;align-items:center;justify-content:center;}
+  .stamp-graphic p{font-family:'Anton',sans-serif;color:var(--red);font-size:11px;line-height:1.15;text-align:center;text-transform:uppercase;}
+
+  .hero-text h2{font-size:clamp(32px,4.6vw,54px);line-height:1.0;margin-bottom:18px;}
+  .hero-text h2 .hi{color:var(--red);}
+  .hero-text p.sub{font-size:14.5px;color:var(--stone);line-height:1.7;max-width:420px;margin-bottom:26px;}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.03em;border-radius:3px;border:2px solid var(--ink);cursor:pointer;transition:transform .25s var(--ease), box-shadow .25s var(--ease);}
+  .btn-primary{background:var(--red);color:#fff;border-color:var(--ink);box-shadow:3px 3px 0 var(--ink);}
+  .btn-primary:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink);}
+  .btn-ghost{background:var(--paper);color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--cream);}
+
+  .hero-photo-side{position:relative;border-left:3px dashed var(--ink);padding:22px;display:flex;flex-direction:column;gap:14px;}
+  @media(max-width:900px){.hero-photo-side{border-left:none;border-top:3px dashed var(--ink);}}
+  .hero-photo-main{aspect-ratio:16/10;border:2px solid var(--ink);border-radius:4px;overflow:hidden;position:relative;}
+  .barcode-strip{height:26px;background:repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px, transparent 6px 10px);opacity:0.85;}
+  .barcode-num{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.3em;color:var(--stone);text-align:center;margin-top:4px;}
+
+  /* ---------- TRUST STRIP ---------- */
+  .trust{background:var(--teal);color:#fff;padding:20px 0;border-bottom:3px solid var(--ink);}
+  .trust-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;}
+  .trust-item{display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:600;flex:1;min-width:210px;}
+  .trust-item svg{flex-shrink:0;color:var(--amber);}
+
+  /* ---------- SECTION ---------- */
+  .section{padding:64px 0;}
+  @media(max-width:640px){.section{padding:44px 0;}}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px;gap:20px;flex-wrap:wrap;}
+  .section-head .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--red);margin-bottom:8px;display:inline-flex;align-items:center;gap:8px;
+  }
+  .section-head .eyebrow::before{content:'';width:20px;height:2px;background:var(--red);}
+  .section-head h2{font-size:clamp(26px,3.4vw,38px);}
+
+  /* ---------- CATEGORIES — hanging tag style ---------- */
+  .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px 18px;}
+  @media(max-width:900px){.cat-grid{grid-template-columns:repeat(2,1fr);}}
+  .cat-card{position:relative;transition:transform .3s var(--ease);}
+  .cat-card:nth-child(odd){transform:rotate(-1deg);}
+  .cat-card:nth-child(even){transform:rotate(1deg);}
+  .cat-card:hover{transform:rotate(0deg) translateY(-5px);}
+  .cat-string{width:2px;height:16px;background:var(--stone);margin:0 auto;}
+  .cat-tag{
+    background:var(--paper);border:2px solid var(--ink);border-radius:4px;overflow:hidden;
+    box-shadow:4px 4px 0 rgba(30,33,29,0.18);
+  }
+  .tag-hole{
+    width:14px;height:14px;border:2px solid var(--ink);border-radius:50%;
+    background:var(--cream);position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:2;
+  }
+  .cat-img{aspect-ratio:4/3;border-bottom:2px dashed var(--ink);position:relative;margin-top:6px;}
+  .cat-body{padding:13px 15px 15px;}
+  .cat-body h3{font-size:14.5px;margin-bottom:2px;}
+  .cat-body .en-sub{font-size:10.5px;color:var(--stone);text-transform:none;font-weight:500;display:block;margin-bottom:8px;}
+  .cat-body .from{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--red);font-weight:700;display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--line);padding-top:8px;}
+
+  /* ---------- HOW IT WORKS ---------- */
+  .how{background:var(--teal-dark);color:var(--cream);padding:60px 0;position:relative;}
+  .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(247,242,231,0.15);border:1px solid rgba(247,242,231,0.15);}
+  @media(max-width:800px){.how-grid{grid-template-columns:repeat(2,1fr);}}
+  .how-step{background:var(--teal-dark);padding:28px 22px;position:relative;}
+  .how-step .num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--amber);font-weight:700;margin-bottom:14px;display:block;}
+  .how-step h3{font-size:16px;color:var(--cream);margin-bottom:8px;letter-spacing:0;}
+  .how-step p{font-size:12.5px;color:#B9CDC5;line-height:1.6;}
+  .how-step svg{margin-bottom:12px;color:var(--amber);}
+
+  /* ---------- DEALS ---------- */
+  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  @media(max-width:900px){.prod-grid{grid-template-columns:repeat(2,1fr);}}
+  .prod-card{background:var(--paper);border:2px solid var(--ink);border-radius:5px;overflow:hidden;cursor:pointer;transition:transform .25s var(--ease), box-shadow .25s var(--ease);position:relative;}
+  .prod-card:hover{transform:translateY(-4px);box-shadow:5px 5px 0 var(--ink);}
+  .prod-img{aspect-ratio:1;position:relative;border-bottom:2px solid var(--ink);}
+  .prod-tag{position:absolute;top:10px;right:-6px;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:4px 12px 4px 9px;border-radius:3px 0 0 3px;text-transform:uppercase;box-shadow:0 2px 0 rgba(0,0,0,0.15);}
+  .prod-body{padding:13px 15px 15px;}
+  .prod-cat{font-size:10px;color:var(--stone);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;font-weight:600;}
+  .prod-name{font-size:13.5px;font-weight:600;margin-bottom:9px;line-height:1.3;}
+  .prod-price{display:flex;align-items:baseline;gap:8px;border-top:1px dashed var(--line);padding-top:9px;}
+  .prod-price .now{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--red);font-size:15.5px;}
+  .prod-price .was{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--stone);text-decoration:line-through;}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--ink);color:var(--cream);padding:64px 0;position:relative;overflow:hidden;}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  @media(max-width:900px){.about-grid{grid-template-columns:1fr;}}
+  .about .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);margin-bottom:14px;display:block;}
+  .about h2{font-size:clamp(26px,3.6vw,40px);margin-bottom:16px;color:var(--cream);}
+  .about p{color:#C7C4B4;font-size:14px;line-height:1.8;margin-bottom:22px;}
+  .about-stamp-row{display:flex;gap:14px;margin-bottom:24px;flex-wrap:wrap;}
+  .mini-stamp{
+    border:2px solid var(--amber);border-radius:50%;width:64px;height:64px;
+    display:flex;align-items:center;justify-content:center;flex-direction:column;
+    font-family:'JetBrains Mono',monospace;color:var(--amber);font-size:9px;font-weight:700;text-align:center;
+    transform:rotate(-6deg);
+  }
+  .mini-stamp b{font-family:'Anton',sans-serif;font-size:17px;display:block;}
+  .about-photos{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .about-photos > div{aspect-ratio:1;border-radius:4px;overflow:hidden;border:2px solid var(--cream);}
+
+  /* ---------- NEWSLETTER ---------- */
+  .news{padding:64px 0;text-align:center;position:relative;}
+  .news-card{
+    max-width:680px;margin:0 auto;background:var(--paper);border:3px solid var(--ink);border-radius:8px;
+    padding:44px 36px;box-shadow:8px 8px 0 var(--red);position:relative;
+  }
+  .news h2{font-size:clamp(24px,3.4vw,34px);margin-bottom:12px;}
+  .news p{color:var(--stone);margin-bottom:26px;font-size:14px;}
+  .news-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--teal-dark);color:var(--cream);padding:52px 0 22px;}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:34px;margin-bottom:40px;}
+  @media(max-width:800px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  .foot-grid h4{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--amber);margin-bottom:15px;}
+  .foot-grid ul{list-style:none;}
+  .foot-grid li{margin-bottom:9px;font-size:13px;opacity:0.82;}
+  .foot-bottom{display:flex;justify-content:space-between;padding-top:22px;border-top:1px solid rgba(255,255,255,0.15);font-size:11.5px;opacity:0.65;flex-wrap:wrap;gap:12px;}
+
+  /* ============================================================
+     MOBILE-SPECIFIC: bottom tab bar, hamburger menu, horizontal
+     scrolling shelves instead of a squeezed grid, app-style spacing
+     ============================================================ */
+  .hamburger{display:none;}
+  .mobile-menu{display:none;}
+  .bottom-tabs{display:none;}
+
+  @media(max-width:768px){
+    /* room at the bottom for the fixed tab bar */
+    body{padding-bottom:74px;}
+
+    .hamburger{
+      display:flex;align-items:center;justify-content:center;
+      width:38px;height:38px;border:2px solid var(--ink);border-radius:3px;
+      background:var(--paper);cursor:pointer;
+    }
+    .mobile-menu{
+      display:block;max-height:0;overflow:hidden;background:var(--paper);
+      border-bottom:3px solid var(--ink);transition:max-height .35s var(--ease);
+    }
+    .mobile-menu.open{max-height:340px;}
+    .mobile-menu a{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:15px 20px;font-size:14px;font-weight:700;text-transform:uppercase;
+      letter-spacing:0.02em;border-top:1px dashed var(--line);
+    }
+    .mobile-menu a:first-child{border-top:none;}
+    .mobile-menu a::after{content:'→';color:var(--red);}
+
+    /* hero: tighten and de-emphasize the manifest chrome on small screens */
+    .hero{padding:20px 0 28px;}
+    .hero-label{box-shadow:5px 5px 0 var(--ink);}
+    .hero-text{padding:26px 20px 22px 28px;}
+    .label-row{margin-bottom:16px;}
+    .stamp-graphic{width:76px;height:76px;}
+    .stamp-inner{width:64px;height:64px;}
+    .stamp-graphic p{font-size:9px;}
+    .hero-photo-side{padding:16px;}
+    .hero-photo-main{aspect-ratio:16/9;}
+
+    /* section rhythm: tighter on phones, still breathing room */
+    .section{padding:36px 0;}
+    .section-head{margin-bottom:20px;}
+
+    /* CATEGORIES → horizontal scrolling shelf, not a cramped 2-col grid */
+    .cat-grid{
+      display:flex;grid-template-columns:none;gap:14px;
+      overflow-x:auto;scroll-snap-type:x mandatory;
+      margin:0 -18px;padding:4px 18px 10px;
+      -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    }
+    .cat-grid::-webkit-scrollbar{display:none;}
+    .cat-card{flex:0 0 150px;scroll-snap-align:start;}
+    .cat-card:nth-child(odd),.cat-card:nth-child(even){transform:none;}
+    .cat-card:hover{transform:none;}
+
+    /* DEALS → same horizontal shelf pattern */
+    .prod-grid{
+      display:flex;grid-template-columns:none;gap:14px;
+      overflow-x:auto;scroll-snap-type:x mandatory;
+      margin:0 -18px;padding:4px 18px 10px;
+      -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    }
+    .prod-grid::-webkit-scrollbar{display:none;}
+    .prod-card{flex:0 0 168px;scroll-snap-align:start;}
+
+    .how-grid{grid-template-columns:repeat(2,1fr);}
+    .about-stamp-row{justify-content:center;}
+    .news-card{padding:30px 22px;}
+
+    /* bigger, thumb-friendly tap targets throughout */
+    .btn{padding:15px 22px;font-size:13px;}
+    nav a, .icon-btn, .whatsapp-btn{min-height:44px;}
+
+    /* ---------- bottom tab bar ---------- */
+    .bottom-tabs{
+      display:flex;position:fixed;left:0;right:0;bottom:0;z-index:200;
+      background:var(--paper);border-top:3px solid var(--ink);
+      padding:8px 6px calc(8px + env(safe-area-inset-bottom));
+      box-shadow:0 -6px 18px rgba(0,0,0,0.12);
+    }
+    .bottom-tabs a{
+      flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+      padding:6px 2px;border-radius:6px;color:var(--stone);
+      font-size:9.5px;font-weight:700;letter-spacing:0.03em;text-transform:uppercase;
+      transition:color .2s, background .2s;position:relative;
+    }
+    .bottom-tabs a.active{color:var(--red);}
+    .bottom-tabs a svg{width:20px;height:20px;}
+    .bottom-tabs a.whatsapp-tab{color:#1f9c53;}
+    .bottom-tabs .tab-cart-count{
+      position:absolute;top:2px;right:14px;background:var(--red);color:#fff;
+      font-size:8px;font-weight:700;width:14px;height:14px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;border:1.5px solid var(--paper);
+    }
+  }
+
+  @media(max-width:400px){
+    .cat-card{flex-basis:135px;}
+    .prod-card{flex-basis:150px;}
+  }
+</style>
+</head>
+<body class="lang-tr">
+
+<div class="topbar">
+  <div class="left">
+    <span class="tr">📍 Kurtköy, Pendik — İstanbul</span><span class="en">📍 Kurtköy, Pendik — Istanbul</span>
+    <span class="tr">Mağaza: 09:00–21:00 her gün</span><span class="en">Store: 09:00–21:00 daily</span>
+  </div>
+  <div class="lang-switch">
+    <button class="active" onclick="setLang('tr', this)">TR</button>
+    <button onclick="setLang('en', this)">EN</button>
+  </div>
+</div>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-block">
+      <div class="logo-stamp"><span>GÜMRÜK<br>PLUS</span></div>
+      <div class="logo-text">
+        <h1>GÜMRÜK<span class="plus">+</span></h1>
+        <div class="loc"><span class="tr">Kurtköy Şubesi</span><span class="en">Kurtköy Branch</span></div>
+      </div>
+    </div>
+    <nav>
+      <a href="#categories"><span class="tr">Ayakkabı</span><span class="en">Footwear</span></a>
+      <a href="#categories"><span class="tr">Çanta &amp; Takı</span><span class="en">Bags &amp; Jewelry</span></a>
+      <a href="#categories"><span class="tr">Ev &amp; Mutfak</span><span class="en">Home &amp; Kitchen</span></a>
+      <a href="#categories"><span class="tr">Tekstil</span><span class="en">Textiles</span></a>
+      <a href="#deals"><span class="tr">Fırsatlar</span><span class="en">Deals</span></a>
+    </nav>
+    <div class="header-actions">
+      <a class="whatsapp-btn" href="#" aria-label="WhatsApp">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.1 16.9L2 21l4.2-1.1a8.9 8.9 0 0 0 12.6-8A8.9 8.9 0 0 0 17.6 6.3zM12 19.4a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.5.7.7-2.4-.2-.3A7.5 7.5 0 1 1 12 19.4z"/></svg>
+        <span class="tr">WhatsApp'tan Sipariş</span><span class="en">Order via WhatsApp</span>
+      </a>
+      <button class="icon-btn" aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg></button>
+      <button class="icon-btn" aria-label="Cart" style="position:relative;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
+        <span class="cart-count">2</span>
+      </button>
+      <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">
+        <svg id="hamburgerIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#categories" onclick="closeMenu()"><span class="tr">Ayakkabı</span><span class="en">Footwear</span></a>
+    <a href="#categories" onclick="closeMenu()"><span class="tr">Çanta &amp; Takı</span><span class="en">Bags &amp; Jewelry</span></a>
+    <a href="#categories" onclick="closeMenu()"><span class="tr">Ev &amp; Mutfak</span><span class="en">Home &amp; Kitchen</span></a>
+    <a href="#categories" onclick="closeMenu()"><span class="tr">Tekstil</span><span class="en">Textiles</span></a>
+    <a href="#categories" onclick="closeMenu()"><span class="tr">Oyuncak</span><span class="en">Toys</span></a>
+    <a href="#deals" onclick="closeMenu()"><span class="tr">Fırsatlar</span><span class="en">Deals</span></a>
+    <a href="#about" onclick="closeMenu()"><span class="tr">Mağazamız</span><span class="en">About the store</span></a>
+  </div>
+</header>
+
+<div class="tape">
+  <div class="tape-track">
+    <span>★ BERE &amp; ŞAPKA 50 TL ★ HAVLU SET 100 TL ★ TERMOS 350 TL ★ AYNI GÜN KARGO İSTANBUL İÇİ ★ KOL SAATİ SETLERİ GELDİ</span>
+    <span>★ BERE &amp; ŞAPKA 50 TL ★ HAVLU SET 100 TL ★ TERMOS 350 TL ★ AYNI GÜN KARGO İSTANBUL İÇİ ★ KOL SAATİ SETLERİ GELDİ</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-label reveal">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="label-row">
+            <div class="label-field">
+              <span class="tr">GÖNDEREN</span><span class="en">FROM</span>
+              <b>GÜMRÜK PLUS — KURTKÖY</b>
+            </div>
+            <div class="stamp-graphic">
+              <div class="stamp-inner">
+                <p><span class="tr">TESLİME<br>HAZIR</span><span class="en">READY TO<br>SHIP</span></p>
+              </div>
+            </div>
+          </div>
+          <h2>
+            <span class="tr">Gümrükten<br>eve, <span class="hi">aynı<br>fiyata.</span></span>
+            <span class="en">Duty-free<br>prices, <span class="hi">straight<br>to home.</span></span>
+          </h2>
+          <p class="sub">
+            <span class="tr">Ayakkabıdan ev aletine, oyuncaktan tekstile — Kurtköy mağazamızdaki ürünlerin aynısı artık online. Aynı fiyat, aynı ürün, kapına kadar.</span>
+            <span class="en">From footwear to appliances, toys to textiles — the same products from our Kurtköy store, now online. Same price, same product, delivered to your door.</span>
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#categories"><span class="tr">Mağazaya Gir</span><span class="en">Browse the shop</span> →</a>
+            <a class="btn btn-ghost" href="#about"><span class="tr">Mağazamızı Tanı</span><span class="en">About the store</span></a>
+          </div>
+        </div>
+        <div class="hero-photo-side">
+          <div class="label-field" style="margin-bottom:2px;"><span class="tr">İÇERİK ÖNİZLEME</span><span class="en">CONTENTS PREVIEW</span></div>
+          <div class="hero-photo-main"><div class="photo-placeholder"><span>FOTO</span></div></div>
+          <div class="barcode-strip"></div>
+          <div class="barcode-num mono">GP-KTK-2026-0417</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust">
+  <div class="wrap trust-grid">
+    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M9 3v18M3 9h6"/></svg><span><span class="tr">Kurtköy'de gerçek mağaza, 2016'dan beri</span><span class="en">Real Kurtköy store, since 2016</span></span></div>
+    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="7" width="15" height="12"/><path d="M16 10h3l4 4v5h-7"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg><span><span class="tr">İstanbul içi aynı gün kargo</span><span class="en">Same-day delivery within Istanbul</span></span></div>
+    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10h20M6 15h.01M10 15h4"/><rect x="2" y="5" width="20" height="14" rx="2"/></svg><span><span class="tr">Kapıda nakit veya kart</span><span class="en">Cash or card on delivery</span></span></div>
+    <div class="trust-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.1 16.9L2 21l4.2-1.1a8.9 8.9 0 0 0 12.6-8A8.9 8.9 0 0 0 17.6 6.3z"/></svg><span><span class="tr">WhatsApp'tan anında destek</span><span class="en">Instant support on WhatsApp</span></span></div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section" id="categories">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><span class="eyebrow"><span class="tr">Bölümler</span><span class="en">Departments</span></span><h2><span class="tr">Ne Arıyorsun?</span><span class="en">What are you looking for?</span></h2></div>
+    </div>
+    <div class="scroll-shelf">
+    <div class="cat-grid reveal">
+      <div class="cat-card"><div class="cat-string"></div><div class="cat-tag"><div class="tag-hole"></div><div class="cat-img"><div class="photo-placeholder"><span>FOTO</span></div></div><div class="cat-body"><h3><span class="tr">Ayakkabı</span><span class="en">Footwear</span></h3><span class="en-sub"><span class="tr">terlik, spor, klasik</span><span class="en">sneakers, sandals, dress</span></span><div class="from"><span><span class="tr">99 TL'den</span><span class="en">from 99 TL</span></span><span>→</span></div></div></div></div>
+      <div class="cat-card"><div class="cat-string"></div><div class="cat-tag"><div class="tag-hole"></div><div class="cat-img"><div class="photo-placeholder"><span>FOTO</span></div></div><div class="cat-body"><h3><span class="tr">Çanta &amp; Takı</span><span class="en">Bags &amp; Jewelry</span></h3><span class="en-sub"><span class="tr">çanta, gözlük, yüzük</span><span class="en">bags, sunglasses, rings</span></span><div class="from"><span><span class="tr">150 TL'den</span><span class="en">from 150 TL</span></span><span>→</span></div></div></div></div>
+      <div class="cat-card"><div class="cat-string"></div><div class="cat-tag"><div class="tag-hole"></div><div class="cat-img"><div class="photo-placeholder"><span>FOTO</span></div></div><div class="cat-body"><h3><span class="tr">Ev &amp; Mutfak</span><span class="en">Home &amp; Kitchen</span></h3><span class="en-sub"><span class="tr">küçük ev aletleri</span><span class="en">appliances, cookware</span></span><div class="from"><span><span class="tr">300 TL'den</span><span class="en">from 300 TL</span></span><span>→</span></div></div></div></div>
+      <div class="cat-card"><div class="cat-string"></div><div class="cat-tag"><div class="tag-hole"></div><div class="cat-img"><div class="photo-placeholder"><span>FOTO</span></div></div><div class="cat-body"><h3><span class="tr">Tekstil</span><span class="en">Textiles</span></h3><span class="en-sub"><span class="tr">nevresim, battaniye, halı</span><span class="en">bedding, blankets, rugs</span></span><div class="from"><span><span class="tr">80 TL'den</span><span class="en">from 80 TL</span></span><span>→</span></div></div></div></div>
+      <div class="cat-card"><div class="cat-string"></div><div class="cat-tag"><div class="tag-hole"></div><div class="cat-img"><div class="photo-placeholder"><span>FOTO</span></div></div><div class="cat-body"><h3><span class="tr">Oyuncak</span><span class="en">Toys</span></h3><span class="en-sub"><span class="tr">robot, peluş, bebek</span><span class="en">robots, plush, dolls</span></span><div class="from"><span><span class="tr">45 TL'den</span><span class="en">from 45 TL</span></span><span>→</span></div></div></div></div>
+      <div class="cat-card"><div class="cat-string"></div><div class="cat-tag"><div class="tag-hole"></div><div class="cat-img"><div class="photo-placeholder"><span>FOTO</span></div></div><div class="cat-body"><h3><span class="tr">Sofra &amp; Termos</span><span class="en">Tableware &amp; Thermos</span></h3><span class="en-sub"><span class="tr">fincan takımı, termos</span><span class="en">cup sets, flasks</span></span><div class="from"><span><span class="tr">120 TL'den</span><span class="en">from 120 TL</span></span><span>→</span></div></div></div></div>
+      <div class="cat-card"><div class="cat-string"></div><div class="cat-tag"><div class="tag-hole"></div><div class="cat-img"><div class="photo-placeholder"><span>FOTO</span></div></div><div class="cat-body"><h3><span class="tr">Kahve &amp; Bitkisel</span><span class="en">Coffee &amp; Wellness</span></h3><span class="en-sub"><span class="tr">filtre kahve, bitkisel</span><span class="en">coffee, herbal goods</span></span><div class="from"><span><span class="tr">65 TL'den</span><span class="en">from 65 TL</span></span><span>→</span></div></div></div></div>
+      <div class="cat-card"><div class="cat-string"></div><div class="cat-tag"><div class="tag-hole"></div><div class="cat-img"><div class="photo-placeholder"><span>FOTO</span></div></div><div class="cat-body"><h3><span class="tr">Giyim</span><span class="en">Clothing</span></h3><span class="en-sub"><span class="tr">kaftan, şapka, aksesuar</span><span class="en">kaftans, caps, accessories</span></span><div class="from"><span><span class="tr">90 TL'den</span><span class="en">from 90 TL</span></span><span>→</span></div></div></div></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-bottom:36px;">
+      <div><span class="eyebrow" style="color:var(--amber);"><span class="tr">Nasıl Çalışır</span><span class="en">How it works</span></span><h2 style="color:var(--cream);"><span class="tr">Mağazadan Kapına</span><span class="en">Store shelf to your door</span></h2></div>
+    </div>
+    <div class="how-grid reveal">
+      <div class="how-step">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        <span class="num mono">01</span>
+        <h3><span class="tr">Seç</span><span class="en">Choose</span></h3>
+        <p><span class="tr">Mağazadaki gerçek ürünler arasından seç.</span><span class="en">Pick from what's really on our shelves.</span></p>
+      </div>
+      <div class="how-step">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.1 16.9L2 21l4.2-1.1a8.9 8.9 0 0 0 12.6-8A8.9 8.9 0 0 0 17.6 6.3z"/></svg>
+        <span class="num mono">02</span>
+        <h3><span class="tr">Onayla</span><span class="en">Confirm</span></h3>
+        <p><span class="tr">WhatsApp veya sitede sipariş ver.</span><span class="en">Order on WhatsApp or the site.</span></p>
+      </div>
+      <div class="how-step">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3h18v18H3z"/><path d="M9 3v18M3 9h6"/></svg>
+        <span class="num mono">03</span>
+        <h3><span class="tr">Paketlenir</span><span class="en">Packed</span></h3>
+        <p><span class="tr">Aynı gün mağazadan paketlenir.</span><span class="en">Packed same-day from the store.</span></p>
+      </div>
+      <div class="how-step">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="7" width="15" height="12"/><path d="M16 10h3l4 4v5h-7"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg>
+        <span class="num mono">04</span>
+        <h3><span class="tr">Teslim</span><span class="en">Delivered</span></h3>
+        <p><span class="tr">Kapına kadar, kapıda ödeme seçeneğiyle.</span><span class="en">To your door, cash-on-delivery available.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEALS -->
+<section class="section" id="deals">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><span class="eyebrow"><span class="tr">Bu Hafta</span><span class="en">This week</span></span><h2><span class="tr">Fırsat Ürünleri</span><span class="en">Deal of the week</span></h2></div>
+    </div>
+    <div class="scroll-shelf">
+    <div class="prod-grid reveal">
+      <div class="prod-card">
+        <div class="prod-img"><span class="prod-tag"><span class="tr">İndirim</span><span class="en">Sale</span></span><div class="photo-placeholder"><span>FOTO</span></div></div>
+        <div class="prod-body"><div class="prod-cat"><span class="tr">Ev &amp; Mutfak</span><span class="en">Home &amp; Kitchen</span></div><div class="prod-name"><span class="tr">1.5L Çelik Termos</span><span class="en">1.5L Steel Vacuum Flask</span></div><div class="prod-price"><span class="was mono">450 TL</span><span class="now mono">350 TL</span></div></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img"><div class="photo-placeholder"><span>FOTO</span></div></div>
+        <div class="prod-body"><div class="prod-cat"><span class="tr">Çanta &amp; Takı</span><span class="en">Bags &amp; Jewelry</span></div><div class="prod-name"><span class="tr">Polarize Güneş Gözlüğü</span><span class="en">Polarized Sunglasses</span></div><div class="prod-price"><span class="now mono">185 TL</span></div></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img"><span class="prod-tag"><span class="tr">Yeni</span><span class="en">New</span></span><div class="photo-placeholder"><span>FOTO</span></div></div>
+        <div class="prod-body"><div class="prod-cat"><span class="tr">Ev &amp; Mutfak</span><span class="en">Home &amp; Kitchen</span></div><div class="prod-name"><span class="tr">Cam Mutfak Tartısı</span><span class="en">Glass Kitchen Scale</span></div><div class="prod-price"><span class="now mono">290 TL</span></div></div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img"><div class="photo-placeholder"><span>FOTO</span></div></div>
+        <div class="prod-body"><div class="prod-cat"><span class="tr">Ayakkabı</span><span class="en">Footwear</span></div><div class="prod-name"><span class="tr">Yazlık Terlik</span><span class="en">Summer Slides</span></div><div class="prod-price"><span class="was mono">150 TL</span><span class="now mono">99 TL</span></div></div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <span class="eyebrow"><span class="tr">2016'dan Beri Kurtköy'de</span><span class="en">In Kurtköy since 2016</span></span>
+      <h2><span class="tr">Gerçek bir mağaza,<br>şimdi online.</span><span class="en">A real store,<br>now online.</span></h2>
+      <p><span class="tr">Gümrük Plus, Kurtköy'de fiziksel mağazamızda yıllardır sattığımız ürünleri artık İstanbul'un her yerine gönderiyor. Ayakkabıdan mutfak eşyasına kadar rafımızdaki her şey, aynı fiyatla kapınızda.</span><span class="en">Gümrük Plus ships the same products we've sold for years from our physical store in Kurtköy — now to anywhere in Istanbul. From footwear to kitchenware, whatever's on our shelf, at the same price, delivered.</span></p>
+      <div class="about-stamp-row">
+        <div class="mini-stamp"><b>2016</b><span class="tr">KURULUŞ</span><span class="en">FOUNDED</span></div>
+        <div class="mini-stamp"><b>8+</b><span class="tr">BÖLÜM</span><span class="en">DEPARTMENTS</span></div>
+        <div class="mini-stamp"><b>%100</b><span class="tr">YERİNDE</span><span class="en">IN-STORE</span></div>
+      </div>
+      <a class="btn btn-primary" href="#categories"><span class="tr">Ürünlere Göz At</span><span class="en">Browse products</span> →</a>
+    </div>
+    <div class="about-photos reveal">
+      <div><div class="photo-placeholder"><span>FOTO</span></div></div>
+      <div><div class="photo-placeholder"><span>FOTO</span></div></div>
+      <div><div class="photo-placeholder"><span>FOTO</span></div></div>
+      <div><div class="photo-placeholder"><span>FOTO</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="news">
+  <div class="wrap reveal">
+    <div class="news-card">
+      <h2><span class="tr">Yeni Ürünlerden Haberdar Ol</span><span class="en">Hear about new stock first</span></h2>
+      <p><span class="tr">WhatsApp'tan katıl, yeni ürün ve fırsatları kaçırma.</span><span class="en">Join our WhatsApp list — new arrivals and deals, nothing else.</span></p>
+      <div class="news-actions">
+        <a class="btn btn-primary" href="#"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.1 16.9L2 21l4.2-1.1a8.9 8.9 0 0 0 12.6-8A8.9 8.9 0 0 0 17.6 6.3z"/></svg><span class="tr">WhatsApp'a Katıl</span><span class="en">Join on WhatsApp</span></a>
+        <a class="btn btn-ghost" href="#"><span class="tr">Mağaza Konumu</span><span class="en">Store location</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="tape">
+  <div class="tape-track">
+    <span>★ GÜMRÜK PLUS ★ KURTKÖY ★ PENDİK ★ İSTANBUL ★ GÜMRÜK PLUS ★ KURTKÖY ★ PENDİK ★ İSTANBUL</span>
+    <span>★ GÜMRÜK PLUS ★ KURTKÖY ★ PENDİK ★ İSTANBUL ★ GÜMRÜK PLUS ★ KURTKÖY ★ PENDİK ★ İSTANBUL</span>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h1 style="font-size:22px;margin-bottom:12px;">GÜMRÜK<span style="color:var(--red);">+</span></h1>
+        <p style="opacity:0.75;font-size:13px;line-height:1.7;max-width:260px;"><span class="tr">Kurtköy, Pendik / İstanbul'da gerçek mağaza. Ayakkabıdan ev aletine geniş ürün yelpazesi.</span><span class="en">A real store in Kurtköy, Pendik / Istanbul. Wide range from footwear to appliances.</span></p>
+      </div>
+      <div><h4><span class="tr">Bölümler</span><span class="en">Departments</span></h4><ul><li><span class="tr">Ayakkabı</span><span class="en">Footwear</span></li><li><span class="tr">Çanta &amp; Takı</span><span class="en">Bags &amp; Jewelry</span></li><li><span class="tr">Ev &amp; Mutfak</span><span class="en">Home &amp; Kitchen</span></li><li><span class="tr">Tekstil</span><span class="en">Textiles</span></li></ul></div>
+      <div><h4><span class="tr">Destek</span><span class="en">Support</span></h4><ul><li><span class="tr">Kargo Bilgisi</span><span class="en">Shipping info</span></li><li><span class="tr">İade</span><span class="en">Returns</span></li><li><span class="tr">Sipariş Takibi</span><span class="en">Track order</span></li><li><span class="tr">WhatsApp Destek</span><span class="en">WhatsApp support</span></li></ul></div>
+      <div><h4><span class="tr">Mağaza</span><span class="en">Store</span></h4><ul><li><span class="tr">Kurtköy, Pendik</span><span class="en">Kurtköy, Pendik</span></li><li><span class="tr">09:00–21:00 her gün</span><span class="en">09:00–21:00 daily</span></li></ul></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 Gümrük Plus — Kurtköy.</span><span><span class="tr">Fiyatlar TL cinsindendir.</span><span class="en">Prices shown in TL.</span></span></div>
+  </div>
+</footer>
+
+<nav class="bottom-tabs" aria-label="Primary">
+  <a href="#" class="active" onclick="return goTop()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+    <span class="tr">Ana Sayfa</span><span class="en">Home</span>
+  </a>
+  <a href="#categories">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+    <span class="tr">Bölümler</span><span class="en">Shop</span>
+  </a>
+  <a href="#deals">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 12.6L12 21.2 2.8 12A2 2 0 0 1 2.2 10.6L3.4 4.2A2 2 0 0 1 5.4 2.6l6.4-1.2a2 2 0 0 1 1.4.6l7.4 7.4a2 2 0 0 1 0 2.8z"/><circle cx="8" cy="8" r="1.2"/></svg>
+    <span class="tr">Fırsatlar</span><span class="en">Deals</span>
+  </a>
+  <a href="#" class="whatsapp-tab" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.1 16.9L2 21l4.2-1.1a8.9 8.9 0 0 0 12.6-8A8.9 8.9 0 0 0 17.6 6.3zM12 19.4a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.5.7.7-2.4-.2-.3A7.5 7.5 0 1 1 12 19.4z"/></svg>
+    <span class="tr">WhatsApp</span><span class="en">WhatsApp</span>
+  </a>
+  <a href="#" aria-label="Cart" style="position:relative;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L5 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
+    <span class="tr">Sepet</span><span class="en">Cart</span>
+    <span class="tab-cart-count">2</span>
+  </a>
+</nav>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('in');});},{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  function setLang(lang, btn){
+    document.body.classList.remove('lang-tr','lang-en');
+    document.body.classList.add('lang-' + lang);
+    document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  function toggleMenu(){
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMenu(){
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+  function goTop(){
+    window.scrollTo({top:0, behavior:'smooth'});
+    return false;
+  }
+  // keep bottom-tab active state in sync with scroll position
+  const tabSections = ['categories','deals'];
+  const tabLinks = document.querySelectorAll('.bottom-tabs a[href^="#"]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    tabSections.forEach(id => {
+      const el = document.getElementById(id);
+      if(el && window.scrollY + 120 >= el.offsetTop) current = id;
+    });
+    tabLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current || (current === '' && a.getAttribute('href') === '#'));
+    });
+  });
+</script>
+</body>
+</html>
