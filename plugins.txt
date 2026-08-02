@@ -1,0 +1,1 @@
+woocommerce    latest    core store functionality — install first

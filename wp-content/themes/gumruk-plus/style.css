@@ -1,0 +1,48 @@
+/*
+Theme Name:   Gümrük Plus
+Theme URI:    https://gumrukplus.com
+Description:  Child theme of Storefront for the Gümrük Plus WooCommerce site.
+Author:       Gümrük Plus
+Template:     storefront
+Version:      0.1.0
+Text Domain:  gumruk-plus
+*/
+
+:root{
+	--gp-cream:      #F7F2E7;
+	--gp-paper:      #FFFDF8;
+	--gp-kraft:      #C9A66B;
+	--gp-kraft-dark: #8C6C3D;
+	--gp-ink:        #1E211D;
+	--gp-teal:       #2F5D53;
+	--gp-teal-dark:  #1B3831;
+	--gp-red:        #C6362A;
+	--gp-amber:      #EFA23B;
+	--gp-line:       #DCD2B8;
+	--gp-stone:      #6E6A5C;
+}
+
+body {
+	background: var(--gp-cream);
+	color: var(--gp-ink);
+}
+
+a {
+	color: var(--gp-red);
+}
+
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button {
+	background-color: var(--gp-red);
+	color: #fff;
+	border-radius: 3px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+}
+
+.woocommerce a.button:hover,
+.woocommerce button.button:hover {
+	background-color: var(--gp-ink);
+}

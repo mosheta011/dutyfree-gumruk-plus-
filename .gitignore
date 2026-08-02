@@ -1,0 +1,11 @@
+.env
+wp-config.php
+wp-content/uploads/
+wp-content/plugins/*
+!wp-content/plugins/gp-quick-edit/
+wp-content/themes/*
+!wp-content/themes/gumruk-plus/
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
