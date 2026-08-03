@@ -563,3 +563,73 @@
 .gp-whatsapp-button__icon {
 	font-size: 1.5rem;
 }
+
+/* ---------------------------------------------------------------------
+ * Dark mode
+ * ------------------------------------------------------------------- */
+
+:root {
+	--bg: #FAF7F0;
+	--surface: #FFFFFF;
+	--border-col: #E3DDCF;
+	--text-col: #1F2421;
+	--sub-col: #6B6A63;
+	--topbar-bg: #213F38;
+	--trust-bg: #2F5D53;
+	--about-bg: #1F2421;
+}
+
+html body {
+	/*
+	 * html+body (not just body) is deliberate: Storefront re-enqueues the
+	 * child theme's style.css a second time later in the page (handle
+	 * storefront-child-style), so its plain `body{background:var(--gp-cream)}`
+	 * rule loads after this one and would otherwise win the cascade tie on
+	 * source order alone.
+	 */
+	background: var(--bg);
+	color: var(--text-col);
+	transition: background .35s cubic-bezier(.22,.61,.36,1), color .35s cubic-bezier(.22,.61,.36,1);
+}
+
+body.gp-dark {
+	--bg: #141917;
+	--surface: #1E2420;
+	--border-col: #2A3330;
+	--text-col: #EDE8DF;
+	--sub-col: #8A9490;
+	--topbar-bg: #0D1210;
+	--trust-bg: #0D2420;
+	--about-bg: #0F1512;
+}
+
+body.gp-dark .site-header { background: var(--bg); border-color: var(--text-col); }
+body.gp-dark .woocommerce ul.products li.product { background: var(--surface); border-color: var(--border-col); }
+body.gp-dark .woocommerce ul.products li.product .woocommerce-loop-product__title { color: var(--text-col) !important; }
+body.gp-dark .site-footer { background: #0D1210; }
+body.gp-dark .gp-hero { background: var(--surface); color: var(--text-col); }
+body.gp-dark .gp-hero__title { color: var(--text-col); }
+body.gp-dark .gp-hero__cta--secondary { border-color: var(--text-col); color: var(--text-col); }
+body.gp-dark .gp-hero__cta--secondary:hover { background: var(--text-col); color: var(--bg); }
+body.gp-dark .gp-nav { border-color: var(--text-col); }
+body.gp-dark .gp-nav__link { border-color: var(--text-col); color: var(--text-col); }
+body.gp-dark .gp-nav__link:hover { background: var(--text-col); color: var(--bg); }
+body.gp-dark input, body.gp-dark textarea, body.gp-dark select { background: var(--surface); color: var(--text-col); border-color: var(--border-col); }
+
+.dark-toggle {
+	width: 46px; height: 26px; border-radius: 13px;
+	background: #E3DDCF; border: 2px solid #1F2421;
+	position: relative; cursor: pointer;
+	transition: background .35s cubic-bezier(.22,.61,.36,1), border-color .35s;
+	flex-shrink: 0;
+}
+body.gp-dark .dark-toggle { background: #2A3330; border-color: #EDE8DF; }
+.dark-toggle .knob {
+	width: 18px; height: 18px; border-radius: 50%;
+	background: #1F2421; color: #fff;
+	position: absolute; top: 2px; left: 2px;
+	display: flex; align-items: center; justify-content: center;
+	font-size: 11px; line-height: 1;
+	transition: transform .35s cubic-bezier(.22,.61,.36,1), background .35s;
+}
+body.gp-dark .dark-toggle .knob { transform: translateX(20px); background: #F0A93D; }

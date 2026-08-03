@@ -80,6 +80,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</nav><!-- .gp-nav -->
 
 			<div class="gp-header__actions">
+				<button class="dark-toggle js-dark-toggle" aria-label="<?php esc_attr_e( 'Karanlık mod / Dark mode', 'gumruk-plus' ); ?>" title="<?php esc_attr_e( 'Karanlık mod', 'gumruk-plus' ); ?>">
+					<span class="knob">☀️</span>
+				</button>
 				<?php
 				if ( function_exists( 'storefront_product_search' ) ) {
 					storefront_product_search();

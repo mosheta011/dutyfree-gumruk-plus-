@@ -43,5 +43,18 @@
 			nav.classList.remove( 'is-open' );
 			navToggle.setAttribute( 'aria-expanded', 'false' );
 		} );
+
+		var dmToggle = document.querySelector( '.dark-toggle' );
+		if ( dmToggle ) {
+			var savedDark = localStorage.getItem( 'gp_dark' ) === '1' ||
+				( ! localStorage.getItem( 'gp_dark' ) && window.matchMedia( '(prefers-color-scheme: dark)' ).matches );
+			if ( savedDark ) {
+				document.body.classList.add( 'gp-dark' );
+			}
+			dmToggle.addEventListener( 'click', function () {
+				var isDark = document.body.classList.toggle( 'gp-dark' );
+				localStorage.setItem( 'gp_dark', isDark ? '1' : '0' );
+			} );
+		}
 	} );
 } )();
