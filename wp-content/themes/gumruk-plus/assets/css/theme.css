@@ -621,103 +621,96 @@ body.gp-dark input, body.gp-dark textarea, body.gp-dark select { background: var
 	flex-direction: column;
 	align-items: center;
 	cursor: pointer;
-	user-select: none;
-	-webkit-user-select: none;
 	background: none;
 	border: none;
 	padding: 0;
-	position: relative;
-	margin-top: -13px;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 20;
 }
 .lamp-toggle .cord {
-	width: 2px; height: 28px;
-	background: linear-gradient(to bottom, #8A9490, #6B6A63);
+	width: 1.5px; height: 20px;
+	background: linear-gradient(to bottom, rgba(139,148,144,.5), #6B6A63);
 	border-radius: 1px;
-	position: relative;
-	transition: height .3s cubic-bezier(.22,.61,.36,1);
+	transition: height .25s cubic-bezier(.22,.61,.36,1);
 }
-.lamp-toggle .cord::after {
-	content: '';
-	width: 8px; height: 8px; border-radius: 50%;
-	background: #6B6A63;
-	position: absolute; bottom: -4px; left: -3px;
-}
-.lamp-toggle:hover .cord { height: 34px; }
-.lamp-toggle:active .cord { height: 20px; }
-.lamp-toggle .shade-rim {
-	width: 52px; height: 6px;
-	background: #1F2421; border-radius: 3px;
-	margin-top: -1px;
+.lamp-toggle:hover .cord { height: 26px; }
+.lamp-toggle:active .cord { height: 13px; }
+.lamp-toggle .l-rim {
+	width: 36px; height: 4px;
+	background: #1F2421; border-radius: 2px;
 	transition: background .4s;
 }
-.lamp-toggle .shade {
+.lamp-toggle .l-cone {
 	width: 0; height: 0;
-	border-left: 22px solid transparent;
-	border-right: 22px solid transparent;
-	border-bottom: 26px solid #1F2421;
+	border-left: 18px solid transparent;
+	border-right: 18px solid transparent;
+	border-bottom: 20px solid #1F2421;
 	position: relative;
 	transition: border-bottom-color .4s;
-	filter: drop-shadow(0 3px 6px rgba(0,0,0,.2));
 }
-.lamp-toggle .shade::before {
+.lamp-toggle .l-cone::after {
 	content: '';
 	position: absolute;
-	top: 26px; left: -22px; right: -22px;
-	height: 4px; background: #1F2421;
+	top: 20px; left: -18px; right: -18px;
+	height: 3px; background: #1F2421;
 	border-radius: 0 0 2px 2px;
 	transition: background .4s;
 }
-.lamp-toggle .bulb-wrap {
+.lamp-toggle .l-bulb-zone {
 	position: relative;
 	display: flex; align-items: center; justify-content: center;
-	margin-top: 2px;
+	margin-top: 1px;
 }
-.lamp-toggle .glow {
+.lamp-toggle .l-glow {
 	position: absolute;
-	width: 40px; height: 40px; border-radius: 50%;
-	background: radial-gradient(circle, rgba(240,169,61,.28) 0%, transparent 70%);
+	width: 34px; height: 34px; border-radius: 50%;
+	background: radial-gradient(circle, rgba(240,169,61,.32) 0%, transparent 72%);
 	opacity: 0;
-	transition: opacity .4s;
+	transition: opacity .5s;
 	pointer-events: none;
 }
-.lamp-toggle .bulb {
-	width: 20px; height: 24px;
-	background: #E3DDCF;
-	border-radius: 50% 50% 40% 40%;
-	border: 1.5px solid #C7C4B8;
+.lamp-toggle .l-bulb {
+	width: 16px; height: 20px;
+	background: #D4D0C6;
+	border-radius: 50% 50% 38% 38%;
+	border: 1.5px solid #B8B3A6;
 	position: relative;
 	transition: background .4s, box-shadow .4s, border-color .4s;
 }
-.lamp-toggle .bulb::after {
+.lamp-toggle .l-bulb::after {
 	content: '';
-	width: 6px; height: 8px;
-	background: rgba(255,255,255,.55);
+	width: 5px; height: 7px;
+	background: rgba(255,255,255,.5);
 	border-radius: 50%;
-	position: absolute; top: 3px; left: 4px;
+	position: absolute; top: 2px; left: 3px;
 }
-.lamp-toggle .base {
-	width: 14px; height: 5px;
-	background: #C7C4B8; border-radius: 0 0 3px 3px;
+.lamp-toggle .l-nub {
+	width: 10px; height: 4px;
+	background: #B8B3A6; border-radius: 0 0 3px 3px;
 	margin-top: -1px;
 	transition: background .4s;
 }
-.lamp-toggle .lamp-label {
-	font-size: 9px; font-weight: 700;
-	letter-spacing: .07em; text-transform: uppercase;
-	color: #6B6A63; margin-top: 5px;
-	font-family: 'JetBrains Mono', monospace;
-	transition: color .4s;
-	white-space: nowrap;
-}
 
-body.gp-dark .lamp-toggle .shade { border-bottom-color: #2A3330; }
-body.gp-dark .lamp-toggle .shade::before { background: #2A3330; }
-body.gp-dark .lamp-toggle .shade-rim { background: #3A4540; }
-body.gp-dark .lamp-toggle .bulb {
+body.gp-dark .lamp-toggle .l-rim { background: #3A4540; }
+body.gp-dark .lamp-toggle .l-cone { border-bottom-color: #2A3330; }
+body.gp-dark .lamp-toggle .l-cone::after { background: #2A3330; }
+body.gp-dark .lamp-toggle .l-bulb {
 	background: #F0A93D;
-	border-color: #D4891A;
-	box-shadow: 0 0 12px 4px rgba(240,169,61,.4), 0 0 28px 10px rgba(240,169,61,.15);
+	border-color: #C8881A;
+	box-shadow: 0 0 10px 3px rgba(240,169,61,.45), 0 0 24px 8px rgba(240,169,61,.18);
 }
-body.gp-dark .lamp-toggle .glow { opacity: 1; }
-body.gp-dark .lamp-toggle .base { background: #D4891A; }
-body.gp-dark .lamp-toggle .lamp-label { color: #8A9490; }
+body.gp-dark .lamp-toggle .l-glow { opacity: 1; }
+body.gp-dark .lamp-toggle .l-nub { background: #C8881A; }
+
+body.gp-dark .site-header::after {
+	content: '';
+	position: absolute;
+	bottom: -14px; left: 50%; transform: translateX(-50%);
+	width: 160px; height: 14px;
+	background: radial-gradient(ellipse, rgba(240,169,61,.1) 0%, transparent 80%);
+	pointer-events: none;
+}
+.site-header { position: relative; }

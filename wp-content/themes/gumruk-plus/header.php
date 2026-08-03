@@ -82,14 +82,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="gp-header__actions">
 				<button class="lamp-toggle js-dark-toggle" aria-label="<?php esc_attr_e( 'Karanlık mod / Dark mode', 'gumruk-plus' ); ?>" title="<?php esc_attr_e( 'Karanlık mod', 'gumruk-plus' ); ?>">
 					<div class="cord"></div>
-					<div class="shade-rim"></div>
-					<div class="shade"></div>
-					<div class="bulb-wrap">
-						<div class="glow"></div>
-						<div class="bulb"></div>
+					<div class="l-rim"></div>
+					<div class="l-cone"></div>
+					<div class="l-bulb-zone">
+						<div class="l-glow"></div>
+						<div class="l-bulb"></div>
 					</div>
-					<div class="base"></div>
-					<div class="lamp-label" id="lampLabel">AYDINLIK</div>
+					<div class="l-nub"></div>
 				</button>
 				<?php
 				if ( function_exists( 'storefront_product_search' ) ) {
