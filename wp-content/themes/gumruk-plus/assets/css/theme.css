@@ -1,0 +1,565 @@
+/*
+ * Gümrük Plus theme styles.
+ * Uses the CSS custom properties defined in the parent stylesheet
+ * (style.css): --gp-cream, --gp-paper, --gp-kraft, --gp-kraft-dark,
+ * --gp-ink, --gp-teal, --gp-teal-dark, --gp-red, --gp-amber, --gp-line,
+ * --gp-stone.
+ */
+
+:root {
+	--gp-font-display: 'Anton', sans-serif;
+	--gp-font-body: 'Inter', sans-serif;
+	--gp-font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ---------------------------------------------------------------------
+ * Topbar
+ * ------------------------------------------------------------------- */
+
+.gp-topbar {
+	background: var(--gp-teal-dark);
+	color: var(--gp-cream);
+	font-family: var(--gp-font-mono);
+	font-size: 0.78rem;
+}
+
+.gp-topbar__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	padding: 0.5em 0;
+}
+
+.gp-topbar__info {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.gp-topbar__item {
+	position: relative;
+	padding-left: 1rem;
+}
+
+.gp-topbar__item:first-child {
+	padding-left: 0;
+}
+
+.gp-topbar__item:not(:first-child)::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0.15em;
+	height: 0.9em;
+	border-left: 1px solid rgba(247, 242, 231, 0.35);
+}
+
+.gp-topbar__lang {
+	display: flex;
+	gap: 0.25rem;
+}
+
+.gp-topbar__lang-option {
+	background: transparent;
+	border: 1px solid rgba(247, 242, 231, 0.4);
+	color: var(--gp-cream);
+	font-family: var(--gp-font-mono);
+	font-size: 0.72rem;
+	font-weight: 700;
+	padding: 0.2em 0.6em;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.gp-topbar__lang-option.is-active {
+	background: var(--gp-amber);
+	border-color: var(--gp-amber);
+	color: var(--gp-ink);
+}
+
+/* ---------------------------------------------------------------------
+ * Deals marquee
+ * ------------------------------------------------------------------- */
+
+.gp-marquee {
+	overflow: hidden;
+	background: var(--gp-teal);
+	color: var(--gp-paper);
+	font-family: var(--gp-font-mono);
+	font-size: 0.8rem;
+	letter-spacing: 0.03em;
+	white-space: nowrap;
+}
+
+.gp-marquee__track {
+	display: inline-flex;
+	animation: gp-marquee-scroll 30s linear infinite;
+	padding: 0.5em 0;
+}
+
+.gp-marquee:hover .gp-marquee__track {
+	animation-play-state: paused;
+}
+
+.gp-marquee__item {
+	padding: 0 2em;
+	position: relative;
+}
+
+.gp-marquee__item::after {
+	content: '\2022';
+	position: absolute;
+	right: -0.15em;
+	color: var(--gp-amber);
+}
+
+@keyframes gp-marquee-scroll {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.gp-marquee__track {
+		animation: none;
+		overflow-x: auto;
+	}
+}
+
+/* ---------------------------------------------------------------------
+ * Header
+ * ------------------------------------------------------------------- */
+
+.gp-header {
+	background: var(--gp-paper);
+	border-bottom: 2px solid var(--gp-line);
+}
+
+.gp-header__inner {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 1rem;
+	padding: 1rem 0;
+}
+
+.gp-header__branding {
+	margin-right: auto;
+}
+
+.gp-logo {
+	display: inline-flex;
+	align-items: baseline;
+	text-decoration: none;
+	line-height: 1;
+}
+
+.gp-logo__word,
+.gp-logo__plus {
+	font-family: var(--gp-font-display);
+	font-size: 1.9rem;
+	letter-spacing: 0.02em;
+}
+
+.gp-logo__word {
+	color: var(--gp-ink);
+}
+
+.gp-logo__plus {
+	color: var(--gp-red);
+	margin-left: 0.05em;
+}
+
+.gp-header__tagline {
+	margin: 0.15em 0 0;
+	color: var(--gp-stone);
+	font-size: 0.85rem;
+}
+
+.gp-header__actions {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.gp-nav-toggle {
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	gap: 4px;
+	width: 40px;
+	height: 40px;
+	background: none;
+	border: 1px solid var(--gp-line);
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.gp-nav-toggle__bar {
+	display: block;
+	height: 2px;
+	width: 20px;
+	margin: 0 auto;
+	background: var(--gp-ink);
+}
+
+/* ---------------------------------------------------------------------
+ * Primary navigation
+ * ------------------------------------------------------------------- */
+
+.gp-nav__menu {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.gp-nav__item {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.gp-nav__link {
+	display: inline-block;
+	padding: 0.5em 1.1em;
+	color: var(--gp-ink);
+	text-decoration: none;
+	font-family: var(--gp-font-mono);
+	font-weight: 700;
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	border: 2px solid var(--gp-ink);
+	border-radius: 4px;
+	transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.gp-nav__link:hover {
+	background: var(--gp-red);
+	border-color: var(--gp-red);
+	color: #fff;
+}
+
+.gp-nav__toggle {
+	background: none;
+	border: 0;
+	cursor: pointer;
+	padding: 0.25em;
+}
+
+.gp-nav__toggle-icon {
+	display: block;
+	width: 8px;
+	height: 8px;
+	border-right: 2px solid var(--gp-ink);
+	border-bottom: 2px solid var(--gp-ink);
+	transform: rotate(45deg);
+}
+
+.gp-nav__submenu {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	min-width: 200px;
+	background: var(--gp-paper);
+	border: 1px solid var(--gp-line);
+	border-radius: 4px;
+	list-style: none;
+	margin: 0;
+	padding: 0.4em 0;
+	z-index: 10;
+}
+
+.gp-nav__item--has-children.is-open > .gp-nav__submenu,
+.gp-nav__item--has-children:hover > .gp-nav__submenu {
+	display: block;
+}
+
+.gp-nav__submenu .gp-nav__link {
+	display: block;
+	padding: 0.5em 1em;
+}
+
+@media (max-width: 768px) {
+	.gp-nav-toggle {
+		display: flex;
+	}
+
+	.gp-nav {
+		display: none;
+		width: 100%;
+		order: 3;
+	}
+
+	.gp-nav.is-open {
+		display: block;
+	}
+
+	.gp-nav__menu {
+		flex-direction: column;
+	}
+
+	.gp-nav__submenu {
+		position: static;
+		border: 0;
+		padding-left: 1em;
+	}
+}
+
+/* ---------------------------------------------------------------------
+ * Full-width content (shop / category — no sidebar)
+ * ------------------------------------------------------------------- */
+
+.gp-full-width {
+	width: 100% !important;
+	float: none !important;
+}
+
+.gp-full-width + #secondary {
+	display: none !important;
+}
+
+/* ---------------------------------------------------------------------
+ * Hero
+ * ------------------------------------------------------------------- */
+
+.gp-hero {
+	background: var(--gp-cream);
+	color: var(--gp-ink);
+	padding: 5rem 1rem;
+	text-align: center;
+}
+
+.gp-hero__title {
+	font-family: var(--gp-font-display);
+	font-size: clamp(2rem, 6vw, 4rem);
+	line-height: 1.15;
+	margin: 0 0 1em;
+	letter-spacing: 0.02em;
+	color: var(--gp-ink);
+}
+
+.gp-hero__title-highlight {
+	display: block;
+	color: var(--gp-red);
+}
+
+.gp-hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.gp-hero__cta {
+	display: inline-block;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+	padding: 0.8em 2em;
+	border-radius: 3px;
+	text-decoration: none;
+	border: 2px solid transparent;
+}
+
+.gp-hero__cta--primary {
+	background: var(--gp-red);
+	border-color: var(--gp-red);
+	color: #fff;
+}
+
+.gp-hero__cta--primary:hover {
+	background: var(--gp-amber);
+	border-color: var(--gp-amber);
+	color: var(--gp-ink);
+}
+
+.gp-hero__cta--secondary {
+	background: transparent;
+	border-color: var(--gp-ink);
+	color: var(--gp-ink);
+}
+
+.gp-hero__cta--secondary:hover {
+	background: var(--gp-ink);
+	color: var(--gp-cream);
+}
+
+/* ---------------------------------------------------------------------
+ * Content sections / entries
+ * ------------------------------------------------------------------- */
+
+.gp-section {
+	padding: 3rem 0;
+}
+
+.gp-section__title {
+	font-family: var(--gp-font-display);
+	font-size: 1.6rem;
+	margin-bottom: 1em;
+	text-align: center;
+}
+
+.gp-entry {
+	margin-bottom: 2.5rem;
+	padding-bottom: 2.5rem;
+	border-bottom: 1px solid var(--gp-line);
+}
+
+.gp-entry .entry-title {
+	font-family: var(--gp-font-display);
+	margin-bottom: 0.2em;
+}
+
+.gp-entry .entry-title a {
+	color: var(--gp-ink);
+	text-decoration: none;
+}
+
+.gp-entry .entry-meta {
+	color: var(--gp-stone);
+	font-size: 0.85rem;
+	margin-bottom: 1em;
+}
+
+.gp-entry .entry-thumbnail img {
+	border-radius: 6px;
+	margin-bottom: 1em;
+}
+
+.gp-breadcrumb {
+	color: var(--gp-stone);
+	font-size: 0.85rem;
+	padding: 1em 0;
+}
+
+.gp-breadcrumb a {
+	color: var(--gp-teal);
+}
+
+/* WooCommerce sale badge */
+.onsale {
+	background: var(--gp-red) !important;
+	color: #fff !important;
+	font-family: var(--gp-font-mono);
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------------
+ * Search form
+ * ------------------------------------------------------------------- */
+
+.gp-search-form {
+	display: flex;
+	gap: 0.5em;
+	max-width: 480px;
+	margin: 1.5em 0;
+}
+
+.gp-search-form__input {
+	flex: 1;
+	padding: 0.6em 0.8em;
+	border: 1px solid var(--gp-line);
+	border-radius: 3px;
+	background: var(--gp-paper);
+	color: var(--gp-ink);
+}
+
+.gp-search-form__submit {
+	padding: 0.6em 1.2em;
+	border: 0;
+	border-radius: 3px;
+	background: var(--gp-teal);
+	color: #fff;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.gp-search-form__submit:hover {
+	background: var(--gp-teal-dark);
+}
+
+/* ---------------------------------------------------------------------
+ * Footer
+ * ------------------------------------------------------------------- */
+
+.gp-footer {
+	background: var(--gp-ink);
+	color: var(--gp-cream);
+	margin-top: 3rem;
+}
+
+.gp-footer a {
+	color: var(--gp-cream);
+}
+
+.gp-footer__columns {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 2rem;
+	padding: 3rem 0;
+}
+
+.gp-footer .gp-footer__heading {
+	font-family: var(--gp-font-display);
+	font-size: 1.1rem;
+	margin: 0 0 0.8em;
+	color: var(--gp-amber);
+}
+
+.gp-footer__tagline {
+	color: var(--gp-line);
+}
+
+.gp-footer__links {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.gp-footer__links li {
+	margin-bottom: 0.5em;
+}
+
+.gp-footer__bottom {
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	padding: 1.5rem 0;
+	text-align: center;
+	font-size: 0.85rem;
+	color: var(--gp-line);
+}
+
+/* ---------------------------------------------------------------------
+ * WhatsApp floating button
+ * ------------------------------------------------------------------- */
+
+.gp-whatsapp-button {
+	position: fixed;
+	right: 1.5rem;
+	bottom: 1.5rem;
+	width: 56px;
+	height: 56px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #25d366;
+	color: #fff;
+	border-radius: 50%;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+	text-decoration: none;
+	z-index: 100;
+}
+
+.gp-whatsapp-button__icon {
+	font-size: 1.5rem;
+}

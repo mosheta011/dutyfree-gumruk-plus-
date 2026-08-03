@@ -14,7 +14,7 @@ services:
       - "3306:3306"
 
   wordpress:
-    image: wordpress:6.6-php8.2-apache
+    image: wordpress:6.9-php8.2-apache
     container_name: gp_wordpress
     restart: unless-stopped
     depends_on:
@@ -31,7 +31,7 @@ services:
       - ./wp-content/themes:/var/www/html/wp-content/themes
       - ./docker/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     ports:
-      - "8080:80"
+      - "8082:80"
 
   phpmyadmin:
     image: phpmyadmin:latest
