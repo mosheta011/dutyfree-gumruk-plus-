@@ -624,11 +624,9 @@ body.gp-dark input, body.gp-dark textarea, body.gp-dark select { background: var
 	background: none;
 	border: none;
 	padding: 0;
-	position: absolute;
-	top: 0;
-	left: 50%;
-	transform: translateX(-50%);
-	z-index: 20;
+	position: relative;
+	margin-top: -10px;
+	z-index: 10;
 }
 .lamp-toggle .cord {
 	width: 1.5px; height: 20px;
@@ -692,6 +690,7 @@ body.gp-dark input, body.gp-dark textarea, body.gp-dark select { background: var
 	background: #B8B3A6; border-radius: 0 0 3px 3px;
 	margin-top: -1px;
 	transition: background .4s;
+	position: relative;
 }
 
 body.gp-dark .lamp-toggle .l-rim { background: #3A4540; }
@@ -704,13 +703,40 @@ body.gp-dark .lamp-toggle .l-bulb {
 }
 body.gp-dark .lamp-toggle .l-glow { opacity: 1; }
 body.gp-dark .lamp-toggle .l-nub { background: #C8881A; }
-
-body.gp-dark .site-header::after {
+body.gp-dark .lamp-toggle .l-nub::after {
 	content: '';
 	position: absolute;
-	bottom: -14px; left: 50%; transform: translateX(-50%);
-	width: 160px; height: 14px;
-	background: radial-gradient(ellipse, rgba(240,169,61,.1) 0%, transparent 80%);
+	top: 4px; left: 50%; transform: translateX(-50%);
+	width: 60px; height: 12px;
+	background: radial-gradient(ellipse, rgba(240,169,61,.18) 0%, transparent 80%);
 	pointer-events: none;
 }
-.site-header { position: relative; }
+
+.lamp-toggle::after {
+	content: 'Karanlık Mod';
+	position: absolute;
+	bottom: -28px;
+	left: 50%;
+	transform: translateX(-50%) translateY(4px);
+	background: #1F2421;
+	color: #FAF7F0;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 9px;
+	font-weight: 700;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	padding: 4px 8px;
+	border-radius: 3px;
+	white-space: nowrap;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity .2s, transform .2s;
+}
+.lamp-toggle:hover::after {
+	opacity: 1;
+	transform: translateX(-50%) translateY(0);
+}
+body.gp-dark .lamp-toggle::after {
+	background: #EDE8DF;
+	color: #141917;
+}

@@ -80,7 +80,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</nav><!-- .gp-nav -->
 
 			<div class="gp-header__actions">
-				<button class="lamp-toggle js-dark-toggle" aria-label="<?php esc_attr_e( 'Karanlık mod / Dark mode', 'gumruk-plus' ); ?>" title="<?php esc_attr_e( 'Karanlık mod', 'gumruk-plus' ); ?>">
+				<?php
+				if ( function_exists( 'storefront_product_search' ) ) {
+					storefront_product_search();
+				}
+				?>
+				<button class="lamp-toggle js-dark-toggle" aria-label="<?php esc_attr_e( 'Karanlık mod / Dark mode', 'gumruk-plus' ); ?>">
 					<div class="cord"></div>
 					<div class="l-rim"></div>
 					<div class="l-cone"></div>
@@ -91,9 +96,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<div class="l-nub"></div>
 				</button>
 				<?php
-				if ( function_exists( 'storefront_product_search' ) ) {
-					storefront_product_search();
-				}
 				if ( function_exists( 'storefront_header_cart' ) ) {
 					storefront_header_cart();
 				}
