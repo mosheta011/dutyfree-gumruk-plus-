@@ -616,6 +616,28 @@ body.gp-dark .gp-nav__link { border-color: var(--text-col); color: var(--text-co
 body.gp-dark .gp-nav__link:hover { background: var(--text-col); color: var(--bg); }
 body.gp-dark input, body.gp-dark textarea, body.gp-dark select { background: var(--surface); color: var(--text-col); border-color: var(--border-col); }
 
+/* Remove any background/border/outline from the button element itself */
+.lamp-toggle,
+.lamp-toggle:focus,
+.lamp-toggle:hover,
+.lamp-toggle:active {
+	background: none !important;
+	background-color: transparent !important;
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
+	-webkit-tap-highlight-color: transparent;
+}
+body.gp-dark .lamp-toggle,
+body.gp-dark .lamp-toggle:focus,
+body.gp-dark .lamp-toggle:hover {
+	background: none !important;
+	background-color: transparent !important;
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
+}
+
 .lamp-toggle {
 	display: flex;
 	flex-direction: column;
@@ -693,9 +715,16 @@ body.gp-dark input, body.gp-dark textarea, body.gp-dark select { background: var
 	position: relative;
 }
 
-body.gp-dark .lamp-toggle .l-rim { background: #3A4540; }
-body.gp-dark .lamp-toggle .l-cone { border-bottom-color: #2A3330; }
-body.gp-dark .lamp-toggle .l-cone::after { background: #2A3330; }
+/* Shade cone and rim should match dark surface not default button bg */
+body.gp-dark .lamp-toggle .l-rim { background: #E8E2D6; }
+body.gp-dark .lamp-toggle .l-cone { border-bottom-color: #E8E2D6; }
+body.gp-dark .lamp-toggle .l-cone::after { background: #E8E2D6; }
+
+/* Cord subtler in dark */
+body.gp-dark .lamp-toggle .cord {
+	background: linear-gradient(to bottom, rgba(232,226,214,.25), #7A8A82);
+}
+
 body.gp-dark .lamp-toggle .l-bulb {
 	background: #F0A93D;
 	border-color: #C8881A;
@@ -737,6 +766,7 @@ body.gp-dark .lamp-toggle .l-nub::after {
 	transform: translateX(-50%) translateY(0);
 }
 body.gp-dark .lamp-toggle::after {
-	background: #EDE8DF;
-	color: #141917;
+	content: 'Aydınlık Mod';
+	background: #E8E2D6;
+	color: #0F1512;
 }
