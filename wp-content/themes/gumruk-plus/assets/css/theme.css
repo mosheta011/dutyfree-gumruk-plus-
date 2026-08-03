@@ -17,8 +17,8 @@
  * ------------------------------------------------------------------- */
 
 .gp-topbar {
-	background: var(--gp-teal-dark);
-	color: var(--gp-cream);
+	background: #213F38 !important;
+	color: #FFFFFF !important;
 	font-family: var(--gp-font-mono);
 	font-size: 0.78rem;
 }
@@ -85,8 +85,8 @@
 
 .gp-marquee {
 	overflow: hidden;
-	background: #D6392C;
-	color: var(--gp-paper);
+	background: #D6392C !important;
+	color: #FFFFFF !important;
 	font-family: var(--gp-font-mono);
 	font-size: 0.8rem;
 	letter-spacing: 0.03em;
@@ -140,6 +140,17 @@
 .gp-header {
 	background: var(--gp-paper);
 	border-bottom: 2px solid var(--gp-line);
+}
+
+/* Hardened header rule: matches the header regardless of which class/id
+   any given page ends up relying on, with its own shadow for separation
+   from the page background. */
+.site-header,
+#masthead,
+header.site-header {
+	background: #FFFFFF !important;
+	border-bottom: 3px solid #1F2421 !important;
+	box-shadow: 0 2px 12px rgba(31, 36, 33, .08) !important;
 }
 
 .gp-header__inner {
@@ -232,14 +243,14 @@
 .gp-nav__link {
 	display: inline-block;
 	padding: 0.5em 1.1em;
-	color: var(--gp-ink);
+	color: #1F2421 !important;
 	text-decoration: none;
-	font-family: var(--gp-font-mono);
-	font-weight: 700;
-	font-size: 0.8rem;
-	text-transform: uppercase;
-	letter-spacing: 0.03em;
-	border: 2px solid var(--gp-ink);
+	font-family: 'Inter', sans-serif !important;
+	font-weight: 700 !important;
+	font-size: 11px !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.04em !important;
+	border: 2px solid #1F2421 !important;
 	border-radius: 4px;
 	transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
@@ -299,14 +310,14 @@
 	align-items: center;
 	gap: 10px;
 	padding: 11px 16px;
-	font-family: var(--gp-font-body);
-	font-size: 11px;
-	font-weight: 600;
-	text-transform: none;
+	font-family: var(--gp-font-body) !important;
+	font-size: 11px !important;
+	font-weight: 600 !important;
+	text-transform: none !important;
 	letter-spacing: .03em;
-	color: var(--gp-ink);
-	border: none;
-	border-bottom: 1px solid var(--gp-line);
+	color: var(--gp-ink) !important;
+	border: none !important;
+	border-bottom: 1px solid var(--gp-line) !important;
 	border-radius: 0;
 	transition: background .15s, color .15s, padding-left .15s;
 }
@@ -506,13 +517,14 @@
  * nothing around it. Padding here is what makes the background/border/
  * shadow (including the dark-mode versions below) actually visible.
  */
-.woocommerce ul.products li.product {
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product {
 	padding: 16px;
 	box-sizing: border-box;
-	border: 1px solid var(--gp-line);
-	border-radius: 8px;
-	background: var(--gp-paper);
-	box-shadow: 0 2px 8px rgba(31, 36, 33, .06);
+	background: #FFFFFF !important;
+	border: 1.5px solid #E3DDCF !important;
+	border-radius: 10px !important;
+	box-shadow: 0 2px 8px rgba(31, 36, 33, .07) !important;
 	transition: background .4s, border-color .4s, box-shadow .4s;
 }
 
@@ -558,14 +570,16 @@
 select {
 	appearance: none;
 	-webkit-appearance: none;
-	border: 2px solid var(--gp-line);
-	border-radius: 5px;
-	font-family: var(--gp-font-body);
-	font-size: 11px;
-	font-weight: 600;
-	padding: 8px 32px 8px 12px;
+	border: 2px solid #E3DDCF !important;
+	border-radius: 5px !important;
+	font-family: 'Inter', sans-serif !important;
+	font-size: 11px !important;
+	font-weight: 600 !important;
+	padding: 8px 32px 8px 12px !important;
 	cursor: pointer;
 	outline: none;
+	background: #FFFFFF !important;
+	color: #1F2421 !important;
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236B6A63' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
 	background-repeat: no-repeat;
 	background-position: right 10px center;
@@ -574,9 +588,80 @@ select {
 
 .woocommerce-ordering select:focus,
 select:focus {
-	border-color: #D6392C;
+	border-color: #D6392C !important;
 	box-shadow: 0 0 0 3px rgba(214, 57, 44, .12);
 	outline: none;
+}
+
+body.gp-dark .woocommerce-ordering select,
+body.gp-dark select {
+	background: #142018 !important;
+	color: #DDE8E0 !important;
+	border-color: #1E3028 !important;
+}
+
+.woocommerce-result-count {
+	font-family: 'JetBrains Mono', monospace !important;
+	font-size: 11px !important;
+	color: #6B6A63 !important;
+}
+body.gp-dark .woocommerce-result-count { color: #6A8A72 !important; }
+
+/* ---------------------------------------------------------------------
+ * Font system — headings, product title/price/button
+ * ------------------------------------------------------------------- */
+
+h1, h2, h3, h4, .product_title {
+	font-family: 'Anton', sans-serif !important;
+	font-weight: 400 !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.01em !important;
+	color: var(--text-col, #1F2421) !important;
+}
+body.gp-dark h1, body.gp-dark h2, body.gp-dark h3, body.gp-dark h4 {
+	color: #DDE8E0 !important;
+}
+
+ul.products li.product .woocommerce-loop-product__title {
+	font-family: 'Inter', sans-serif !important;
+	font-size: 13px !important;
+	font-weight: 600 !important;
+	text-transform: none !important;
+	color: #1F2421 !important;
+}
+body.gp-dark ul.products li.product .woocommerce-loop-product__title {
+	color: #DDE8E0 !important;
+}
+
+ul.products li.product .price {
+	font-family: 'JetBrains Mono', monospace !important;
+	font-size: 15px !important;
+	font-weight: 700 !important;
+	color: #D6392C !important;
+}
+body.gp-dark ul.products li.product .price {
+	color: #FF8A7A !important;
+}
+
+ul.products li.product .button {
+	font-family: 'Inter', sans-serif !important;
+	font-size: 11px !important;
+	font-weight: 700 !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.04em !important;
+	background: #1F2421 !important;
+	color: #FAF7F0 !important;
+	border: none !important;
+	border-radius: 5px !important;
+	padding: 10px 18px !important;
+}
+body.gp-dark ul.products li.product .button {
+	background: #DDE8E0 !important;
+	color: #0D1A14 !important;
+}
+ul.products li.product .button:hover {
+	background: #D6392C !important;
+	color: #FFFFFF !important;
 }
 
 /* ---------------------------------------------------------------------
@@ -584,8 +669,6 @@ select:focus {
  * ------------------------------------------------------------------- */
 
 .gp-footer {
-	background: var(--gp-ink);
-	color: var(--gp-cream);
 	margin-top: 3rem;
 }
 
@@ -604,7 +687,7 @@ select:focus {
 	font-family: var(--gp-font-display);
 	font-size: 1.1rem;
 	margin: 0 0 0.8em;
-	color: var(--gp-amber);
+	color: var(--gp-amber) !important;
 }
 
 .gp-footer__tagline {
@@ -669,17 +752,20 @@ select:focus {
 	--about-bg: #1F2421;
 }
 
-html body {
-	/*
-	 * html+body (not just body) is deliberate: Storefront re-enqueues the
-	 * child theme's style.css a second time later in the page (handle
-	 * storefront-child-style), so its plain `body{background:var(--gp-cream)}`
-	 * rule loads after this one and would otherwise win the cascade tie on
-	 * source order alone.
-	 */
-	background: var(--bg);
-	color: var(--text-col);
-	transition: background .35s cubic-bezier(.22,.61,.36,1), color .35s cubic-bezier(.22,.61,.36,1);
+/*
+ * !important throughout this file's mode rules is deliberate: Storefront
+ * re-enqueues this child theme's own style.css a second time later in the
+ * page (handle storefront-child-style) and also ships several compound
+ * selectors (e.g. .site-footer h1..h6, .site-header) that outrank a plain
+ * single class regardless of source order. !important sidesteps both
+ * failure modes instead of re-litigating specificity per rule.
+ */
+body {
+	background: #FAF7F0 !important;
+	color: #1F2421 !important;
+	font-family: 'Inter', sans-serif !important;
+	-webkit-font-smoothing: antialiased;
+	transition: background .35s cubic-bezier(.22, .61, .36, 1), color .35s cubic-bezier(.22, .61, .36, 1);
 }
 
 /* ═══ DARK MODE — deep forest green palette ═══ */
@@ -692,17 +778,25 @@ body.gp-dark {
 	--border-col: #1E3028;
 	--topbar-bg: #040E08;
 	--trust-bg: #081810;
+	background: #0D1A14 !important;
+	color: #DDE8E0 !important;
 }
 
 /* Topbar */
-body.gp-dark .gp-topbar { background: #040E08; box-shadow: 0 1px 0 #0F3028; }
+body.gp-dark .gp-topbar { background: #040E08 !important; color: #DDE8E0 !important; box-shadow: 0 1px 0 #0F3028; }
 
 /* Header */
-body.gp-dark .site-header { background: var(--bg); border-color: #DDE8E0; box-shadow: 0 4px 20px rgba(0, 0, 0, .4); }
+body.gp-dark .site-header,
+body.gp-dark #masthead,
+body.gp-dark header.site-header {
+	background: #142018 !important;
+	border-bottom: 3px solid #2A4030 !important;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, .4) !important;
+}
 
 /* Nav */
 body.gp-dark .gp-nav { border-color: #DDE8E0; box-shadow: 0 2px 12px rgba(0, 0, 0, .3); }
-body.gp-dark .gp-nav__link { color: #DDE8E0; border-color: #DDE8E0; }
+body.gp-dark .gp-nav__link { color: #DDE8E0 !important; border-color: #DDE8E0 !important; }
 body.gp-dark .gp-nav__link:hover { background: #DDE8E0; color: #0D1A14; }
 
 /* Nav dropdown */
@@ -712,30 +806,43 @@ body.gp-dark .gp-nav__submenu {
 	box-shadow: 0 20px 60px rgba(0, 0, 0, .7);
 }
 body.gp-dark .gp-nav__submenu .gp-nav__link {
-	color: #DDE8E0;
-	border-color: #1E3028;
+	color: #DDE8E0 !important;
+	border-color: #1E3028 !important;
 }
 body.gp-dark .gp-nav__submenu .gp-nav__link::before { background: #1E3028; }
-body.gp-dark .gp-nav__submenu .gp-nav__link:hover { background: #1A2A1E; color: #6AF0A0; }
+body.gp-dark .gp-nav__submenu .gp-nav__link:hover { background: #1A2A1E; color: #6AF0A0 !important; }
 body.gp-dark .gp-nav__submenu .gp-nav__link:hover::before { background: #6AF0A0; }
 
 /* Deals bar — red in light, dark forest gradient in dark */
 body.gp-dark .gp-marquee {
-	background: linear-gradient(90deg, #0F2A1A 0%, #1A3A20 40%, #0F2A1A 100%);
-	border-top: 1px solid #1E4028;
-	border-bottom: 1px solid #1E4028;
-	box-shadow: none;
+	background: linear-gradient(90deg, #0F2A1A 0%, #1A3A20 40%, #0F2A1A 100%) !important;
+	border-top: 1px solid #1E4028 !important;
+	border-bottom: 1px solid #1E4028 !important;
+	box-shadow: none !important;
 }
-body.gp-dark .gp-marquee__item { color: #6AF0A0; }
+body.gp-dark .gp-marquee__item { color: #6AF0A0 !important; }
 
-/* Hero */
-body.gp-dark .gp-hero { background: var(--surface); color: var(--text-col); }
-body.gp-dark .gp-hero__title { color: var(--text-col); }
-body.gp-dark .gp-hero__cta--secondary { border-color: var(--text-col); color: var(--text-col); }
-body.gp-dark .gp-hero__cta--secondary:hover { background: var(--text-col); color: var(--bg); }
+/* Hero — fixed dark surface always; slightly darker again in dark mode */
+.gp-hero {
+	background: #1F2421 !important;
+	color: #FFFFFF !important;
+}
+body.gp-dark .gp-hero { background: #0A1410 !important; }
+.gp-hero__title,
+.gp-hero__tagline { color: #FFFFFF !important; }
+/* Higher specificity than the global "body.gp-dark h1" heading rule
+   (2 elements + 1 class) below, which would otherwise win on element
+   count and shift this to the dark-mode heading color instead of white. */
+body.gp-dark .gp-hero__title { color: #FFFFFF !important; }
+.gp-hero__cta--secondary { border-color: #FFFFFF; color: #FFFFFF; }
+.gp-hero__cta--secondary:hover { background: #FFFFFF; color: #1F2421; }
 
 /* Product cards */
-body.gp-dark ul.products li.product { background: #142018; border-color: #1E3028; box-shadow: 0 4px 16px rgba(0, 0, 0, .3); }
+body.gp-dark ul.products li.product {
+	background: #142018 !important;
+	border-color: #1E3028 !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, .3) !important;
+}
 body.gp-dark ul.products li.product:hover { border-color: #DDE8E0; box-shadow: 0 20px 60px rgba(0, 0, 0, .6); }
 body.gp-dark ul.products li.product img { background: #1A2A1E; }
 body.gp-dark ul.products li.product .woocommerce-loop-product__title { color: #DDE8E0 !important; }
@@ -743,13 +850,24 @@ body.gp-dark ul.products li.product .price { color: #FF8A7A !important; }
 body.gp-dark ul.products li.product::after { background: #6AF0A0; }
 
 /* Footer */
-body.gp-dark .site-footer { background: #040E08; }
+.site-footer,
+footer,
+#colophon {
+	background: #213F38 !important;
+	color: #FAF7F0 !important;
+}
+body.gp-dark .site-footer,
+body.gp-dark footer,
+body.gp-dark #colophon {
+	background: #040E08 !important;
+	color: #6A8A72 !important;
+}
 body.gp-dark .gp-footer__bottom { border-color: rgba(255, 255, 255, .06); color: #6A8A72; }
 
 /* Forms */
 body.gp-dark input, body.gp-dark textarea, body.gp-dark select,
 body.gp-dark .woocommerce-ordering select {
-	background: #142018; color: #DDE8E0; border-color: #1E3028;
+	background: #142018 !important; color: #DDE8E0 !important; border-color: #1E3028 !important;
 }
 
 /* Remove any background/border/outline from the button element itself */
@@ -796,14 +914,14 @@ body.gp-dark .lamp-toggle:hover {
 .lamp-toggle:active .cord { height: 13px; }
 .lamp-toggle .l-rim {
 	width: 36px; height: 4px;
-	background: #1F2421; border-radius: 2px;
+	background: #1F2421 !important; border-radius: 2px;
 	transition: background .4s;
 }
 .lamp-toggle .l-cone {
 	width: 0; height: 0;
 	border-left: 18px solid transparent;
 	border-right: 18px solid transparent;
-	border-bottom: 20px solid #1F2421;
+	border-bottom: 20px solid #1F2421 !important;
 	position: relative;
 	transition: border-bottom-color .4s;
 }
@@ -811,7 +929,7 @@ body.gp-dark .lamp-toggle:hover {
 	content: '';
 	position: absolute;
 	top: 20px; left: -18px; right: -18px;
-	height: 3px; background: #1F2421;
+	height: 3px; background: #1F2421 !important;
 	border-radius: 0 0 2px 2px;
 	transition: background .4s;
 }
@@ -851,10 +969,10 @@ body.gp-dark .lamp-toggle:hover {
 	position: relative;
 }
 
-/* Shade cone and rim should match dark surface not default button bg */
-body.gp-dark .lamp-toggle .l-rim { background: #E8E2D6; }
-body.gp-dark .lamp-toggle .l-cone { border-bottom-color: #E8E2D6; }
-body.gp-dark .lamp-toggle .l-cone::after { background: #E8E2D6; }
+/* Shade cone and rim: light cream in dark mode so it's visible */
+body.gp-dark .lamp-toggle .l-rim { background: #DDE8E0 !important; }
+body.gp-dark .lamp-toggle .l-cone { border-bottom-color: #DDE8E0 !important; }
+body.gp-dark .lamp-toggle .l-cone::after { background: #DDE8E0 !important; }
 
 /* Cord subtler in dark */
 body.gp-dark .lamp-toggle .cord {
