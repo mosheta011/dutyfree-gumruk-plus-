@@ -80,8 +80,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</nav><!-- .gp-nav -->
 
 			<div class="gp-header__actions">
-				<button class="dark-toggle js-dark-toggle" aria-label="<?php esc_attr_e( 'Karanlık mod / Dark mode', 'gumruk-plus' ); ?>" title="<?php esc_attr_e( 'Karanlık mod', 'gumruk-plus' ); ?>">
-					<span class="knob">☀️</span>
+				<button class="lamp-toggle js-dark-toggle" aria-label="<?php esc_attr_e( 'Karanlık mod / Dark mode', 'gumruk-plus' ); ?>" title="<?php esc_attr_e( 'Karanlık mod', 'gumruk-plus' ); ?>">
+					<div class="cord"></div>
+					<div class="shade-rim"></div>
+					<div class="shade"></div>
+					<div class="bulb-wrap">
+						<div class="glow"></div>
+						<div class="bulb"></div>
+					</div>
+					<div class="base"></div>
+					<div class="lamp-label" id="lampLabel">AYDINLIK</div>
 				</button>
 				<?php
 				if ( function_exists( 'storefront_product_search' ) ) {

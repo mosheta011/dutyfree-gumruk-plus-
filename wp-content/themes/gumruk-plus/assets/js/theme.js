@@ -44,16 +44,23 @@
 			navToggle.setAttribute( 'aria-expanded', 'false' );
 		} );
 
-		var dmToggle = document.querySelector( '.dark-toggle' );
-		if ( dmToggle ) {
+		var lampToggle = document.querySelector( '.js-dark-toggle' );
+		var lampLabel = document.getElementById( 'lampLabel' );
+		if ( lampToggle ) {
 			var savedDark = localStorage.getItem( 'gp_dark' ) === '1' ||
 				( ! localStorage.getItem( 'gp_dark' ) && window.matchMedia( '(prefers-color-scheme: dark)' ).matches );
 			if ( savedDark ) {
 				document.body.classList.add( 'gp-dark' );
+				if ( lampLabel ) {
+					lampLabel.textContent = 'KARANLIK';
+				}
 			}
-			dmToggle.addEventListener( 'click', function () {
+			lampToggle.addEventListener( 'click', function () {
 				var isDark = document.body.classList.toggle( 'gp-dark' );
 				localStorage.setItem( 'gp_dark', isDark ? '1' : '0' );
+				if ( lampLabel ) {
+					lampLabel.textContent = isDark ? 'KARANLIK' : 'AYDINLIK';
+				}
 			} );
 		}
 	} );
