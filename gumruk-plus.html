@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gümrük Plus</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Tabler Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+    <style>
+        :root {
+            --cream: #F5F2EC;
+            --paper: #FAFAF8;
+            --red: #C41E3A;
+            --red-light: #E8374D;
+            --teal: #1B8A8A;
+            --teal-light: #2FA8A8;
+            --ink: #0B0D10;
+            --ink-secondary: #3A3D42;
+            --border: #E0DCD4;
+            --border-subtle: #F0EDE5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--ink-secondary);
+            background-color: var(--paper);
+        }
+
+        h1, h2, h3, h4, h5, h6, .anton {
+            font-family: 'Anton', sans-serif;
+            font-weight: 400;
+            letter-spacing: -0.015em;
+            line-height: 1.2;
+            color: var(--ink);
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Typography & Utilities */
+        .text-red { color: var(--red); }
+        .text-teal { color: var(--teal); }
+        .text-ink { color: var(--ink); }
+        .text-secondary { color: var(--ink-secondary); }
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .flex { display: flex; }
+        .flex-col { display: flex; flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .gap-1 { gap: 4px; }
+        .gap-2 { gap: 8px; }
+        .gap-3 { gap: 12px; }
+        .gap-4 { gap: 16px; }
+        .gap-5 { gap: 20px; }
+        .gap-6 { gap: 24px; }
+        .gap-8 { gap: 32px; }
+        .gap-10 { gap: 40px; }
+        
+        .mb-2 { margin-bottom: 8px; }
+        .mb-3 { margin-bottom: 12px; }
+        .mb-4 { margin-bottom: 16px; }
+        .mb-5 { margin-bottom: 20px; }
+        .mb-6 { margin-bottom: 24px; }
+        .mb-8 { margin-bottom: 32px; }
+        .mb-15 { margin-bottom: 60px; }
+
+        .mt-2 { margin-top: 8px; }
+        .mt-3 { margin-top: 12px; }
+        .mt-4 { margin-top: 16px; }
+        .mt-5 { margin-top: 20px; }
+        .mt-6 { margin-top: 24px; }
+        .mt-15 { margin-top: 60px; }
+
+        .pt-4 { padding-top: 16px; }
+        .pt-10 { padding-top: 40px; }
+        .pb-4 { padding-bottom: 16px; }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--red);
+            color: white;
+        }
+        .btn-primary:hover { background-color: var(--red-light); }
+        .btn-primary:active { opacity: 0.9; }
+
+        .btn-secondary {
+            background-color: var(--teal);
+            color: white;
+        }
+        .btn-secondary:hover { background-color: var(--teal-light); }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--red);
+            color: var(--red);
+        }
+        .btn-outline:hover { background-color: rgba(196, 30, 58, 0.05); }
+
+        .btn-full { width: 100%; }
+
+        /* Forms */
+        input, textarea, select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--ink);
+            background-color: white;
+            transition: all 0.2s ease;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(27, 138, 138, 0.1);
+        }
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+        .form-group { margin-bottom: 16px; }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .badge-red { background-color: rgba(196, 30, 58, 0.15); color: var(--red); }
+        .badge-teal { background-color: rgba(27, 138, 138, 0.15); color: var(--teal); }
+        .badge-neutral { background-color: var(--border-subtle); color: var(--ink-secondary); }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            background-color: rgba(196, 30, 58, 0.1);
+            color: var(--red);
+        }
+        .tag.teal { background-color: rgba(27, 138, 138, 0.1); color: var(--teal); }
+        .tag.neutral { background-color: var(--border-subtle); color: var(--ink-secondary); }
+
+        /* Navigation Bar */
+        .top-nav {
+            height: 70px;
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            display: flex;
+            align-items: center;
+        }
+        .top-nav .container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            justify-content: space-between;
+        }
+        .logo {
+            min-width: 160px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Anton', sans-serif;
+            font-size: 22px;
+            color: var(--ink);
+            transition: all 0.2s ease;
+        }
+        .logo:hover { transform: scale(1.02); }
+        .logo-plus {
+            color: var(--red);
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .main-menu {
+            display: flex;
+            flex: 1;
+            justify-content: center;
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ink-secondary);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            white-space: nowrap;
+            position: relative;
+        }
+        .menu-item:hover {
+            color: var(--ink);
+            background-color: rgba(245, 242, 236, 0.5); /* cream */
+        }
+        .menu-item.active {
+            color: var(--red);
+        }
+        .menu-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -22px; /* align with nav bottom */
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--red);
+            border-radius: 3px 3px 0 0;
+        }
+        .menu-item i { font-size: 16px; }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding-left: 24px;
+            border-left: 1px solid var(--border);
+        }
+        .lang-btn {
+            background-color: var(--cream);
+            border: 1px solid var(--border);
+            padding: 7px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: 6px;
+            color: var(--ink-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+        .cart-btn {
+            background-color: var(--red);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .cart-btn:hover { background-color: var(--red-light); }
+
+        /* Info Bars */
+        .info-bar {
+            height: 50px;
+            background-color: var(--cream);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--ink-secondary);
+        }
+        .info-item i { color: var(--red); font-size: 16px; }
+
+        /* Ticker Bar */
+        .ticker-bar {
+            height: 44px;
+            background: linear-gradient(90deg, #C41E3A 0%, #E8374D 100%);
+            color: white;
+            border-bottom: 2px solid var(--red);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        .ticker-content {
+            display: flex;
+            gap: 24px;
+            white-space: nowrap;
+            align-items: center;
+            animation: scroll-left 20s linear infinite;
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .ticker-dot {
+            width: 6px;
+            height: 6px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        /* Tab Navigation System */
+        .tab-nav {
+            background-color: white;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            overflow-x: auto;
+            position: sticky;
+            top: 70px;
+            z-index: 999;
+            padding: 0 40px;
+        }
+        .tab-nav::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            padding: 16px 24px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ink-secondary);
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+        .tab-btn:hover {
+            color: var(--ink);
+            background-color: rgba(245, 242, 236, 0.1);
+        }
+        .tab-btn.active {
+            color: var(--red);
+            border-bottom-color: var(--red);
+        }
+
+        .page { display: none; }
+        .page.active { display: block; }
+
+        /* Homepage specific */
+        .hero-section {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--border-subtle) 100%);
+            padding: 60px 40px;
+            text-align: center;
+            border-bottom: 3px solid var(--red);
+        }
+        .hero-section h1 { font-size: 44px; margin-bottom: 12px; }
+        .hero-section p {
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 28px;
+        }
+        .section-header i { color: var(--red); font-size: 28px; }
+        .section-subheader { font-size: 13px; margin-bottom: 24px; }
+
+        /* Grids */
+        .grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        
+        /* Category Cards */
+        .category-card {
+            background-color: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .category-card:hover {
+            border-color: var(--red);
+            background-color: var(--cream);
+        }
+        .category-card i { font-size: 28px; color: var(--red); margin-bottom: 12px; }
+        .category-card .name { font-family: 'Anton', sans-serif; font-size: 14px; color: var(--ink); }
+
+        /* Product Cards */
+        .product-card {
+            background-color: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            border-color: var(--red);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .product-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--border-subtle) 0%, var(--border) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-secondary);
+            font-size: 12px;
+        }
+        .product-info { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; }
+        .product-name { font-family: 'Anton', sans-serif; font-size: 14px; margin-bottom: 6px; color: var(--ink); }
+        .product-price { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; color: var(--red); margin-bottom: 12px; }
+        .product-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+        .product-info .btn { margin-top: auto; padding: 10px; font-size: 13px; }
+
+        /* Category Page */
+        .cat-header {
+            background-color: var(--cream);
+            padding: 24px 40px;
+            border-bottom: 1px solid var(--border);
+        }
+        .cat-header h1 { font-size: 32px; }
+        .filters-bar {
+            background-color: white;
+            padding: 24px 40px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .search-box { width: 200px; }
+        .sort-box { width: 150px; }
+        
+        /* Product Detail Page */
+        .breadcrumb {
+            padding: 24px 40px;
+            font-size: 12px;
+        }
+        .breadcrumb a { color: var(--ink-secondary); cursor: pointer; }
+        .breadcrumb a:hover { color: var(--ink); }
+        
+        .gallery-box {
+            background: linear-gradient(135deg, var(--border-subtle) 0%, var(--border) 100%);
+            border-radius: 8px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-secondary);
+            font-size: 12px;
+        }
+        .prod-title { font-size: 32px; margin-bottom: 8px; }
+        .prod-price { font-size: 18px; margin-bottom: 16px; }
+        
+        .specs-box {
+            background-color: var(--cream);
+            border-left: 3px solid var(--red);
+            padding: 16px;
+            border-radius: 0 4px 4px 0;
+            margin-bottom: 24px;
+        }
+        .spec-item { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; }
+        .spec-item:last-child { margin-bottom: 0; }
+        
+        .trust-msg { font-size: 12px; color: var(--ink-secondary); }
+
+        /* Cart Page */
+        .box-panel {
+            background-color: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+        }
+        .cart-item {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            gap: 16px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+        }
+        .cart-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+        .cart-img {
+            width: 80px;
+            height: 80px;
+            background-color: var(--border-subtle);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+        .qty-btn {
+            background-color: var(--cream);
+            border: 1px solid var(--border);
+            padding: 4px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .qty-num { width: 20px; text-align: center; }
+        .remove-link { color: var(--red); font-size: 11px; margin-left: auto; cursor: pointer; }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 12px;
+        }
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* Checkout Page */
+        .trust-strip {
+            background-color: var(--teal);
+            color: white;
+            padding: 16px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .grid-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .info-banner {
+            padding: 16px;
+            background-color: var(--cream);
+            border-radius: 6px;
+            border-left: 3px solid var(--teal);
+            font-size: 12px;
+            margin-bottom: 16px;
+        }
+
+        /* Account Page */
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .sidebar-item {
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ink-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            margin-left: -3px;
+        }
+        .sidebar-item:hover { background-color: var(--cream); color: var(--ink); }
+        .sidebar-item.active { background-color: var(--cream); color: var(--red); border-left-color: var(--red); }
+        .sidebar-divider { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+        
+        .order-card {
+            border: 1px solid var(--border-subtle);
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .order-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+
+        /* Owner Panel */
+        .notice-banner {
+            background-color: var(--cream);
+            border-left: 3px solid var(--red);
+            padding: 16px;
+            border-radius: 4px;
+            margin-bottom: 32px;
+            display: flex;
+            gap: 12px;
+        }
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+            background-color: var(--cream);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .upload-area:hover { border-color: var(--red); }
+        
+        .toggle-switch {
+            width: 44px;
+            height: 24px;
+            background-color: var(--ink-secondary);
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .toggle-switch.on { background-color: var(--teal); }
+        .toggle-circle {
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: all 0.2s ease;
+        }
+        .toggle-switch.on .toggle-circle { left: 22px; }
+        
+        .stat-box { background-color: var(--cream); border-radius: 6px; padding: 16px; }
+        .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-secondary); }
+        .stat-val { font-size: 20px; margin-top: 4px; }
+        
+        .stock-table { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+        .stock-header { background-color: var(--cream); border-bottom: 1px solid var(--border); padding: 12px 16px; display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; }
+        .stock-row { padding: 12px 16px; border-bottom: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+        .stock-row:last-child { border-bottom: none; }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .container { padding: 0 24px; }
+            .top-nav { height: 65px; }
+            .grid-6 { grid-template-columns: repeat(4, 1fr); }
+            .grid-4 { grid-template-columns: repeat(3, 1fr); }
+            .tab-nav { padding: 0 24px; }
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 0 16px; }
+            .top-nav { height: 60px; }
+            .logo { min-width: auto; }
+            .menu-item { padding: 10px; }
+            .menu-item span { display: none; }
+            .menu-item:first-child span { display: inline; } /* Keep first text */
+            .nav-actions { padding-left: 12px; gap: 8px; }
+            
+            .info-bar { flex-direction: column; height: auto; padding: 12px; gap: 8px; text-align: center; }
+            .tab-nav { padding: 0 16px; }
+            .hero-section { padding: 40px 16px; }
+            
+            .grid-6 { grid-template-columns: repeat(2, 1fr); }
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .grid-2 { grid-template-columns: 1fr; gap: 24px; }
+            
+            .filters-bar { flex-direction: column; padding: 16px; align-items: stretch; }
+            .search-box, .sort-box { width: 100%; }
+            .cat-header, .breadcrumb { padding: 16px; }
+            
+            .btn { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+            
+            .grid-form { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .grid-4, .grid-6 { grid-template-columns: 1fr; }
+            .cart-item { grid-template-columns: 60px 1fr; }
+            .cart-item .cart-img { grid-row: span 2; width: 60px; height: 60px; }
+            .cart-item .qty-controls { justify-content: flex-start; }
+            .cart-item .text-right { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="top-nav">
+        <div class="container">
+            <a href="#" class="logo" onclick="switchPage('homepage')">
+                Gümrük<span class="logo-plus">+</span>
+            </a>
+            <nav class="main-menu">
+                <a class="menu-item active" onclick="switchPage('homepage')">
+                    <i class="ti ti-home"></i><span>Shop</span>
+                </a>
+                <a class="menu-item" onclick="switchPage('categories')">
+                    <i class="ti ti-layout-grid"></i><span>Categories</span>
+                </a>
+                <a class="menu-item" onclick="switchPage('product-detail')">
+                    <i class="ti ti-box"></i><span>Products</span>
+                </a>
+                <a class="menu-item">
+                    <i class="ti ti-help-circle"></i><span>About</span>
+                </a>
+                <a class="menu-item">
+                    <i class="ti ti-mail"></i><span>Contact</span>
+                </a>
+            </nav>
+            <div class="nav-actions">
+                <button class="lang-btn">EN / TR</button>
+                <button class="cart-btn" onclick="switchPage('cart')">
+                    <i class="ti ti-shopping-cart"></i> <span>03</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Info Bar -->
+    <div class="info-bar">
+        <div class="info-item">
+            <i class="ti ti-clock"></i>
+            <span>Open now: 09:00 - 20:00</span>
+        </div>
+        <div class="info-item">
+            <i class="ti ti-map-pin"></i>
+            <span>Location: Kurtköy, Pendik, Istanbul</span>
+        </div>
+    </div>
+
+    <!-- Ticker Bar -->
+    <div class="ticker-bar">
+        <div class="ticker-content">
+            <div class="ticker-item"><div class="ticker-dot"></div>🎁 FREE SHIPPING on orders over ₺500</div>
+            <div class="ticker-item"><div class="ticker-dot"></div>⚡ New arrivals every Monday & Thursday</div>
+            <div class="ticker-item"><div class="ticker-dot"></div>✓ Handcrafted Turkish quality guaranteed</div>
+            <div class="ticker-item"><div class="ticker-dot"></div>💳 Secure payment • Fast delivery • WhatsApp support</div>
+            <!-- Repeat for seamless loop -->
+            <div class="ticker-item"><div class="ticker-dot"></div>🎁 FREE SHIPPING on orders over ₺500</div>
+            <div class="ticker-item"><div class="ticker-dot"></div>⚡ New arrivals every Monday & Thursday</div>
+            <div class="ticker-item"><div class="ticker-dot"></div>✓ Handcrafted Turkish quality guaranteed</div>
+            <div class="ticker-item"><div class="ticker-dot"></div>💳 Secure payment • Fast delivery • WhatsApp support</div>
+        </div>
+    </div>
+
+    <!-- Tab Navigation (For Prototype) -->
+    <nav class="tab-nav">
+        <button class="tab-btn active" onclick="switchPage('homepage')">Homepage</button>
+        <button class="tab-btn" onclick="switchPage('categories')">Categories</button>
+        <button class="tab-btn" onclick="switchPage('product-detail')">Product Detail</button>
+        <button class="tab-btn" onclick="switchPage('cart')">Cart</button>
+        <button class="tab-btn" onclick="switchPage('checkout')">Checkout</button>
+        <button class="tab-btn" onclick="switchPage('account')">Account</button>
+        <button class="tab-btn" onclick="switchPage('owner-panel')">Owner Quick-Edit</button>
+        <button class="tab-btn" onclick="switchPage('admin-dashboard')">Admin Dashboard</button>
+    </nav>
+
+    <!-- PAGE 1: HOMEPAGE -->
+    <div id="homepage" class="page active">
+        <section class="hero-section">
+            <div class="container">
+                <h1 class="anton">Premium Turkish goods</h1>
+                <p>Footwear, bags, jewelry, home décor, and more — directly from Kurtköy to your door. Authentic, handcrafted, trusted.</p>
+                <button class="btn btn-primary" onclick="switchPage('categories')">Shop now</button>
+            </div>
+        </section>
+
+        <section class="container mt-15 mb-15">
+            <div class="section-header anton mb-2">
+                <i class="ti ti-layout-grid"></i> Shop by category
+            </div>
+            <div class="section-subheader">Browse our curated collections</div>
+            <div class="grid-6">
+                <div class="category-card" onclick="switchPage('categories')">
+                    <i class="ti ti-shoe"></i>
+                    <div class="name">Footwear</div>
+                </div>
+                <div class="category-card" onclick="switchPage('categories')">
+                    <i class="ti ti-shopping-bag"></i>
+                    <div class="name">Bags</div>
+                </div>
+                <div class="category-card" onclick="switchPage('categories')">
+                    <i class="ti ti-diamond"></i>
+                    <div class="name">Jewelry</div>
+                </div>
+                <div class="category-card" onclick="switchPage('categories')">
+                    <i class="ti ti-home"></i>
+                    <div class="name">Home & kitchen</div>
+                </div>
+                <div class="category-card" onclick="switchPage('categories')">
+                    <i class="ti ti-ruler-measure"></i>
+                    <div class="name">Textiles</div>
+                </div>
+                <div class="category-card" onclick="switchPage('categories')">
+                    <i class="ti ti-gift"></i>
+                    <div class="name">Toys</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container mb-15">
+            <div class="section-header anton mb-2">
+                <i class="ti ti-star"></i> Featured products
+            </div>
+            <div class="section-subheader">New arrivals & customer favorites</div>
+            <div class="grid-4">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img" onclick="switchPage('product-detail')" style="cursor:pointer;">Image</div>
+                    <div class="product-info">
+                        <div class="product-name">Premium leather handbag</div>
+                        <div class="product-price mono">₺1,299.00</div>
+                        <div class="product-tags">
+                            <span class="tag teal">In stock</span>
+                            <span class="tag neutral">Free shipping</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="switchPage('cart')">Add to cart</button>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-img" onclick="switchPage('product-detail')" style="cursor:pointer;">Image</div>
+                    <div class="product-info">
+                        <div class="product-name">Handcrafted Silver Ring</div>
+                        <div class="product-price mono">₺450.00</div>
+                        <div class="product-tags">
+                            <span class="tag teal">In stock</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="switchPage('cart')">Add to cart</button>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img" onclick="switchPage('product-detail')" style="cursor:pointer;">Image</div>
+                    <div class="product-info">
+                        <div class="product-name">Anatolian Rug (120x180)</div>
+                        <div class="product-price mono">₺2,100.00</div>
+                        <div class="product-tags">
+                            <span class="tag neutral">Best seller</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="switchPage('cart')">Add to cart</button>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-img" onclick="switchPage('product-detail')" style="cursor:pointer;">Image</div>
+                    <div class="product-info">
+                        <div class="product-name">Wooden Educational Toy</div>
+                        <div class="product-price mono">₺320.00</div>
+                        <div class="product-tags">
+                            <span class="tag teal">In stock</span>
+                            <span class="tag neutral">Eco-friendly</span>
+                        </div>
+                        <button class="btn btn-primary btn-full" onclick="switchPage('cart')">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PAGE 2: CATEGORIES -->
+    <div id="categories" class="page">
+        <div class="cat-header">
+            <h1 class="anton">👠 Footwear</h1>
+            <div class="text-secondary mt-2">High-quality shoes for every occasion</div>
+        </div>
+        <div class="filters-bar">
+            <div class="search-box">
+                <input type="text" placeholder="Search in footwear...">
+            </div>
+            <div class="sort-box">
+                <select>
+                    <option>Sort by: New</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                    <option>Most Popular</option>
+                </select>
+            </div>
+        </div>
+        <div class="container pt-10 pb-10 mb-15">
+            <div class="grid-4">
+                <!-- Duplicate 12 products for grid demo -->
+                <script>
+                    for(let i=1; i<=12; i++) {
+                        document.write(`
+                        <div class="product-card">
+                            <div class="product-img" onclick="switchPage('product-detail')" style="cursor:pointer;">Shoe Image ${i}</div>
+                            <div class="product-info">
+                                <div class="product-name">Classic Leather Loafer ${i}</div>
+                                <div class="product-price mono">₺${(400 + i*50).toFixed(2)}</div>
+                                <div class="product-tags">
+                                    ${i%3===0 ? '<span class="tag neutral">Best seller</span>' : '<span class="tag teal">In stock</span>'}
+                                </div>
+                                <button class="btn btn-primary btn-full" onclick="switchPage('cart')">Add to cart</button>
+                            </div>
+                        </div>`);
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: PRODUCT DETAIL -->
+    <div id="product-detail" class="page">
+        <div class="breadcrumb">
+            <a onclick="switchPage('categories')">← Back to shop</a>
+        </div>
+        <div class="container pb-10 mb-15">
+            <div class="grid-2">
+                <div class="gallery-box">
+                    Product image gallery
+                </div>
+                <div>
+                    <h1 class="prod-title anton">Premium leather handbag</h1>
+                    <div class="prod-price mono text-red font-mono">₺1,299.00</div>
+                    <div class="flex gap-2 mb-6">
+                        <span class="badge badge-teal">In stock</span>
+                        <span class="badge badge-neutral">Free shipping</span>
+                    </div>
+                    <div class="mb-6">
+                        <p class="mb-3">This premium full-grain leather handbag is handcrafted in Turkey with exceptional attention to detail. Perfect for daily use or special occasions.</p>
+                        <ul style="list-style-type: disc; margin-left: 20px;" class="mt-3">
+                            <li>100% Genuine Turkish Leather</li>
+                            <li>Gold-tone hardware</li>
+                            <li>Interior zip pocket</li>
+                            <li>Adjustable shoulder strap</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="specs-box">
+                        <div class="spec-item"><span>Dimensions:</span> <span class="font-mono">35 × 25 × 10 cm</span></div>
+                        <div class="spec-item"><span>Material:</span> <span>Full-grain leather</span></div>
+                        <div class="spec-item"><span>SKU:</span> <span class="font-mono">BAG-2024-001</span></div>
+                        <div class="spec-item"><span>Ships in:</span> <span>2-3 business days</span></div>
+                    </div>
+
+                    <div class="grid-2 gap-3 mb-6" style="grid-template-columns: 1fr 1fr;">
+                        <button class="btn btn-primary" onclick="switchPage('cart')">Add to cart</button>
+                        <button class="btn btn-outline">Save for later</button>
+                    </div>
+                    
+                    <div class="trust-msg">
+                        ✓ 30-day no-questions guarantee &nbsp;|&nbsp; ✓ Secure checkout &nbsp;|&nbsp; ✓ Free returns
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-15 pt-10" style="border-top: 1px solid var(--border)">
+                <div class="section-header anton mb-6">
+                    <i class="ti ti-heart"></i> You might also like
+                </div>
+                <div class="grid-4">
+                    <!-- Related Product 1 -->
+                    <div class="product-card">
+                        <div class="product-img" onclick="switchPage('product-detail')" style="cursor:pointer;">Image</div>
+                        <div class="product-info">
+                            <div class="product-name">Leather Wallet</div>
+                            <div class="product-price mono">₺350.00</div>
+                            <div class="product-tags">
+                                <span class="tag teal">In stock</span>
+                            </div>
+                            <button class="btn btn-primary btn-full">Add to cart</button>
+                        </div>
+                    </div>
+                    <!-- Related Product 2 -->
+                    <div class="product-card">
+                        <div class="product-img" onclick="switchPage('product-detail')" style="cursor:pointer;">Image</div>
+                        <div class="product-info">
+                            <div class="product-name">Silk Scarf</div>
+                            <div class="product-price mono">₺280.00</div>
+                            <div class="product-tags">
+                                <span class="tag teal">In stock</span>
+                            </div>
+                            <button class="btn btn-primary btn-full">Add to cart</button>
+                        </div>
+                    </div>
+                    <!-- Empty spots for grid -->
+                    <div class="product-card" style="visibility:hidden"></div>
+                    <div class="product-card" style="visibility:hidden"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: CART -->
+    <div id="cart" class="page">
+        <div class="container pt-10 pb-10 mb-15">
+            <h1 class="anton mb-6">Your Cart</h1>
+            <div class="grid-2">
+                <div class="box-panel">
+                    <div class="cart-item">
+                        <div class="cart-img">Image</div>
+                        <div>
+                            <h3 class="anton" style="font-size: 14px;">Premium leather handbag</h3>
+                            <div class="text-secondary mt-1" style="font-size: 12px;">Color: Black | Condition: New</div>
+                            <div class="qty-controls">
+                                <div class="qty-btn">−</div>
+                                <div class="qty-num mono">1</div>
+                                <div class="qty-btn">+</div>
+                                <div class="remove-link">Remove</div>
+                            </div>
+                        </div>
+                        <div class="text-right mono text-red" style="font-weight: 600;">₺1,299.00</div>
+                    </div>
+                    <div class="cart-item">
+                        <div class="cart-img">Image</div>
+                        <div>
+                            <h3 class="anton" style="font-size: 14px;">Handcrafted Silver Ring</h3>
+                            <div class="text-secondary mt-1" style="font-size: 12px;">Size: 7 | Material: 925 Silver</div>
+                            <div class="qty-controls">
+                                <div class="qty-btn">−</div>
+                                <div class="qty-num mono">1</div>
+                                <div class="qty-btn">+</div>
+                                <div class="remove-link">Remove</div>
+                            </div>
+                        </div>
+                        <div class="text-right mono text-red" style="font-weight: 600;">₺450.00</div>
+                    </div>
+                    <div class="cart-item">
+                        <div class="cart-img">Image</div>
+                        <div>
+                            <h3 class="anton" style="font-size: 14px;">Silk Scarf</h3>
+                            <div class="text-secondary mt-1" style="font-size: 12px;">Pattern: Floral</div>
+                            <div class="qty-controls">
+                                <div class="qty-btn">−</div>
+                                <div class="qty-num mono">3</div>
+                                <div class="qty-btn">+</div>
+                                <div class="remove-link">Remove</div>
+                            </div>
+                        </div>
+                        <div class="text-right mono text-red" style="font-weight: 600;">₺840.00</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="box-panel" style="position: sticky; top: 150px;">
+                        <h3 class="anton mb-4">Summary</h3>
+                        <div class="summary-row"><span>Subtotal</span> <span class="mono">₺2,589.00</span></div>
+                        <div class="summary-row"><span>Shipping</span> <span class="mono">Free</span></div>
+                        <div class="summary-row"><span>Tax</span> <span class="mono">₺441.32</span></div>
+                        <div class="summary-total mt-4">
+                            <span>Total</span>
+                            <span class="mono text-red">₺3,030.32</span>
+                        </div>
+                        <button class="btn btn-primary btn-full mb-2" onclick="switchPage('checkout')">Proceed to checkout</button>
+                        <button class="btn btn-outline btn-full" onclick="switchPage('categories')" style="padding: 10px;">Continue shopping</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 5: CHECKOUT -->
+    <div id="checkout" class="page">
+        <div class="container pt-10 pb-10 mb-15">
+            <div class="trust-strip">
+                <strong>🔒 Your payment is secure</strong><br>
+                Encrypted with industry-standard SSL. We never share your card details. Trusted by thousands of Turkish shoppers.
+            </div>
+            
+            <div class="grid-2">
+                <div>
+                    <div class="box-panel mb-6">
+                        <h2 class="anton mb-4" style="font-size: 18px;">Shipping address</h2>
+                        <div class="form-group">
+                            <label>Full name</label>
+                            <input type="text" value="Ahmet Yılmaz">
+                        </div>
+                        <div class="form-group">
+                            <label>Street address</label>
+                            <input type="text" value="123 Sokak, Kurtköy">
+                        </div>
+                        <div class="grid-form mb-4">
+                            <div>
+                                <label>City</label>
+                                <input type="text" value="Pendik">
+                            </div>
+                            <div>
+                                <label>Postal code</label>
+                                <input type="text" value="34899">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Shipping method</label>
+                            <select>
+                                <option>PTT Kargo - 2-3 business days (Free)</option>
+                                <option>Aras Kargo - 2-3 business days (₺50)</option>
+                                <option>Yurtiçi Kargo - 1-2 business days (₺75)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="box-panel">
+                        <h2 class="anton mb-4" style="font-size: 18px;">Payment method</h2>
+                        <div class="info-banner">
+                            💳 Secure card payment via PayTR or iyzico
+                        </div>
+                        <div class="form-group">
+                            <label>Card number</label>
+                            <input type="text" placeholder="1234 5678 9012 3456" class="mono">
+                        </div>
+                        <div class="grid-form">
+                            <div>
+                                <label>Expiry date</label>
+                                <input type="text" placeholder="MM/YY" class="mono">
+                            </div>
+                            <div>
+                                <label>CVV</label>
+                                <input type="text" placeholder="123" class="mono">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-full mt-6" style="padding: 14px; font-size: 15px;" onclick="switchPage('account')">Complete purchase</button>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="box-panel" style="position: sticky; top: 150px;">
+                        <h3 class="anton mb-4" style="font-size: 16px;">Order summary</h3>
+                        <div class="summary-row"><span>3 items</span> <span class="mono">₺2,589.00</span></div>
+                        <div class="summary-row"><span>Shipping</span> <span class="mono">Free</span></div>
+                        <div class="summary-row"><span>Tax</span> <span class="mono">₺441.32</span></div>
+                        <div class="summary-total mt-4">
+                            <span>Total</span>
+                            <span class="mono text-red">₺3,030.32</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 6: ACCOUNT -->
+    <div id="account" class="page">
+        <div class="container pt-10 pb-10 mb-15">
+            <div class="grid-2" style="grid-template-columns: 250px 1fr;">
+                <div class="box-panel" style="height: fit-content;">
+                    <div class="sidebar-menu">
+                        <div class="sidebar-item active">Orders</div>
+                        <div class="sidebar-item">Profile</div>
+                        <div class="sidebar-item">Saved items</div>
+                        <div class="sidebar-item">Settings</div>
+                        <div class="sidebar-divider"></div>
+                        <div class="sidebar-item">Sign out</div>
+                    </div>
+                </div>
+                
+                <div class="box-panel">
+                    <h2 class="anton mb-5" style="font-size: 20px;">Recent orders</h2>
+                    
+                    <div class="order-card">
+                        <div class="order-header">
+                            <div>
+                                <div class="mono text-secondary" style="font-size: 12px;">Order #1024-5678</div>
+                                <div class="text-secondary mt-1" style="font-size: 13px;">Placed 24 Aug 2024</div>
+                            </div>
+                            <span class="badge badge-teal">Delivered</span>
+                        </div>
+                        <div class="mono text-red mb-3" style="font-size: 13px; font-weight: 600;">Total: ₺3,030.32</div>
+                        <button class="btn btn-outline" style="padding: 8px 16px; font-size: 13px;">View details</button>
+                    </div>
+                    
+                    <div class="order-card">
+                        <div class="order-header">
+                            <div>
+                                <div class="mono text-secondary" style="font-size: 12px;">Order #1024-5112</div>
+                                <div class="text-secondary mt-1" style="font-size: 13px;">Placed 15 Jul 2024</div>
+                            </div>
+                            <span class="badge badge-teal">Delivered</span>
+                        </div>
+                        <div class="mono text-red mb-3" style="font-size: 13px; font-weight: 600;">Total: ₺450.00</div>
+                        <button class="btn btn-outline" style="padding: 8px 16px; font-size: 13px;">View details</button>
+                    </div>
+                    
+                    <div class="order-card">
+                        <div class="order-header">
+                            <div>
+                                <div class="mono text-secondary" style="font-size: 12px;">Order #1024-4098</div>
+                                <div class="text-secondary mt-1" style="font-size: 13px;">Placed 02 Jun 2024</div>
+                            </div>
+                            <span class="badge badge-teal">Delivered</span>
+                        </div>
+                        <div class="mono text-red mb-3" style="font-size: 13px; font-weight: 600;">Total: ₺1,200.00</div>
+                        <button class="btn btn-outline" style="padding: 8px 16px; font-size: 13px;">View details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 7: OWNER QUICK-EDIT PANEL -->
+    <div id="owner-panel" class="page">
+        <div class="container pt-10 pb-10 mb-15" style="max-width: 800px;">
+            <div class="notice-banner">
+                <i class="ti ti-alert-triangle text-red" style="font-size: 20px; flex-shrink: 0;"></i>
+                <div>
+                    <strong class="text-red">Restricted view</strong>
+                    <p class="text-secondary mt-1" style="font-size: 12px;">You can only edit product photos, videos, and prices. Full admin functions require agency access.</p>
+                </div>
+            </div>
+            
+            <div class="box-panel mb-6">
+                <h2 class="anton mb-6" style="font-size: 18px; display: flex; align-items: center; gap: 8px;"><i class="ti ti-camera text-red"></i> Update product</h2>
+                
+                <div class="form-group">
+                    <label>Product selector</label>
+                    <select>
+                        <option>Premium leather handbag (BAG-2024-001)</option>
+                        <option>Handcrafted Silver Ring (JWL-012)</option>
+                        <option>Anatolian Rug (HM-445)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group mt-6">
+                    <label>Images</label>
+                    <div class="upload-area">
+                        <div style="font-size: 32px; margin-bottom: 8px;">📸</div>
+                        <div style="font-size: 13px; color: var(--ink-secondary);">Drag images here or click to upload</div>
+                        <div style="font-size: 11px; color: var(--ink-secondary); margin-top: 4px;">PNG, JPG, WebP up to 10MB each</div>
+                    </div>
+                </div>
+                
+                <div class="form-group mt-6">
+                    <label>Video URL (optional)</label>
+                    <input type="text" placeholder="https://youtube.com/watch?v=...">
+                    <div style="font-size: 11px; color: var(--ink-secondary); margin-top: 4px;">YouTube or Vimeo links only</div>
+                </div>
+                
+                <div class="form-group mt-6">
+                    <label>Price (₺)</label>
+                    <input type="number" step="0.01" value="1299.00" class="mono">
+                </div>
+                
+                <div class="form-group mt-6 flex justify-between items-center" style="max-width: 200px;">
+                    <label style="margin: 0;">Out of stock?</label>
+                    <div class="toggle-switch" onclick="this.classList.toggle('on')">
+                        <div class="toggle-circle"></div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-3" style="background-color: rgba(196, 30, 58, 0.05); border: 1px solid rgba(196, 30, 58, 0.2); border-radius: 6px; display: flex; gap: 8px;">
+                    <i class="ti ti-alert-circle text-red" style="flex-shrink: 0;"></i>
+                    <span class="text-red" style="font-size: 12px;">You cannot edit product name, description, or SKU. Contact agency for structural changes.</span>
+                </div>
+                
+                <button class="btn btn-primary btn-full mt-6">Save changes</button>
+            </div>
+            
+            <div class="box-panel mb-6">
+                <h2 class="anton mb-6" style="font-size: 18px; display: flex; align-items: center; gap: 8px;"><i class="ti ti-chart-bar text-red"></i> Quick stats</h2>
+                <div class="grid-form">
+                    <div class="stat-box">
+                        <div class="stat-label">Total products</div>
+                        <div class="stat-val mono text-red" style="font-weight: 600;">127</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">In stock</div>
+                        <div class="stat-val mono text-teal" style="font-weight: 600;">119</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Out of stock</div>
+                        <div class="stat-val mono text-red" style="font-weight: 600;">8</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Last 30 days revenue</div>
+                        <div class="stat-val mono text-ink" style="font-weight: 600;">₺42,150</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="box-panel">
+                <h2 class="anton mb-4" style="font-size: 18px; display: flex; align-items: center; gap: 8px;"><i class="ti ti-boxes text-red"></i> Manage stock</h2>
+                <p class="text-secondary mb-4" style="font-size: 12px;">Quickly toggle stock availability for your products.</p>
+                
+                <div class="stock-table">
+                    <div class="stock-header">
+                        <div>Product</div>
+                        <div>Stock status</div>
+                    </div>
+                    <div class="stock-row">
+                        <div>Premium leather handbag</div>
+                        <div class="toggle-switch on" onclick="this.classList.toggle('on')">
+                            <div class="toggle-circle"></div>
+                        </div>
+                    </div>
+                    <div class="stock-row">
+                        <div>Handcrafted Silver Ring</div>
+                        <div class="toggle-switch on" onclick="this.classList.toggle('on')">
+                            <div class="toggle-circle"></div>
+                        </div>
+                    </div>
+                    <div class="stock-row">
+                        <div>Anatolian Rug (120x180)</div>
+                        <div class="toggle-switch" onclick="this.classList.toggle('on')">
+                            <div class="toggle-circle"></div>
+                        </div>
+                    </div>
+                    <div class="stock-row">
+                        <div>Wooden Educational Toy</div>
+                        <div class="toggle-switch on" onclick="this.classList.toggle('on')">
+                            <div class="toggle-circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 8: ADMIN DASHBOARD -->
+    <div id="admin-dashboard" class="page">
+        <div class="container pt-10 pb-10 mb-15">
+            <h1 class="anton mb-6">Admin Dashboard</h1>
+            <div class="box-panel" style="min-height: 400px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px;">
+                <i class="ti ti-settings text-red" style="font-size: 48px;"></i>
+                <h2 class="anton text-ink">Advanced Admin Area</h2>
+                <p class="text-center text-secondary max-w-lg" style="max-width: 600px;">
+                    This section is restricted to agency administrators. It includes full order management, product structural edits, performance analytics, revenue charts, and system configurations.
+                </p>
+                <button class="btn btn-outline mt-4" onclick="switchPage('owner-panel')">Return to Owner Panel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script for Tab Switching -->
+    <script>
+        function switchPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // Show target page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update tab navigation
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Update main menu navigation (if applicable)
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Find matching tab and activate
+            const targetTab = Array.from(document.querySelectorAll('.tab-btn')).find(
+                btn => btn.getAttribute('onclick').includes(pageId)
+            );
+            if(targetTab) targetTab.classList.add('active');
+
+            // Map pageId to main menu item for active state
+            const menuMapping = {
+                'homepage': 0,
+                'categories': 1,
+                'product-detail': 2
+            };
+            if(menuMapping[pageId] !== undefined) {
+                document.querySelectorAll('.menu-item')[menuMapping[pageId]].classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

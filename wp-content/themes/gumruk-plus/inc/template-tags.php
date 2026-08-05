@@ -79,36 +79,61 @@ function gp_topbar() {
 	<?php
 }
 
-/**
- * The homepage hero banner. Shared by front-page.php and woocommerce.php,
- * since WooCommerce's template loader takes over rendering (see
- * woocommerce.php) whenever the static front page is also the Shop page.
- */
+function gp_split_letters( $text, $extra_class = '' ) {
+	$chars = mb_str_split( $text );
+	$output = '<span class="ag-line ' . esc_attr( $extra_class ) . '">';
+	$index = 0;
+	foreach ( $chars as $char ) {
+		if ( $char === ' ' ) {
+			$output .= '<span class="ag-space">&nbsp;</span>';
+		} else {
+			$color_class = 'ag-c-' . ( ( $index % 4 ) + 1 );
+			$output .= '<span class="ag-letter ' . esc_attr( $color_class ) . '" data-index="' . $index . '">' . esc_html( $char ) . '</span>';
+			$index++;
+		}
+	}
+	$output .= '</span>';
+	return $output;
+}
+
 function gp_hero_section() {
 	$whatsapp_digits = preg_replace( '/[^0-9]/', '', (string) get_theme_mod( 'gp_whatsapp_number', '' ) );
 	?>
-	<section class="gp-hero">
-		<div class="gp-hero__content">
-			<h1 class="gp-hero__title">
-				<?php esc_html_e( 'GERÇEK MAĞAZA, GERÇEK FİYAT.', 'gumruk-plus' ); ?>
-				<span class="gp-hero__title-highlight"><?php esc_html_e( 'ŞİMDİ ONLİNE.', 'gumruk-plus' ); ?></span>
+	<section class="hero">
+		<div class="hero-card">
+			<!-- Live Background Orbs -->
+			<div class="hero-bg">
+				<?php for($i=0; $i<12; $i++): ?>
+					<div class="ag-orb"></div>
+				<?php endfor; ?>
+			</div>
+
+			<!-- Header Pill Badge -->
+			<div class="ag-hero-badge">
+				<span class="ag-badge-dot"></span>
+				<span>GÜMRÜK MAĞAZASI GÜVENCESİYLE</span>
+			</div>
+
+			<h1 class="hero-title">
+				<?php echo gp_split_letters( __( 'GERÇEK MAĞAZA, GERÇEK FİYAT.', 'gumruk-plus' ) ); ?>
+				<?php echo gp_split_letters( __( 'ŞİMDİ ONLİNE.', 'gumruk-plus' ), 'ag-title-highlight' ); ?>
 			</h1>
-			<div class="gp-hero__actions">
-				<a class="gp-hero__cta gp-hero__cta--primary" href="#gp-products">
+			<div class="hero-actions">
+				<a class="hero-cta hero-cta--primary" href="#gp-products">
 					<?php esc_html_e( 'Alışverişe Başla', 'gumruk-plus' ); ?>
 				</a>
 				<?php if ( $whatsapp_digits ) : ?>
-					<a class="gp-hero__cta gp-hero__cta--secondary" href="<?php echo esc_url( 'https://wa.me/' . $whatsapp_digits ); ?>" target="_blank" rel="noopener noreferrer">
+					<a class="hero-cta hero-cta--secondary" href="<?php echo esc_url( 'https://wa.me/' . $whatsapp_digits ); ?>" target="_blank" rel="noopener noreferrer">
 						<?php esc_html_e( 'WhatsApp\'tan Yazın', 'gumruk-plus' ); ?>
 					</a>
 				<?php else : ?>
-					<a class="gp-hero__cta gp-hero__cta--secondary" href="#gp-products">
+					<a class="hero-cta hero-cta--secondary" href="#gp-products">
 						<?php esc_html_e( 'Kategorileri Gör', 'gumruk-plus' ); ?>
 					</a>
 				<?php endif; ?>
 			</div>
 		</div>
-	</section><!-- .gp-hero -->
+	</section><!-- .hero -->
 	<?php
 }
 

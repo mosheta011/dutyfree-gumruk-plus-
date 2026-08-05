@@ -56,5 +56,127 @@
 				localStorage.setItem( 'gp_dark', isDark ? '1' : '0' );
 			} );
 		}
+
+		var header = document.querySelector( '.gp-header' );
+		if ( header ) {
+			var handleScroll = function () {
+				if ( window.scrollY > 50 ) {
+					header.classList.add( 'is-sticky' );
+				} else {
+					header.classList.remove( 'is-sticky' );
+				}
+			};
+			window.addEventListener( 'scroll', handleScroll, { passive: true } );
+			handleScroll();
+		}
+
+		/* ── Mini-cart hover with close delay ──────────────────── */
+		var cartItems = document.querySelectorAll( '.site-header-cart > li' );
+		cartItems.forEach( function ( cartItem ) {
+			var dropdown = cartItem.querySelector( '.widget_shopping_cart' );
+			if ( ! dropdown ) return;
+
+			var closeTimer = null;
+
+			function openCart() {
+				if ( closeTimer ) { clearTimeout( closeTimer ); closeTimer = null; }
+				dropdown.style.display = 'block';
+			}
+
+			function closeCart() {
+				closeTimer = setTimeout( function () {
+					dropdown.style.display = 'none';
+				}, 200 ); /* 200ms grace window so mouse can travel to the dropdown */
+			}
+
+			cartItem.addEventListener( 'mouseenter', openCart );
+			cartItem.addEventListener( 'mouseleave', closeCart );
+			dropdown.addEventListener( 'mouseenter', openCart );
+			dropdown.addEventListener( 'mouseleave', closeCart );
+		} );
+
+
+		var hero = document.querySelector( '.hero' );
+
+		var orbs = document.querySelectorAll( '.ag-orb' );
+		var tag1 = document.querySelector( '.ag-tag-1' );
+		var tag2 = document.querySelector( '.ag-tag-2' );
+
+		if ( hero && orbs.length > 0 ) {
+			var mouseX = 0;
+			var mouseY = 0;
+			var currentX = 0;
+			var currentY = 0;
+
+			// Track mouse position relative to center of screen
+			document.addEventListener('mousemove', function(e) {
+				mouseX = (e.clientX / window.innerWidth) - 0.5;
+				mouseY = (e.clientY / window.innerHeight) - 0.5;
+			});
+
+			var seedTrajectory = [];
+			orbs.forEach( function ( orb, i ) {
+				// Random distribution for orbs
+				var radius = 200 + Math.random() * 400;
+				var angle = Math.random() * Math.PI * 2;
+				seedTrajectory.push( {
+					baseX: Math.cos( angle ) * radius,
+					baseY: Math.sin( angle ) * radius * 0.8,
+					parallax: 0.2 + (Math.random() * 1.5),
+					phase: Math.random() * Math.PI * 2,
+					speed: 0.5 + Math.random() * 0.5,
+					scale: 0.5 + Math.random() * 1.5
+				} );
+			} );
+
+			var renderLoop = function () {
+				var time = Date.now() * 0.001;
+				var scrollY = window.scrollY || window.pageYOffset || 0;
+
+				// Smooth easing for mouse parallax
+				currentX += (mouseX - currentX) * 0.05;
+				currentY += (mouseY - currentY) * 0.05;
+
+				orbs.forEach( function ( orb, i ) {
+					var t = seedTrajectory[ i ];
+
+					// Gentle continuous floating drift
+					var driftX = Math.sin( time * t.speed + t.phase ) * 40;
+					var driftY = Math.cos( time * (t.speed * 0.8) + t.phase ) * 40;
+
+					// Mouse parallax effect (shapes move in opposite direction of mouse)
+					var pX = currentX * -300 * t.parallax;
+					var pY = currentY * -300 * t.parallax;
+
+					// Scroll parallax
+					var sY = scrollY * (t.parallax * 0.6);
+
+					var tx = t.baseX + driftX + pX;
+					var ty = t.baseY + driftY + pY + sY;
+
+					orb.style.transform = 'translate(' + tx.toFixed(1) + 'px, ' + ty.toFixed(1) + 'px) scale(' + t.scale.toFixed(2) + ')';
+					orb.style.opacity = '1';
+				} );
+
+				if ( tag1 ) {
+					var t1Wave = Math.sin( time * 1.2 ) * 15;
+					var t1X = -250 + (currentX * -150) + (scrollY * 0.2);
+					var t1Y = -120 + t1Wave + (currentY * -150) + (scrollY * 0.5);
+					tag1.style.transform = 'translate(' + t1X.toFixed(1) + 'px, ' + t1Y.toFixed(1) + 'px) rotate(-12deg)';
+					tag1.style.opacity = '1';
+				}
+				if ( tag2 ) {
+					var t2Wave = Math.cos( time * 1.1 ) * 15;
+					var t2X = 250 + (currentX * -180) - (scrollY * 0.1);
+					var t2Y = 140 + t2Wave + (currentY * -180) + (scrollY * 0.3);
+					tag2.style.transform = 'translate(' + t2X.toFixed(1) + 'px, ' + t2Y.toFixed(1) + 'px) rotate(8deg)';
+					tag2.style.opacity = '1';
+				}
+
+				requestAnimationFrame( renderLoop );
+			};
+
+			requestAnimationFrame( renderLoop );
+		}
 	} );
 } )();

@@ -23,9 +23,12 @@ function gp_qe_activate() {
 		GP_QE_ROLE,
 		'Quick Edit (Owner)',
 		array(
-			'read'         => true,
-			'edit_products' => true,
-			'upload_files'  => true,
+			'read'                    => true,
+			'edit_products'           => true,
+			'edit_others_products'    => true,
+			'edit_published_products' => true,
+			'edit_private_products'   => true,
+			'upload_files'            => true,
 		)
 	);
 }

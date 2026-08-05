@@ -9,16 +9,17 @@ Text Domain:  gumruk-plus
 */
 
 :root{
-	--gp-cream:      #F7F2E7;
-	--gp-paper:      #FFFDF8;
+	--gp-cream:      #F7F4EC;
+	--gp-paper:      #FFFFFF;
 	--gp-kraft:      #C9A66B;
 	--gp-kraft-dark: #8C6C3D;
-	--gp-ink:        #1E211D;
+	--gp-ink:        #222222;
+	--gp-border:     #2B2B2B;
 	--gp-teal:       #2F5D53;
-	--gp-teal-dark:  #1B3831;
-	--gp-red:        #C6362A;
+	--gp-teal-dark:  #24352E;
+	--gp-red:        #D63A2E;
 	--gp-amber:      #EFA23B;
-	--gp-line:       #DCD2B8;
+	--gp-line:       #2B2B2B;
 	--gp-stone:      #6E6A5C;
 }
 
