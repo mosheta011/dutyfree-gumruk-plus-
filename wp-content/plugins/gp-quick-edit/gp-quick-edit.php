@@ -29,6 +29,7 @@ function gp_qe_activate() {
 			'edit_published_products' => true,
 			'edit_private_products'   => true,
 			'upload_files'            => true,
+			'edit_posts'              => true,
 		)
 	);
 }
@@ -204,7 +205,7 @@ function gp_qe_is_current_user_quick_edit() {
 
 function gp_qe_login_redirect( $redirect_to, $request, $user ) {
 	if ( isset( $user->roles ) && in_array( GP_QE_ROLE, (array) $user->roles, true ) ) {
-		return admin_url( 'edit.php?post_type=product' );
+		return get_permalink( wc_get_page_id( 'shop' ) );
 	}
 	return $redirect_to;
 }

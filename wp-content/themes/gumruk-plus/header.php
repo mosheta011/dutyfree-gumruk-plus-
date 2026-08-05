@@ -70,7 +70,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 				?>
 			</nav><!-- .main-menu -->
 
-			<div class="nav-actions">
+			<div class="nav-actions gp-header__actions">
+				<?php 
+				if ( function_exists( 'storefront_product_search' ) ) {
+					storefront_product_search();
+				}
+				?>
 				<button class="lang-btn">EN / TR</button>
 				<?php
 				if ( function_exists( 'storefront_header_cart' ) ) {

@@ -178,5 +178,92 @@
 
 			requestAnimationFrame( renderLoop );
 		}
+
+		/* ── Custom WooCommerce Sorting Dropdown ─────────────────────── */
+		var orderbySelects = document.querySelectorAll( '.woocommerce-ordering select.orderby' );
+		orderbySelects.forEach( function ( select ) {
+			// Hide the native select
+			select.style.display = 'none';
+
+			// Create the custom container
+			var customContainer = document.createElement( 'div' );
+			customContainer.className = 'gp-custom-orderby';
+			customContainer.setAttribute( 'tabindex', '0' ); // Make focusable
+
+			// Find the currently selected option to show its text
+			var selectedOption = select.options[ select.selectedIndex ];
+			var currentText = selectedOption ? selectedOption.text : '';
+
+			// Create the trigger button
+			var trigger = document.createElement( 'div' );
+			trigger.className = 'gp-orderby-trigger';
+			trigger.innerHTML = '<span class="gp-orderby-label">' + currentText + '</span>' +
+				'<svg class="gp-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>';
+
+			// Create the dropdown menu
+			var dropdown = document.createElement( 'div' );
+			dropdown.className = 'gp-orderby-dropdown';
+
+			// Populate custom options from native options
+			Array.from( select.options ).forEach( function ( option, index ) {
+				var optDiv = document.createElement( 'div' );
+				optDiv.className = 'gp-orderby-option';
+				if ( option.selected ) {
+					optDiv.classList.add( 'is-selected' );
+				}
+				optDiv.setAttribute( 'data-value', option.value );
+				optDiv.textContent = option.text;
+
+				optDiv.addEventListener( 'click', function ( e ) {
+					e.stopPropagation(); // prevent bubbling to trigger or document
+					// Update native select value
+					select.value = option.value;
+					// Update trigger text
+					trigger.querySelector( '.gp-orderby-label' ).textContent = option.text;
+					// Remove is-selected from all, add to this
+					dropdown.querySelectorAll( '.gp-orderby-option' ).forEach( function ( el ) {
+						el.classList.remove( 'is-selected' );
+					} );
+					optDiv.classList.add( 'is-selected' );
+					// Close dropdown
+					customContainer.classList.remove( 'is-open' );
+					// Submit form to trigger WooCommerce reload
+					var form = select.closest( 'form' );
+					if ( form ) {
+						form.submit();
+					}
+				} );
+
+				dropdown.appendChild( optDiv );
+			} );
+
+			customContainer.appendChild( trigger );
+			customContainer.appendChild( dropdown );
+			
+			// Insert the custom container right after the native select
+			select.parentNode.insertBefore( customContainer, select.nextSibling );
+
+			// Toggle dropdown on trigger click
+			trigger.addEventListener( 'click', function ( e ) {
+				e.stopPropagation();
+				customContainer.classList.toggle( 'is-open' );
+			} );
+
+			// Keyboard accessibility
+			customContainer.addEventListener( 'keydown', function ( e ) {
+				if ( e.key === 'Enter' || e.key === ' ' ) {
+					e.preventDefault();
+					customContainer.classList.toggle( 'is-open' );
+				}
+			} );
+
+			// Close dropdown when clicking outside
+			document.addEventListener( 'click', function ( e ) {
+				if ( !customContainer.contains( e.target ) ) {
+					customContainer.classList.remove( 'is-open' );
+				}
+			} );
+		} );
+
 	} );
 } )();
