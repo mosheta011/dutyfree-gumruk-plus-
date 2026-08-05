@@ -24,6 +24,13 @@ function gp_enqueue_styles() {
 	);
 
 	wp_enqueue_style(
+		'tabler-icons',
+		'https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css',
+		array(),
+		null
+	);
+
+	wp_enqueue_style(
 		'gumruk-plus-theme',
 		get_stylesheet_directory_uri() . '/assets/css/theme.css',
 		array( 'gumruk-plus-style' ),

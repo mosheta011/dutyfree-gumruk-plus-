@@ -18,15 +18,13 @@ function gp_deals_marquee() {
 		return;
 	}
 
-	echo '<div class="gp-marquee" aria-hidden="true">';
-	echo '<div class="gp-marquee__track">';
+	echo '<div class="ticker-content">';
 	// Duplicate the item list so the CSS scroll animation loops seamlessly.
 	for ( $pass = 0; $pass < 2; $pass++ ) {
 		foreach ( $items as $item ) {
-			echo '<span class="gp-marquee__item">' . esc_html( $item ) . '</span>';
+			echo '<div class="ticker-item"><div class="ticker-dot"></div>' . esc_html( $item ) . '</div>';
 		}
 	}
-	echo '</div>';
 	echo '</div>';
 }
 
@@ -64,18 +62,14 @@ function gp_topbar() {
 	$location = get_theme_mod( 'gp_store_location', __( 'Kurtköy, Pendik — İstanbul', 'gumruk-plus' ) );
 	$hours    = get_theme_mod( 'gp_store_hours', __( '09:00–21:00 her gün', 'gumruk-plus' ) );
 	?>
-	<div class="gp-topbar">
-		<div class="col-full gp-topbar__inner">
-			<div class="gp-topbar__info">
-				<span class="gp-topbar__item"><?php echo esc_html( $location ); ?></span>
-				<span class="gp-topbar__item"><?php echo esc_html( $hours ); ?></span>
-			</div>
-			<div class="gp-topbar__lang" role="group" aria-label="<?php esc_attr_e( 'Language', 'gumruk-plus' ); ?>">
-				<button type="button" class="gp-topbar__lang-option is-active" aria-current="true">TR</button>
-				<button type="button" class="gp-topbar__lang-option" aria-current="false">EN</button>
-			</div>
+		<div class="info-item">
+			<i class="ti ti-clock"></i>
+			<span><?php echo esc_html( $hours ); ?></span>
 		</div>
-	</div>
+		<div class="info-item">
+			<i class="ti ti-map-pin"></i>
+			<span><?php echo esc_html( $location ); ?></span>
+		</div>
 	<?php
 }
 
@@ -99,41 +93,23 @@ function gp_split_letters( $text, $extra_class = '' ) {
 function gp_hero_section() {
 	$whatsapp_digits = preg_replace( '/[^0-9]/', '', (string) get_theme_mod( 'gp_whatsapp_number', '' ) );
 	?>
-	<section class="hero">
-		<div class="hero-card">
-			<!-- Live Background Orbs -->
-			<div class="hero-bg">
-				<?php for($i=0; $i<12; $i++): ?>
-					<div class="ag-orb"></div>
-				<?php endfor; ?>
-			</div>
-
-			<!-- Header Pill Badge -->
-			<div class="ag-hero-badge">
-				<span class="ag-badge-dot"></span>
-				<span>GÜMRÜK MAĞAZASI GÜVENCESİYLE</span>
-			</div>
-
-			<h1 class="hero-title">
-				<?php echo gp_split_letters( __( 'GERÇEK MAĞAZA, GERÇEK FİYAT.', 'gumruk-plus' ) ); ?>
-				<?php echo gp_split_letters( __( 'ŞİMDİ ONLİNE.', 'gumruk-plus' ), 'ag-title-highlight' ); ?>
-			</h1>
-			<div class="hero-actions">
-				<a class="hero-cta hero-cta--primary" href="#gp-products">
-					<?php esc_html_e( 'Alışverişe Başla', 'gumruk-plus' ); ?>
+	<section class="hero-section">
+		<div class="container">
+			<h1 class="anton"><?php esc_html_e( 'Premium Turkish goods', 'gumruk-plus' ); ?></h1>
+			<p><?php esc_html_e( 'Footwear, bags, jewelry, home décor, and more — directly from Kurtköy to your door. Authentic, handcrafted, trusted.', 'gumruk-plus' ); ?></p>
+			
+			<div class="hero-actions" style="margin-top: 24px;">
+				<a class="btn btn-primary" href="#gp-products">
+					<?php esc_html_e( 'Shop now', 'gumruk-plus' ); ?>
 				</a>
 				<?php if ( $whatsapp_digits ) : ?>
-					<a class="hero-cta hero-cta--secondary" href="<?php echo esc_url( 'https://wa.me/' . $whatsapp_digits ); ?>" target="_blank" rel="noopener noreferrer">
-						<?php esc_html_e( 'WhatsApp\'tan Yazın', 'gumruk-plus' ); ?>
-					</a>
-				<?php else : ?>
-					<a class="hero-cta hero-cta--secondary" href="#gp-products">
-						<?php esc_html_e( 'Kategorileri Gör', 'gumruk-plus' ); ?>
+					<a class="btn btn-outline" href="<?php echo esc_url( 'https://wa.me/' . $whatsapp_digits ); ?>" target="_blank" rel="noopener noreferrer">
+						<i class="ti ti-brand-whatsapp"></i> <?php esc_html_e( 'WhatsApp', 'gumruk-plus' ); ?>
 					</a>
 				<?php endif; ?>
 			</div>
 		</div>
-	</section><!-- .hero -->
+	</section><!-- .hero-section -->
 	<?php
 }
 

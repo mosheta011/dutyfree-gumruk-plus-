@@ -9,18 +9,27 @@ Text Domain:  gumruk-plus
 */
 
 :root{
-	--gp-cream:      #F7F4EC;
-	--gp-paper:      #FFFFFF;
-	--gp-kraft:      #C9A66B;
-	--gp-kraft-dark: #8C6C3D;
-	--gp-ink:        #222222;
-	--gp-border:     #2B2B2B;
-	--gp-teal:       #2F5D53;
-	--gp-teal-dark:  #24352E;
-	--gp-red:        #D63A2E;
-	--gp-amber:      #EFA23B;
-	--gp-line:       #2B2B2B;
-	--gp-stone:      #6E6A5C;
+	--cream: #F5F2EC;
+	--paper: #FAFAF8;
+	--red: #C41E3A;
+	--red-light: #E8374D;
+	--teal: #1B8A8A;
+	--teal-light: #2FA8A8;
+	--ink: #0B0D10;
+	--ink-secondary: #3A3D42;
+	--border: #E0DCD4;
+	--border-subtle: #F0EDE5;
+
+	/* Legacy mappings for partial backwards compatibility where hardcoded */
+	--gp-cream: var(--cream);
+	--gp-paper: var(--paper);
+	--gp-ink: var(--ink);
+	--gp-border: var(--border);
+	--gp-teal: var(--teal);
+	--gp-red: var(--red);
+	--gp-amber: #EFA23B;
+	--gp-line: var(--border);
+	--gp-stone: var(--ink-secondary);
 }
 
 body {
@@ -35,15 +44,24 @@ a {
 .woocommerce a.button,
 .woocommerce button.button,
 .woocommerce input.button {
-	background-color: var(--gp-red);
-	color: #fff;
-	border-radius: 3px;
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: 0.03em;
+	background-color: var(--red);
+	color: white;
+	border: 1px solid var(--red);
+	border-radius: 6px;
+	font-family: 'Inter', sans-serif;
+	font-size: 13px;
+	font-weight: 500;
+	padding: 10px 16px;
+	text-transform: none;
+	letter-spacing: normal;
+	transition: all 0.2s ease;
+	cursor: pointer;
 }
 
 .woocommerce a.button:hover,
-.woocommerce button.button:hover {
-	background-color: var(--gp-ink);
+.woocommerce button.button:hover,
+.woocommerce input.button:hover {
+	background-color: var(--red-light);
+	border-color: var(--red-light);
+	color: white;
 }

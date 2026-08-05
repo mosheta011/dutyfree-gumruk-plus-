@@ -33,76 +33,55 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div id="page" class="hfeed site">
 
-	<?php gp_topbar(); ?>
+	<div class="info-bar">
+		<?php gp_topbar(); ?>
+	</div>
 
-	<?php gp_deals_marquee(); ?>
+	<div class="ticker-bar">
+		<?php gp_deals_marquee(); ?>
+	</div>
 
 	<?php do_action( 'storefront_before_header' ); ?>
 
-	<header id="masthead" class="site-header gp-header" role="banner">
-		<div class="col-full gp-header__inner">
+	<header id="masthead" class="top-nav" role="banner">
+		<div class="container">
 
 			<div class="gp-header__branding">
 				<?php if ( has_custom_logo() ) : ?>
 					<?php the_custom_logo(); ?>
 				<?php else : ?>
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="gp-logo" rel="home">
-						<span class="gp-logo__word"><?php esc_html_e( 'GÜMRÜK', 'gumruk-plus' ); ?></span><span class="gp-logo__plus">+</span>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo" rel="home">
+						Gümrük<span class="logo-plus">+</span>
 					</a>
-					<?php
-					$description = get_bloginfo( 'description', 'display' );
-					if ( $description ) {
-						echo '<p class="gp-header__tagline">' . esc_html( $description ) . '</p>';
-					}
-					?>
 				<?php endif; ?>
 			</div><!-- .gp-header__branding -->
 
-			<button class="gp-nav-toggle" type="button" aria-expanded="false" aria-controls="gp-primary-navigation">
-				<span class="screen-reader-text"><?php esc_html_e( 'Menu', 'gumruk-plus' ); ?></span>
-				<span class="gp-nav-toggle__bar"></span>
-				<span class="gp-nav-toggle__bar"></span>
-				<span class="gp-nav-toggle__bar"></span>
-			</button>
-
-			<nav id="gp-primary-navigation" class="gp-nav" aria-label="<?php esc_attr_e( 'Primary', 'gumruk-plus' ); ?>">
+			<nav id="gp-primary-navigation" class="main-menu" aria-label="<?php esc_attr_e( 'Primary', 'gumruk-plus' ); ?>">
 				<?php
 				wp_nav_menu(
 					array(
 						'theme_location' => 'primary',
 						'container'      => false,
-						'menu_class'     => 'gp-nav__menu',
+						'menu_class'     => 'gp-nav__menu', // Kept for compatibility if needed, but styling will target main-menu
 						'walker'         => new GP_Nav_Walker(),
 						'fallback_cb'    => false,
 					)
 				);
 				?>
-			</nav><!-- .gp-nav -->
+			</nav><!-- .main-menu -->
 
-			<div class="gp-header__actions">
-				<?php
-				if ( function_exists( 'storefront_product_search' ) ) {
-					storefront_product_search();
-				}
-				?>
-				<button class="lamp-toggle js-dark-toggle" aria-label="<?php esc_attr_e( 'Karanlık mod / Dark mode', 'gumruk-plus' ); ?>">
-					<div class="cord"></div>
-					<div class="l-rim"></div>
-					<div class="l-cone"></div>
-					<div class="l-bulb-zone">
-						<div class="l-glow"></div>
-						<div class="l-bulb"></div>
-					</div>
-					<div class="l-nub"></div>
-				</button>
+			<div class="nav-actions">
+				<button class="lang-btn">EN / TR</button>
 				<?php
 				if ( function_exists( 'storefront_header_cart' ) ) {
+					// We'll wrap the cart in our button style using a filter or just let it render and style it.
+					// For now, let's output it and apply .cart-btn styles to it in CSS.
 					storefront_header_cart();
 				}
 				?>
-			</div><!-- .gp-header__actions -->
+			</div><!-- .nav-actions -->
 
-		</div><!-- .col-full -->
+		</div><!-- .container -->
 	</header><!-- #masthead -->
 
 	<?php
