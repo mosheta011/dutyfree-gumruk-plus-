@@ -70,30 +70,7 @@
 			handleScroll();
 		}
 
-		/* ── Mini-cart hover with close delay ──────────────────── */
-		var cartItems = document.querySelectorAll( '.site-header-cart > li' );
-		cartItems.forEach( function ( cartItem ) {
-			var dropdown = cartItem.querySelector( '.widget_shopping_cart' );
-			if ( ! dropdown ) return;
-
-			var closeTimer = null;
-
-			function openCart() {
-				if ( closeTimer ) { clearTimeout( closeTimer ); closeTimer = null; }
-				dropdown.style.display = 'block';
-			}
-
-			function closeCart() {
-				closeTimer = setTimeout( function () {
-					dropdown.style.display = 'none';
-				}, 200 ); /* 200ms grace window so mouse can travel to the dropdown */
-			}
-
-			cartItem.addEventListener( 'mouseenter', openCart );
-			cartItem.addEventListener( 'mouseleave', closeCart );
-			dropdown.addEventListener( 'mouseenter', openCart );
-			dropdown.addEventListener( 'mouseleave', closeCart );
-		} );
+		/* ── Default mini-cart hover removed for custom drawer ──────────────────── */
 
 
 		var hero = document.querySelector( '.hero' );

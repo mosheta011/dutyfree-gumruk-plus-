@@ -40,8 +40,8 @@ function gp_enqueue_styles() {
 	wp_enqueue_script(
 		'gumruk-plus-theme',
 		get_stylesheet_directory_uri() . '/assets/js/theme.js',
-		array(),
-		wp_get_theme()->get( 'Version' ),
+		array( 'jquery' ),
+		time(),
 		true
 	);
 
@@ -140,7 +140,7 @@ function gp_add_quick_view_inline_content() {
 							$sale_price = $product->get_sale_price();
 							$title = $product->get_name();
 							
-							echo '<a href="#" class="gp-frontend-edit-btn" onclick="gpOpenQuickEditModal(event, ' . $product->get_id() . ', \'' . esc_attr($title) . '\', \'' . esc_attr($price) . '\', \'' . esc_attr($sale_price) . '\')" style="display:inline-flex; align-items:center; gap:8px; background-color: var(--red, #C41E3A); color: white; padding: 10px 20px; border-radius: 4px; font-weight: 600; text-decoration: none; margin-top: 15px; width: 100%; justify-content: center; box-shadow: 0 4px 12px rgba(196, 30, 58, 0.3); transition: transform 0.2s ease;">
+							echo '<a href="#" class="gp-frontend-edit-btn js-gp-quick-edit-btn" data-product-id="' . esc_attr( $product->get_id() ) . '" data-product-title="' . esc_attr( $title ) . '" data-product-price="' . esc_attr( $price ) . '" data-product-sale-price="' . esc_attr( $sale_price ) . '" style="display:inline-flex; align-items:center; gap:8px; background-color: var(--red, #C41E3A); color: white; padding: 10px 20px; border-radius: 4px; font-weight: 600; text-decoration: none; margin-top: 15px; width: 100%; justify-content: center; box-shadow: 0 4px 12px rgba(196, 30, 58, 0.3); transition: transform 0.2s ease;">
 								<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
 								Quick Edit
 							</a>';
@@ -663,14 +663,17 @@ function gp_frontend_quick_edit_modal() {
 	</div>
 
 	<script>
-	function gpOpenQuickEditModal(e, id, title, regPrice, salePrice) {
-		e.preventDefault();
-		document.getElementById('gp_qe_product_id').value = id;
-		document.getElementById('gp_qe_title').value = title;
-		document.getElementById('gp_qe_regular_price').value = regPrice;
-		document.getElementById('gp_qe_sale_price').value = salePrice;
-		document.getElementById('gpQuickEditModal').style.display = 'flex';
-	}
+	jQuery(document).ready(function($) {
+		$(document).on('click', '.js-gp-quick-edit-btn', function(e) {
+			e.preventDefault();
+			var btn = $(this);
+			document.getElementById('gp_qe_product_id').value = btn.data('product-id');
+			document.getElementById('gp_qe_title').value = btn.data('product-title');
+			document.getElementById('gp_qe_regular_price').value = btn.data('product-price');
+			document.getElementById('gp_qe_sale_price').value = btn.data('product-sale-price');
+			document.getElementById('gpQuickEditModal').style.display = 'flex';
+		});
+	});
 	
 	async function gpSubmitQuickEdit(e) {
 		e.preventDefault();
