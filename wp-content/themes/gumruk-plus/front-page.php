@@ -54,13 +54,13 @@ get_header(); ?>
 				if ( ! is_wp_error( $gp_product_cats ) && ! empty( $gp_product_cats ) ) :
 					?>
 					<section class="gp-section gp-section--categories">
-						<h2 class="gp-section__title"><?php esc_html_e( 'Shop by category', 'gumruk-plus' ); ?></h2>
+						<h2 class="gp-section__title"><?php esc_html_e( 'Kategorilere Göre Alışveriş', 'gumruk-plus' ); ?></h2>
 						<?php echo do_shortcode( '[product_categories number="0" parent="0" columns="6"]' ); ?>
 					</section>
 				<?php endif; ?>
 
 				<section id="gp-products" class="gp-section gp-section--products">
-					<h2 class="gp-section__title"><?php esc_html_e( 'Featured products', 'gumruk-plus' ); ?></h2>
+					<h2 class="gp-section__title"><?php esc_html_e( 'Öne Çıkan Ürünler', 'gumruk-plus' ); ?></h2>
 					<?php echo do_shortcode( '[products limit="12" columns="4" orderby="date" order="DESC"]' ); ?>
 				</section>
 

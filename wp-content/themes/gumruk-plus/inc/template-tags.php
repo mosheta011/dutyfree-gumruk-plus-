@@ -47,7 +47,7 @@ function gp_whatsapp_button() {
 	printf(
 		'<a class="gp-whatsapp-button" href="%1$s" target="_blank" rel="noopener noreferrer" aria-label="%2$s">%3$s</a>',
 		esc_url( 'https://wa.me/' . $digits ),
-		esc_attr__( 'Chat with us on WhatsApp', 'gumruk-plus' ),
+		esc_attr__( 'WhatsApp üzerinden bize ulaşın', 'gumruk-plus' ),
 		'<span class="gp-whatsapp-button__icon" aria-hidden="true">&#9743;</span>'
 	);
 }
@@ -95,12 +95,12 @@ function gp_hero_section() {
 	?>
 	<section class="hero-section">
 		<div class="container">
-			<h1 class="anton"><?php esc_html_e( 'Premium Turkish goods', 'gumruk-plus' ); ?></h1>
-			<p><?php esc_html_e( 'Footwear, bags, jewelry, home décor, and more — directly from Kurtköy to your door. Authentic, handcrafted, trusted.', 'gumruk-plus' ); ?></p>
+			<h1 class="anton"><?php esc_html_e( 'Orijinal Gümrük ve Duty Free Ürünleri', 'gumruk-plus' ); ?></h1>
+			<p><?php esc_html_e( 'Ayakkabı, çanta, takı, ev dekorasyonu ve daha fazlası — doğrudan Kurtköy\'den kapınıza. Orijinal, kaliteli, güvenilir.', 'gumruk-plus' ); ?></p>
 			
 			<div class="hero-actions" style="margin-top: 24px;">
 				<a class="btn btn-primary" href="#gp-products">
-					<?php esc_html_e( 'Shop now', 'gumruk-plus' ); ?>
+					<?php esc_html_e( 'Hemen Alışverişe Başla', 'gumruk-plus' ); ?>
 				</a>
 				<?php if ( $whatsapp_digits ) : ?>
 					<a class="btn btn-outline" href="<?php echo esc_url( 'https://wa.me/' . $whatsapp_digits ); ?>" target="_blank" rel="noopener noreferrer">
@@ -128,7 +128,7 @@ function gp_posted_on() {
 	printf(
 		'<span class="posted-on">%1$s</span><span class="byline"> %2$s <span class="author vcard"><a class="url fn n" href="%3$s">%4$s</a></span></span>',
 		$time_string, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		esc_html__( 'by', 'gumruk-plus' ),
+		esc_html__( 'yazan', 'gumruk-plus' ),
 		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 		esc_html( get_the_author() )
 	);
@@ -144,18 +144,18 @@ function gp_entry_footer() {
 
 	$categories_list = get_the_category_list( esc_html__( ', ', 'gumruk-plus' ) );
 	if ( $categories_list ) {
-		printf( '<span class="cat-links">%1$s %2$s</span>', esc_html__( 'Posted in', 'gumruk-plus' ), $categories_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		printf( '<span class="cat-links">%1$s %2$s</span>', esc_html__( 'Kategori:', 'gumruk-plus' ), $categories_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	$tags_list = get_the_tag_list( '', esc_html__( ', ', 'gumruk-plus' ) );
 	if ( $tags_list && ! is_wp_error( $tags_list ) ) {
-		printf( '<span class="tags-links">%1$s %2$s</span>', esc_html__( 'Tagged', 'gumruk-plus' ), $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		printf( '<span class="tags-links">%1$s %2$s</span>', esc_html__( 'Etiketler:', 'gumruk-plus' ), $tags_list ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	edit_post_link(
 		sprintf(
 			/* translators: %s: post title */
-			esc_html__( 'Edit %s', 'gumruk-plus' ),
+			esc_html__( 'Düzenle %s', 'gumruk-plus' ),
 			the_title( '<span class="screen-reader-text">"', '"</span>', false )
 		),
 		'<span class="edit-link">',

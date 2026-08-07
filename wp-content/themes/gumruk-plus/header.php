@@ -56,7 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php endif; ?>
 			</div><!-- .gp-header__branding -->
 
-			<nav id="gp-primary-navigation" class="main-menu" aria-label="<?php esc_attr_e( 'Primary', 'gumruk-plus' ); ?>">
+			<nav id="gp-primary-navigation" class="main-menu" aria-label="<?php esc_attr_e( 'Ana Menü', 'gumruk-plus' ); ?>">
 				<?php
 				wp_nav_menu(
 					array(
@@ -76,7 +76,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 					storefront_product_search();
 				}
 				?>
-				<button class="lang-btn">EN / TR</button>
+				<div class="lang-switcher">
+					<button class="lang-btn lang-switcher__toggle" aria-expanded="false" aria-label="Select Language">
+						<i class="ti ti-world"></i>
+						<span class="lang-switcher__current">TR</span>
+						<i class="ti ti-chevron-down" style="font-size: 14px;"></i>
+					</button>
+					<ul class="lang-switcher__dropdown">
+						<li><button class="lang-dropdown-btn" data-lang="tr">Türkçe (TR)</button></li>
+						<li><button class="lang-dropdown-btn" data-lang="en">English (EN)</button></li>
+					</ul>
+				</div>
 				<?php
 				if ( function_exists( 'storefront_header_cart' ) ) {
 					// We'll wrap the cart in our button style using a filter or just let it render and style it.

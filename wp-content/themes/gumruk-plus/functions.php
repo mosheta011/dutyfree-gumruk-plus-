@@ -462,18 +462,18 @@ function gp_inject_product_badges() {
 	// "New" — created within the last 30 days
 	$created = $product->get_date_created();
 	if ( $created && ( time() - $created->getTimestamp() ) < 30 * DAY_IN_SECONDS ) {
-		$badges[] = '<span class="gp-badge gp-badge--new">' . esc_html__( 'New', 'gumruk-plus' ) . '</span>';
+		$badges[] = '<span class="gp-badge gp-badge--new">' . esc_html__( 'Yeni', 'gumruk-plus' ) . '</span>';
 	}
 
 	// "In stock"
 	if ( $product->is_in_stock() ) {
-		$badges[] = '<span class="gp-badge gp-badge--instock">' . esc_html__( 'In stock', 'gumruk-plus' ) . '</span>';
+		$badges[] = '<span class="gp-badge gp-badge--instock">' . esc_html__( 'Stokta', 'gumruk-plus' ) . '</span>';
 	}
 
 	// "Free shipping" — check if product has free shipping class
 	$shipping_class = $product->get_shipping_class();
 	if ( 'free-shipping' === $shipping_class ) {
-		$badges[] = '<span class="gp-badge gp-badge--freeship">' . esc_html__( 'Free shipping', 'gumruk-plus' ) . '</span>';
+		$badges[] = '<span class="gp-badge gp-badge--freeship">' . esc_html__( 'Ücretsiz Kargo', 'gumruk-plus' ) . '</span>';
 	}
 
 	if ( ! empty( $badges ) ) {
@@ -502,7 +502,7 @@ function gp_inject_shop_sections() {
 
 	if ( ! is_wp_error( $cats ) && ! empty( $cats ) ) {
 		echo '<section class="gp-section gp-section--categories">';
-		echo '<div class="woocommerce-loop__header" style="padding:0 0 0.2rem;"><h2 class="gp-section__title">' . esc_html__( 'Shop by category', 'gumruk-plus' ) . '</h2></div>';
+		echo '<div class="woocommerce-loop__header" style="padding:0 0 0.2rem;"><h2 class="gp-section__title">' . esc_html__( 'Kategorilere Göre Alışveriş', 'gumruk-plus' ) . '</h2></div>';
 		echo '<ul class="product-categories columns-6">';
 		foreach ( $cats as $cat ) {
 			$thumbnail_id = get_term_meta( $cat->term_id, 'thumbnail_id', true );
@@ -527,7 +527,7 @@ function gp_inject_shop_sections() {
 
 	// ── Featured products title ──
 	echo '<section class="gp-section gp-section--products">';
-	echo '<div class="woocommerce-loop__header" style="padding:0 0 0.2rem;"><h2 class="gp-section__title">' . esc_html__( 'Featured products', 'gumruk-plus' ) . '</h2></div>';
+	echo '<div class="woocommerce-loop__header" style="padding:0 0 0.2rem;"><h2 class="gp-section__title">' . esc_html__( 'Öne Çıkan Ürünler', 'gumruk-plus' ) . '</h2></div>';
 }
 
 add_action( 'woocommerce_after_main_content', 'gp_close_shop_section', 5 );
@@ -784,33 +784,54 @@ function gp_language_switcher_script() {
 	
 	<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', function() {
-			const langBtns = document.querySelectorAll('.lang-btn');
+			const toggleBtn = document.querySelector('.lang-switcher__toggle');
+			const switcherWrap = document.querySelector('.lang-switcher');
+			const dropdownBtns = document.querySelectorAll('.lang-dropdown-btn');
+			const currentSpan = document.querySelector('.lang-switcher__current');
 			
-			langBtns.forEach(btn => {
+			if (toggleBtn && switcherWrap) {
+				toggleBtn.addEventListener('click', function(e) {
+					e.preventDefault();
+					switcherWrap.classList.toggle('is-open');
+				});
+				
+				document.addEventListener('click', function(e) {
+					if (!switcherWrap.contains(e.target)) {
+						switcherWrap.classList.remove('is-open');
+					}
+				});
+			}
+			
+			dropdownBtns.forEach(btn => {
 				btn.addEventListener('click', function(e) {
 					e.preventDefault();
-					const selectElement = document.querySelector('.goog-te-combo');
-					if (!selectElement) return;
+					const targetLang = this.getAttribute('data-lang');
 					
-					// Determine current language from cookie or select value
-					let currentLang = selectElement.value;
-					if (!currentLang) {
-						// Check cookie
-						const match = document.cookie.match(/(?:^|;)\s*googtrans=([^;]*)/);
-						if (match && match[1]) {
-							currentLang = match[1].split('/')[2];
-						} else {
-							currentLang = 'tr'; // default
-						}
+					// Change UI immediately for feedback
+					if (currentSpan) {
+						currentSpan.textContent = targetLang.toUpperCase();
 					}
+					switcherWrap.classList.remove('is-open');
 					
-					const targetLang = (currentLang === 'en') ? 'tr' : 'en';
-					selectElement.value = targetLang;
-					selectElement.dispatchEvent(new Event('change'));
+					// Set the Google Translate cookie
+					document.cookie = `googtrans=/tr/${targetLang}; path=/`;
+					document.cookie = `googtrans=/tr/${targetLang}; path=/; domain=${location.hostname}`;
 					
-					// Optional: Update button text or style if needed
+					// Reload the page to apply the translation everywhere
+					window.location.reload();
 				});
 			});
+			
+			// Initialize current language from cookie on load
+			const match = document.cookie.match(/(?:^|;)\s*googtrans=([^;]*)/);
+			let initialLang = 'tr';
+			if (match && match[1]) {
+				const parts = match[1].split('/');
+				initialLang = parts[2] || parts[1] || 'tr';
+			}
+			if (currentSpan) {
+				currentSpan.textContent = initialLang.toUpperCase();
+			}
 		});
 	</script>
 	<style>
@@ -818,6 +839,85 @@ function gp_language_switcher_script() {
 		.goog-te-banner-frame.skiptranslate { display: none !important; } 
 		body { top: 0px !important; }
 		#goog-gt-tt { display: none !important; }
+		
+		/* Language Switcher UI */
+		.lang-switcher {
+			position: relative;
+			display: inline-block;
+		}
+		.lang-switcher__toggle {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			padding: 7px 12px;
+			font-size: 13px;
+			font-weight: 600;
+			background-color: var(--cream, #fff);
+			border: 1px solid var(--border, #ddd);
+			border-radius: 6px;
+			color: var(--ink-secondary, #333);
+			cursor: pointer;
+			transition: all 0.2s ease;
+		}
+		.lang-switcher__toggle:hover, .lang-switcher.is-open .lang-switcher__toggle {
+			border-color: var(--red, #C41E3A);
+			color: var(--red, #C41E3A);
+		}
+		body.gp-dark .lang-switcher__toggle {
+			background-color: transparent;
+		}
+		.lang-switcher__dropdown {
+			position: absolute;
+			top: calc(100% + 8px);
+			right: 0;
+			background: #fff;
+			border: 1px solid var(--border, #ddd);
+			border-radius: 6px;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+			list-style: none;
+			padding: 5px 0;
+			margin: 0;
+			min-width: 130px;
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(-10px);
+			transition: all 0.2s ease;
+			z-index: 1000;
+		}
+		.lang-switcher.is-open .lang-switcher__dropdown {
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(0);
+		}
+		body.gp-dark .lang-switcher__dropdown {
+			background: #182030;
+			border-color: #2A3848;
+		}
+		.lang-switcher__dropdown li {
+			margin: 0;
+		}
+		.lang-dropdown-btn {
+			width: 100%;
+			text-align: left;
+			background: none;
+			border: none;
+			padding: 8px 16px;
+			font-size: 13px;
+			font-weight: 500;
+			color: var(--ink-secondary, #333);
+			cursor: pointer;
+			transition: background 0.2s ease, color 0.2s ease;
+		}
+		.lang-dropdown-btn:hover {
+			background: #f5f5f5;
+			color: var(--red, #C41E3A);
+		}
+		body.gp-dark .lang-dropdown-btn {
+			color: #EFF2F7;
+		}
+		body.gp-dark .lang-dropdown-btn:hover {
+			background: #2A3848;
+		}
 	</style>
 	<?php
 }

@@ -20,7 +20,7 @@ get_header(); ?>
 					<h1 class="page-title">
 						<?php
 						/* translators: %s: search term */
-						printf( esc_html__( 'Search Results for: %s', 'gumruk-plus' ), '<span>' . get_search_query() . '</span>' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						printf( esc_html__( 'Arama Sonuçları: %s', 'gumruk-plus' ), '<span>' . get_search_query() . '</span>' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 					</h1>
 				</header>

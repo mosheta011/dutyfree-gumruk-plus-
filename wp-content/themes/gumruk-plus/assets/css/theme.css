@@ -2012,7 +2012,7 @@ body.gp-dark .lamp-toggle::after {
 .gp-header__actions .woocommerce-product-search .search-field {
 	width: 140px !important; /* Starting width, very compact */
 	height: 38px;
-	padding: 8px 16px; /* Symmetric now that the button sits beside, not inside, the field */
+	padding: 8px 16px 8px 32px !important; /* Extra left padding for the icon */
 	border: 2px solid var(--gp-line, #2b2b2b) !important;
 	border-radius: 20px !important;
 	background-color: var(--gp-cream, #f7f4ec) !important;
@@ -2044,7 +2044,7 @@ body.gp-dark .lamp-toggle::after {
 
 /* Focus style - expands beautifully! */
 .gp-header__actions .woocommerce-product-search .search-field:focus {
-	width: 260px !important; /* Expands to fit input */
+	width: 190px !important; /* Expands to fit input but not overlap menu */
 	background-color: #ffffff !important;
 	border-color: var(--gp-teal, #2f5d53) !important;
 	box-shadow: 0 0 0 4px rgba(47, 93, 83, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08) !important;
@@ -2103,7 +2103,7 @@ body.gp-dark .lamp-toggle::after {
 }
 
 .gp-header.is-sticky .gp-header__actions .woocommerce-product-search .search-field:focus {
-	width: 240px !important; /* Slightly narrower when sticky to keep header compact */
+	width: 190px !important; /* Slightly narrower when sticky to keep header compact */
 }
 
 /* Sticky: slightly smaller circle button */

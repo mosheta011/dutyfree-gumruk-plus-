@@ -47,7 +47,7 @@ class GP_Nav_Walker extends Walker_Nav_Menu {
 		$item_output .= '</a>';
 
 		if ( $has_children ) {
-			$item_output .= '<button class="gp-nav__toggle" type="button" aria-expanded="false" aria-label="' . esc_attr__( 'Open submenu', 'gumruk-plus' ) . '">';
+			$item_output .= '<button class="gp-nav__toggle" type="button" aria-expanded="false" aria-label="' . esc_attr__( 'Alt menüyü aç', 'gumruk-plus' ) . '">';
 			$item_output .= '<span class="gp-nav__toggle-icon" aria-hidden="true"></span>';
 			$item_output .= '</button>';
 		}

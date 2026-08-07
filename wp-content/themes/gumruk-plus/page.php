@@ -36,7 +36,7 @@ get_header(); ?>
 						the_content();
 						wp_link_pages(
 							array(
-								'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'gumruk-plus' ),
+								'before' => '<div class="page-links">' . esc_html__( 'Sayfalar:', 'gumruk-plus' ),
 								'after'  => '</div>',
 							)
 						);
