@@ -10,11 +10,11 @@ function gp_custom_sorting_menu() {
     $current_orderby = isset( $_GET['orderby'] ) ? wc_clean( wp_unslash( $_GET['orderby'] ) ) : 'menu_order';
     
     $sort_options = array(
-        'menu_order' => 'Default',
-        'popularity' => 'Popular',
-        'date'       => 'Latest',
-        'price'      => 'Price: Low to High',
-        'price-desc' => 'Price: High to Low'
+        'menu_order' => __( 'Varsayılan', 'gumruk-plus' ),
+        'popularity' => __( 'Popüler', 'gumruk-plus' ),
+        'date'       => __( 'En Yeni', 'gumruk-plus' ),
+        'price'      => __( 'Fiyat: Düşükten Yükseğe', 'gumruk-plus' ),
+        'price-desc' => __( 'Fiyat: Yüksekten Düşüğe', 'gumruk-plus' )
     );
     
     echo '<div class="gp-custom-sorting-wrapper">';

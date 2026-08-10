@@ -136,14 +136,13 @@ function gp_add_quick_view_inline_content() {
 						$user = wp_get_current_user();
 						$roles = (array) $user->roles;
 						if ( in_array( 'gp_quick_edit', $roles ) || in_array( 'administrator', $roles ) ) {
-							$price = $product->get_regular_price();
-							$sale_price = $product->get_sale_price();
-							$title = $product->get_name();
-							
-							echo '<a href="#" class="gp-frontend-edit-btn js-gp-quick-edit-btn" data-product-id="' . esc_attr( $product->get_id() ) . '" data-product-title="' . esc_attr( $title ) . '" data-product-price="' . esc_attr( $price ) . '" data-product-sale-price="' . esc_attr( $sale_price ) . '" style="display:inline-flex; align-items:center; gap:8px; background-color: var(--red, #C41E3A); color: white; padding: 10px 20px; border-radius: 4px; font-weight: 600; text-decoration: none; margin-top: 15px; width: 100%; justify-content: center; box-shadow: 0 4px 12px rgba(196, 30, 58, 0.3); transition: transform 0.2s ease;">
-								<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-								Quick Edit
-							</a>';
+							$edit_link = get_edit_post_link( $product->get_id() );
+							if ( $edit_link ) {
+								echo '<a href="' . esc_url( $edit_link ) . '" class="gp-frontend-edit-btn" style="display:inline-flex; align-items:center; gap:8px; background-color: var(--red, #C41E3A); color: white; padding: 10px 20px; border-radius: 4px; font-weight: 600; text-decoration: none; margin-top: 15px; width: 100%; justify-content: center; box-shadow: 0 4px 12px rgba(196, 30, 58, 0.3); transition: transform 0.2s ease;">
+									<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+									Quick Edit in WP
+								</a>';
+							}
 						}
 					}
 					?>
@@ -614,104 +613,6 @@ function gp_manage_products_endpoint_url( $url, $endpoint, $value, $permalink ) 
 }
 add_filter( 'woocommerce_get_endpoint_url', 'gp_manage_products_endpoint_url', 10, 4 );
 
-/**
- * Frontend Quick Edit Modal HTML and JS
- */
-function gp_frontend_quick_edit_modal() {
-	$user = wp_get_current_user();
-	$roles = (array) $user->roles;
-	if ( ! in_array( 'gp_quick_edit', $roles ) && ! in_array( 'administrator', $roles ) ) return;
-	
-	?>
-	<div id="gpQuickEditModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:999999; align-items:center; justify-content:center;">
-		<div style="background:#fff; width:90%; max-width:500px; padding:30px; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.2); position:relative;">
-			<button onclick="document.getElementById('gpQuickEditModal').style.display='none'" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:24px; cursor:pointer; color:#999;">&times;</button>
-			<h3 style="margin-top:0; font-family:'Anton', sans-serif; letter-spacing:1px; color:#1a1a1a;">Quick Edit Product</h3>
-			
-			<form id="gpQuickEditForm" onsubmit="gpSubmitQuickEdit(event)">
-				<input type="hidden" id="gp_qe_product_id" name="product_id" value="">
-				<input type="hidden" name="action" value="gp_frontend_quick_edit_save">
-				<?php wp_nonce_field( 'gp_frontend_qe_nonce', 'security' ); ?>
-				
-				<div style="margin-bottom:15px;">
-					<label style="display:block; font-size:13px; font-weight:600; margin-bottom:5px;">Product Name</label>
-					<input type="text" id="gp_qe_title" name="title" required style="width:100%; padding:10px; border:1px solid #ddd; border-radius:4px; font-size:14px; box-sizing:border-box;">
-				</div>
-				
-				<div style="display:flex; gap:15px; margin-bottom:15px;">
-					<div style="flex:1;">
-						<label style="display:block; font-size:13px; font-weight:600; margin-bottom:5px;">Regular Price</label>
-						<input type="text" id="gp_qe_regular_price" name="regular_price" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:4px; font-size:14px; box-sizing:border-box;">
-					</div>
-					<div style="flex:1;">
-						<label style="display:block; font-size:13px; font-weight:600; margin-bottom:5px;">Sale Price</label>
-						<input type="text" id="gp_qe_sale_price" name="sale_price" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:4px; font-size:14px; box-sizing:border-box;">
-					</div>
-				</div>
-				
-				<div style="margin-bottom:25px;">
-					<label style="display:block; font-size:13px; font-weight:600; margin-bottom:5px;">Update Main Picture (Optional)</label>
-					<input type="file" id="gp_qe_image" name="image" accept="image/*" style="width:100%; padding:8px; border:1px dashed #bbb; border-radius:4px; background:#fafafa; box-sizing:border-box;">
-				</div>
-				
-				<button type="submit" id="gp_qe_submit_btn" style="width:100%; padding:12px; background:var(--red, #C41E3A); color:#fff; border:none; border-radius:4px; font-weight:bold; font-size:15px; cursor:pointer; transition:background 0.2s;">
-					Save Changes
-				</button>
-				<p id="gp_qe_status" style="margin-top:10px; font-size:13px; text-align:center; display:none;"></p>
-			</form>
-		</div>
-	</div>
-
-	<script>
-	jQuery(document).ready(function($) {
-		$(document).on('click', '.js-gp-quick-edit-btn', function(e) {
-			e.preventDefault();
-			var btn = $(this);
-			document.getElementById('gp_qe_product_id').value = btn.data('product-id');
-			document.getElementById('gp_qe_title').value = btn.data('product-title');
-			document.getElementById('gp_qe_regular_price').value = btn.data('product-price');
-			document.getElementById('gp_qe_sale_price').value = btn.data('product-sale-price');
-			document.getElementById('gpQuickEditModal').style.display = 'flex';
-		});
-	});
-	
-	async function gpSubmitQuickEdit(e) {
-		e.preventDefault();
-		const form = e.target;
-		const btn = document.getElementById('gp_qe_submit_btn');
-		const status = document.getElementById('gp_qe_status');
-		
-		btn.innerText = 'Saving...';
-		btn.disabled = true;
-		status.style.display = 'none';
-		
-		const formData = new FormData(form);
-		
-		try {
-			const res = await fetch('<?php echo admin_url("admin-ajax.php"); ?>', {
-				method: 'POST',
-				body: formData
-			});
-			const result = await res.json();
-			if (result.success) {
-				btn.innerText = 'Saved!';
-				btn.style.background = '#4CAF50';
-				setTimeout(() => window.location.reload(), 1000);
-			} else {
-				throw new Error(result.data || 'Unknown error');
-			}
-		} catch (err) {
-			status.style.display = 'block';
-			status.style.color = 'red';
-			status.innerText = 'Error: ' + err.message;
-			btn.innerText = 'Save Changes';
-			btn.disabled = false;
-		}
-	}
-	</script>
-	<?php
-}
-add_action( 'wp_footer', 'gp_frontend_quick_edit_modal' );
 
 /**
  * AJAX handler for frontend quick edit
@@ -834,92 +735,26 @@ function gp_language_switcher_script() {
 			}
 		});
 	</script>
-	<style>
-		/* Hide the Google Translate top banner */
-		.goog-te-banner-frame.skiptranslate { display: none !important; } 
-		body { top: 0px !important; }
-		#goog-gt-tt { display: none !important; }
-		
-		/* Language Switcher UI */
-		.lang-switcher {
-			position: relative;
-			display: inline-block;
-		}
-		.lang-switcher__toggle {
-			display: flex;
-			align-items: center;
-			gap: 6px;
-			padding: 7px 12px;
-			font-size: 13px;
-			font-weight: 600;
-			background-color: var(--cream, #fff);
-			border: 1px solid var(--border, #ddd);
-			border-radius: 6px;
-			color: var(--ink-secondary, #333);
-			cursor: pointer;
-			transition: all 0.2s ease;
-		}
-		.lang-switcher__toggle:hover, .lang-switcher.is-open .lang-switcher__toggle {
-			border-color: var(--red, #C41E3A);
-			color: var(--red, #C41E3A);
-		}
-		body.gp-dark .lang-switcher__toggle {
-			background-color: transparent;
-		}
-		.lang-switcher__dropdown {
-			position: absolute;
-			top: calc(100% + 8px);
-			right: 0;
-			background: #fff;
-			border: 1px solid var(--border, #ddd);
-			border-radius: 6px;
-			box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-			list-style: none;
-			padding: 5px 0;
-			margin: 0;
-			min-width: 130px;
-			opacity: 0;
-			visibility: hidden;
-			transform: translateY(-10px);
-			transition: all 0.2s ease;
-			z-index: 1000;
-		}
-		.lang-switcher.is-open .lang-switcher__dropdown {
-			opacity: 1;
-			visibility: visible;
-			transform: translateY(0);
-		}
-		body.gp-dark .lang-switcher__dropdown {
-			background: #182030;
-			border-color: #2A3848;
-		}
-		.lang-switcher__dropdown li {
-			margin: 0;
-		}
-		.lang-dropdown-btn {
-			width: 100%;
-			text-align: left;
-			background: none;
-			border: none;
-			padding: 8px 16px;
-			font-size: 13px;
-			font-weight: 500;
-			color: var(--ink-secondary, #333);
-			cursor: pointer;
-			transition: background 0.2s ease, color 0.2s ease;
-		}
-		.lang-dropdown-btn:hover {
-			background: #f5f5f5;
-			color: var(--red, #C41E3A);
-		}
-		body.gp-dark .lang-dropdown-btn {
-			color: #EFF2F7;
-		}
-		body.gp-dark .lang-dropdown-btn:hover {
-			background: #2A3848;
-		}
-	</style>
 	<?php
 }
 add_action( 'wp_footer', 'gp_language_switcher_script' );
 
+/**
+ * Add a "Clear Cart" button to WooCommerce Cart Page
+ */
+add_action( 'woocommerce_cart_actions', 'gp_add_clear_cart_button' );
+function gp_add_clear_cart_button() {
+	echo '<a href="' . esc_url( add_query_arg( 'empty-cart', 'true', wc_get_cart_url() ) ) . '" class="button gp-clear-cart-btn" style="background-color: transparent; color: var(--red); border: 1px solid var(--red); margin-right: auto; float: left; font-family: \'Inter\', sans-serif; transition: all 0.2s;">' . esc_html__( 'Sepeti Temizle (Clear All)', 'gumruk-plus' ) . '</a>';
+}
+
+/**
+ * Handle the "Clear Cart" action
+ */
+add_action( 'init', 'gp_handle_clear_cart_action' );
+function gp_handle_clear_cart_action() {
+	if ( isset( $_GET['empty-cart'] ) && 'true' === $_GET['empty-cart'] && function_exists( 'WC' ) && WC()->cart ) {
+		WC()->cart->empty_cart();
+		wp_safe_redirect( wc_get_cart_url() );
+		exit;
+	}
+}

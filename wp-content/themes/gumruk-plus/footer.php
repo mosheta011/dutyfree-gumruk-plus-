@@ -38,21 +38,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</div>
 			</div>
 
-			<div class="gp-footer__columns" style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;">
+			<div class="gp-footer__columns" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-top: 20px; border-top: 1px solid var(--border-subtle); padding-top: 50px;">
 
 				<!-- Column 1: Branding -->
-				<div class="gp-footer__column gp-footer__column--brand">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo" rel="home" style="font-size: 28px; margin-bottom: 16px; display: inline-block;">
-						Gümrük<span class="logo-plus">+</span>
+				<div class="gp-footer__column gp-footer__column--brand" style="grid-column: span 2;">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo" rel="home" style="font-size: 32px; margin-bottom: 20px; display: inline-block; font-weight: 800; letter-spacing: -1px; text-decoration: none;">
+						Gümrük<span class="logo-plus" style="color: var(--teal);">+</span>
 					</a>
-					<p class="gp-footer__tagline" style="font-size: 14px; line-height: 1.6; max-width: 400px;">
-						<?php esc_html_e( 'Gerçek Mağaza, Gerçek Fiyat. Güvenilir duty free ve gümrük ürünlerini uygun fiyatlarla online sunuyoruz.', 'gumruk-plus' ); ?>
+					<p class="gp-footer__tagline" style="font-size: 15px; line-height: 1.7; max-width: 350px; color: var(--ink-secondary);">
+						<?php esc_html_e( 'Gerçek Mağaza, Gerçek Fiyat. Güvenilir duty free ve gümrük ürünlerini en uygun fiyatlarla, hızlı ve güvenli bir şekilde sunuyoruz.', 'gumruk-plus' ); ?>
 					</p>
 				</div>
 
 				<!-- Column 2: Navigation Links -->
 				<div class="gp-footer__column">
-					<h3 class="gp-footer__heading"><?php esc_html_e( 'Hızlı Erişim', 'gumruk-plus' ); ?></h3>
+					<h3 class="gp-footer__heading" style="font-size: 14px; font-weight: 700; margin-bottom: 24px; color: var(--ink); text-transform: uppercase; letter-spacing: 1px;"><?php esc_html_e( 'Hızlı Erişim', 'gumruk-plus' ); ?></h3>
 					<?php
 					wp_nav_menu(
 						array(
@@ -66,17 +66,40 @@ if ( ! defined( 'ABSPATH' ) ) {
 					?>
 				</div>
 
-				<!-- Column 3: Store Info -->
+				<!-- Column 3: Contact Us -->
 				<div class="gp-footer__column">
-					<h3 class="gp-footer__heading"><?php esc_html_e( 'Mağaza Bilgileri', 'gumruk-plus' ); ?></h3>
-					<ul class="gp-footer__info-list" style="list-style: none; padding: 0; margin: 0; font-size: 14px;">
-						<li style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
-							<i class="ti ti-map-pin" style="font-size: 18px; color: var(--red); flex-shrink: 0;"></i>
-							<span><?php echo esc_html( get_theme_mod( 'gp_store_location', __( 'Kurtköy, Pendik — İstanbul', 'gumruk-plus' ) ) ); ?></span>
+					<h3 class="gp-footer__heading" style="font-size: 14px; font-weight: 700; margin-bottom: 24px; color: var(--ink); text-transform: uppercase; letter-spacing: 1px;"><?php esc_html_e( 'İletişim', 'gumruk-plus' ); ?></h3>
+					<ul class="gp-footer__info-list" style="list-style: none; padding: 0; margin: 0; font-size: 14px; color: var(--ink-secondary);">
+						<li style="display: flex; align-items: center; gap: 14px; margin-bottom: 18px;">
+							<div style="width: 36px; height: 36px; border-radius: 50%; background: var(--paper); display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-subtle); transition: background 0.2s;">
+								<i class="ti ti-phone" style="font-size: 18px; color: var(--teal);"></i>
+							</div>
+							<a href="tel:+901234567890" style="color: inherit; text-decoration: none; font-weight: 500; transition: color 0.2s;">+90 123 456 7890</a>
 						</li>
-						<li style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
-							<i class="ti ti-clock" style="font-size: 18px; color: var(--red); flex-shrink: 0;"></i>
-							<span><?php echo esc_html( get_theme_mod( 'gp_store_hours', __( '09:00–21:00 her gün', 'gumruk-plus' ) ) ); ?></span>
+						<li style="display: flex; align-items: center; gap: 14px; margin-bottom: 18px;">
+							<div style="width: 36px; height: 36px; border-radius: 50%; background: var(--paper); display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-subtle); transition: background 0.2s;">
+								<i class="ti ti-mail" style="font-size: 18px; color: var(--teal);"></i>
+							</div>
+							<a href="mailto:info@gumrukplus.com" style="color: inherit; text-decoration: none; font-weight: 500; transition: color 0.2s;">info@gumrukplus.com</a>
+						</li>
+					</ul>
+				</div>
+
+				<!-- Column 4: Store Info -->
+				<div class="gp-footer__column">
+					<h3 class="gp-footer__heading" style="font-size: 14px; font-weight: 700; margin-bottom: 24px; color: var(--ink); text-transform: uppercase; letter-spacing: 1px;"><?php esc_html_e( 'Mağaza', 'gumruk-plus' ); ?></h3>
+					<ul class="gp-footer__info-list" style="list-style: none; padding: 0; margin: 0; font-size: 14px; color: var(--ink-secondary);">
+						<li style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 18px;">
+							<div style="width: 36px; height: 36px; border-radius: 50%; background: var(--paper); display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-subtle); flex-shrink: 0; transition: background 0.2s;">
+								<i class="ti ti-map-pin" style="font-size: 18px; color: var(--red);"></i>
+							</div>
+							<span style="line-height: 1.5; padding-top: 8px;"><?php echo esc_html( get_theme_mod( 'gp_store_location', __( '123 Gümrük Sokak, Kurtköy, Pendik — İstanbul', 'gumruk-plus' ) ) ); ?></span>
+						</li>
+						<li style="display: flex; align-items: center; gap: 14px; margin-bottom: 18px;">
+							<div style="width: 36px; height: 36px; border-radius: 50%; background: var(--paper); display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-subtle); flex-shrink: 0; transition: background 0.2s;">
+								<i class="ti ti-clock" style="font-size: 18px; color: var(--red);"></i>
+							</div>
+							<span style="font-weight: 500;"><?php echo esc_html( get_theme_mod( 'gp_store_hours', __( '09:00–21:00 her gün', 'gumruk-plus' ) ) ); ?></span>
 						</li>
 					</ul>
 				</div>

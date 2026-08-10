@@ -56,7 +56,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php endif; ?>
 			</div><!-- .gp-header__branding -->
 
-			<nav id="gp-primary-navigation" class="main-menu" aria-label="<?php esc_attr_e( 'Ana Menü', 'gumruk-plus' ); ?>">
+			<button class="gp-nav-toggle" aria-expanded="false" aria-label="<?php esc_attr_e( 'Menu', 'gumruk-plus' ); ?>">
+				<span class="gp-nav-toggle__bar"></span>
+				<span class="gp-nav-toggle__bar"></span>
+				<span class="gp-nav-toggle__bar"></span>
+			</button>
+
+			<nav id="gp-primary-navigation" class="gp-nav main-menu" aria-label="<?php esc_attr_e( 'Ana Menü', 'gumruk-plus' ); ?>">
 				<?php
 				wp_nav_menu(
 					array(
@@ -76,6 +82,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 					storefront_product_search();
 				}
 				?>
+				<button class="js-dark-toggle theme-lamp-toggle" aria-label="Toggle theme" title="Toggle Light/Dark Mode">
+					<svg class="lamp-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path class="lamp-glow" d="M7 12 L17 12 L14 17 L10 17 Z" />
+						<path class="lamp-shade" d="M12 4 C16.5 4 18.5 8.5 19 12 L5 12 C5.5 8.5 7.5 4 12 4 Z" stroke-linejoin="round" />
+						<rect class="lamp-stem" x="11" y="12" width="2" height="7" rx="0.5" />
+						<path class="lamp-base" d="M8 19 L16 19 C17 19 18 19.5 18 21 L6 21 C6 19.5 7 19 8 19 Z" />
+					</svg>
+				</button>
 				<div class="lang-switcher">
 					<button class="lang-btn lang-switcher__toggle" aria-expanded="false" aria-label="Select Language">
 						<i class="ti ti-world"></i>

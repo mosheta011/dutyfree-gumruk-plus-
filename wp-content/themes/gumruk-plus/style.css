@@ -65,3 +65,198 @@ a {
 	border-color: var(--red-light);
 	color: white;
 }
+
+/* Contact Page Styles */
+.gp-contact-section {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 40px;
+	margin-top: 30px;
+}
+
+.gp-contact-info {
+	flex: 1;
+	min-width: 250px;
+	background: var(--paper);
+	padding: 30px;
+	border-radius: 8px;
+	border: 1px solid var(--border-subtle);
+}
+
+.gp-contact-info h3 {
+	margin-top: 0;
+	color: var(--teal);
+}
+
+.gp-contact-info p {
+	margin-bottom: 20px;
+	line-height: 1.6;
+}
+
+.gp-contact-form-wrapper {
+	flex: 2;
+	min-width: 300px;
+	background: #fff;
+	padding: 30px;
+	border-radius: 8px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.gp-contact-form-wrapper h3 {
+	margin-top: 0;
+	margin-bottom: 20px;
+}
+
+.gp-contact-form .gp-form-row {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+.gp-contact-form .gp-form-row .gp-form-group {
+	flex: 1;
+	min-width: 200px;
+}
+
+.gp-contact-form .gp-form-group {
+	margin-bottom: 20px;
+}
+
+.gp-contact-form label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: 500;
+	color: var(--ink-secondary);
+}
+
+.gp-contact-form input[type="text"],
+.gp-contact-form input[type="email"],
+.gp-contact-form textarea {
+	width: 100%;
+	padding: 12px;
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	background: var(--paper);
+	transition: border-color 0.2s ease;
+}
+
+.gp-contact-form input[type="text"]:focus,
+.gp-contact-form input[type="email"]:focus,
+.gp-contact-form textarea:focus {
+	border-color: var(--teal);
+	outline: none;
+	background: #fff;
+}
+
+.gp-contact-form .gp-submit-group {
+	margin-bottom: 0;
+}
+
+.gp-contact-form button[type="submit"] {
+	background-color: var(--teal);
+	color: white;
+	border: 1px solid var(--teal);
+	border-radius: 6px;
+	padding: 12px 24px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.gp-contact-form button[type="submit"]:hover {
+	background-color: var(--teal-light);
+	border-color: var(--teal-light);
+}
+
+/* Force single-line header layout for gumruk-plus theme */
+@media (min-width: 992px) {
+    .top-nav {
+        height: 65px !important; /* Restore original fixed height */
+        padding: 0 !important;
+    }
+    .top-nav .container {
+        flex-wrap: nowrap !important; /* Force single line */
+        justify-content: space-between !important;
+        max-width: 1400px !important; /* Give it more room if needed */
+        gap: 15px;
+    }
+    .gp-header__branding {
+        flex: 0 0 auto;
+        min-width: auto;
+    }
+    .gp-header__actions {
+        flex: 0 0 auto;
+    }
+    .main-menu {
+        flex: 1 1 auto !important;
+        order: 0 !important; /* Reset to natural order */
+        width: auto !important;
+        margin-top: 0px !important;
+        display: flex;
+        justify-content: center;
+    }
+    .main-menu .gp-nav__menu {
+        display: flex;
+        flex-wrap: nowrap !important;
+        justify-content: center;
+        margin: 0;
+    }
+    /* Reduce spacing and slightly shrink font to ensure it fits on one line */
+    .gp-nav__menu > .gp-nav__item > .gp-nav__link {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        font-size: 13px !important;
+        white-space: nowrap;
+    }
+    .site-search {
+        max-width: 200px !important;
+    }
+}
+
+/* Mobile Header Fixes (under 992px) */
+@media (max-width: 991px) {
+    .top-nav {
+        height: auto !important;
+        padding: 10px 0;
+    }
+    .top-nav .container {
+        flex-wrap: wrap !important;
+        gap: 10px;
+        justify-content: center;
+    }
+    .gp-header__branding {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5px;
+    }
+    .gp-header__actions {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .main-menu {
+        width: 100%;
+        overflow-x: auto; /* Allow scrolling menu horizontally if too long */
+        padding-bottom: 5px;
+    }
+    .main-menu .gp-nav__menu {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 10px;
+    }
+    .gp-nav__menu > .gp-nav__item > .gp-nav__link {
+        padding: 5px 10px !important;
+        font-size: 13px !important;
+        white-space: nowrap;
+    }
+}
+
+/* Clear Cart Button Styling */
+a.gp-clear-cart-btn:hover {
+    background-color: var(--red) !important;
+    color: white !important;
+    text-decoration: none;
+}

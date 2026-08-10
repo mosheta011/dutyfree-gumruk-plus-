@@ -52,6 +52,12 @@
 				document.body.classList.add( 'gp-dark' );
 			}
 			lampToggle.addEventListener( 'click', function () {
+				// Add animation class
+				lampToggle.classList.add('is-switching');
+				setTimeout(function() {
+					lampToggle.classList.remove('is-switching');
+				}, 300);
+				
 				var isDark = document.body.classList.toggle( 'gp-dark' );
 				localStorage.setItem( 'gp_dark', isDark ? '1' : '0' );
 			} );
@@ -242,5 +248,95 @@
 			} );
 		} );
 
+		/* ── WooCommerce Checkout Real-Time Validation ─────────────────────── */
+		function initGpCheckoutValidation() {
+			var checkoutForm = document.querySelector('form.checkout');
+			if (!checkoutForm) return;
+
+			var requiredInputs = checkoutForm.querySelectorAll('.validate-required input, .validate-required select, .validate-required textarea');
+			
+			requiredInputs.forEach(function(input) {
+				if (input.dataset.gpValidationInit) return;
+				input.dataset.gpValidationInit = 'true';
+
+				var row = input.closest('.form-row');
+				if (row) {
+					// Add feedback text element if it doesn't exist
+					if (!row.querySelector('.gp-invalid-feedback')) {
+						var feedback = document.createElement('div');
+						feedback.className = 'gp-invalid-feedback';
+						feedback.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px; margin-top:-2px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg> <span class="gp-invalid-text">Bu alan zorunludur. / Required field.</span>';
+						
+						var wrapper = row.querySelector('.woocommerce-input-wrapper');
+						if (wrapper) {
+							wrapper.appendChild(feedback);
+						} else {
+							row.appendChild(feedback);
+						}
+					}
+				}
+
+				// Remove red border immediately when user starts typing
+				input.addEventListener('input', function() {
+					var row = input.closest('.form-row');
+					if (row && row.classList.contains('woocommerce-invalid')) {
+						if (input.value.trim() !== '') {
+							row.classList.remove('woocommerce-invalid');
+							row.classList.add('woocommerce-validated');
+						}
+					}
+				});
+				
+				// Add red border on blur if empty
+				input.addEventListener('blur', function() {
+					var row = input.closest('.form-row');
+					if (row && input.value.trim() === '') {
+						row.classList.add('woocommerce-invalid');
+						row.classList.remove('woocommerce-validated');
+					} else if (row && input.value.trim() !== '') {
+						row.classList.add('woocommerce-validated');
+						row.classList.remove('woocommerce-invalid');
+					}
+				});
+			});
+		}
+
+		initGpCheckoutValidation();
+		if (typeof jQuery !== 'undefined') {
+			jQuery(document.body).on('updated_checkout', initGpCheckoutValidation);
+		}
+
 	} );
+
+	// Append +/- buttons for WooCommerce quantity inputs
+	jQuery( function( $ ) {
+		function addQtyButtons() {
+			$( '.quantity:not(.buttons_added)' ).addClass( 'buttons_added' ).each( function() {
+				var $qty = $( this ).find( 'input.qty' );
+				if ( $qty.length ) {
+					$qty.before( '<button type="button" class="minus">-</button>' );
+					$qty.after( '<button type="button" class="plus">+</button>' );
+				}
+			} );
+		}
+		
+		addQtyButtons();
+		$( document ).on( 'updated_cart_totals updated_checkout', addQtyButtons );
+		
+		$( document ).on( 'click', '.plus, .minus', function() {
+			var $qty = $( this ).siblings( 'input.qty' );
+			var val = parseFloat( $qty.val() ) || 0;
+			var max = parseFloat( $qty.attr( 'max' ) ) || Infinity;
+			var min = parseFloat( $qty.attr( 'min' ) ) || 0;
+			var step = parseFloat( $qty.attr( 'step' ) ) || 1;
+			
+			if ( $( this ).hasClass( 'plus' ) ) {
+				if ( val < max ) $qty.val( val + step );
+			} else {
+				if ( val > min ) $qty.val( val - step );
+			}
+			$qty.trigger( 'change' );
+		} );
+	} );
+
 } )();

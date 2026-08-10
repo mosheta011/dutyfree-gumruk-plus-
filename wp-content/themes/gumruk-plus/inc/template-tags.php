@@ -95,7 +95,7 @@ function gp_hero_section() {
 	?>
 	<section class="hero-section">
 		<div class="container">
-			<h1 class="anton"><?php esc_html_e( 'Orijinal Gümrük ve Duty Free Ürünleri', 'gumruk-plus' ); ?></h1>
+			<h1 class="anton"><span class="highlight-blue"><?php esc_html_e( 'Orijinal Gümrük ve Duty Free Ürünleri', 'gumruk-plus' ); ?></span></h1>
 			<p><?php esc_html_e( 'Ayakkabı, çanta, takı, ev dekorasyonu ve daha fazlası — doğrudan Kurtköy\'den kapınıza. Orijinal, kaliteli, güvenilir.', 'gumruk-plus' ); ?></p>
 			
 			<div class="hero-actions" style="margin-top: 24px;">
