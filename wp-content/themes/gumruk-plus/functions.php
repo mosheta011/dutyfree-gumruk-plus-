@@ -34,7 +34,7 @@ function gp_enqueue_styles() {
 		'gumruk-plus-theme',
 		get_stylesheet_directory_uri() . '/assets/css/theme.css',
 		array( 'gumruk-plus-style' ),
-		wp_get_theme()->get( 'Version' )
+		time()
 	);
 
 	wp_enqueue_script(

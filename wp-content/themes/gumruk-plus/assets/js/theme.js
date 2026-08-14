@@ -2,6 +2,23 @@
 	'use strict';
 
 	document.addEventListener( 'DOMContentLoaded', function () {
+
+		/* ── Mobile cart badge: extract numeric count from "N item(s)" ── */
+		function gpSyncCartBadge() {
+			var countEls = document.querySelectorAll( '.site-header-cart .cart-contents .count' );
+			countEls.forEach( function ( el ) {
+				var text = el.textContent || el.innerText || '';
+				var num  = text.replace( /[^\d]/g, '' ); // keep only digits
+				if ( num ) { el.setAttribute( 'data-count', num ); }
+			} );
+		}
+		gpSyncCartBadge();
+		if ( typeof jQuery !== 'undefined' ) {
+			jQuery( document.body ).on( 'added_to_cart removed_from_cart wc_fragments_refreshed', function () {
+				setTimeout( gpSyncCartBadge, 200 );
+			} );
+		}
+
 		var navToggle = document.querySelector( '.gp-nav-toggle' );
 		var nav = document.getElementById( 'gp-primary-navigation' );
 

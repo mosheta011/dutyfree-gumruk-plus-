@@ -5603,3 +5603,1705 @@ body.gp-dark .woocommerce-checkout .form-row.woocommerce-invalid textarea {
     from { opacity: 0; transform: translateY(-4px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ============================================================
+   FOOTER — Class-based styles (replaces former inline styles)
+   ============================================================ */
+
+.gp-footer {
+    padding: 60px 0;
+}
+
+.gp-footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+/* ── Trust Bar ── */
+.gp-footer__trust-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--gp-line, #E3DDCF);
+}
+
+.gp-footer__trust-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.gp-footer__trust-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.gp-footer__trust-icon--teal { color: var(--gp-teal, #2f5d53); }
+.gp-footer__trust-icon--red  { color: var(--gp-red,  #D6392C); }
+
+.gp-footer__trust-label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ── Columns grid ── */
+.gp-footer__columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-top: 20px;
+    border-top: 1px solid var(--gp-line, #E3DDCF);
+    padding-top: 50px;
+}
+
+.gp-footer__column--brand {
+    grid-column: span 2;
+}
+
+/* ── Logo ── */
+.gp-footer__logo {
+    font-size: 32px;
+    margin-bottom: 20px;
+    display: inline-block;
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-decoration: none;
+    color: var(--gp-ink, #1F2421);
+    line-height: 1;
+}
+
+.gp-footer__logo-plus {
+    color: var(--gp-teal, #2f5d53);
+}
+
+.gp-footer__tagline {
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 350px;
+    color: var(--gp-stone, #6B6A63);
+    margin: 0;
+}
+
+/* ── Column headings ── */
+.gp-footer__heading {
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: var(--gp-ink, #1F2421);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+body.gp-dark .gp-footer__heading { color: var(--gp-cream, #FAF7F0); }
+
+/* ── Nav links ── */
+.gp-footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.gp-footer__links li {
+    margin-bottom: 10px;
+}
+
+.gp-footer__links li a {
+    font-size: 14px;
+    color: var(--gp-stone, #6B6A63);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.gp-footer__links li a:hover { color: var(--gp-teal, #2f5d53); }
+
+body.gp-dark .gp-footer__links li a       { color: rgba(250,247,240,.6); }
+body.gp-dark .gp-footer__links li a:hover { color: var(--gp-cream, #FAF7F0); }
+
+/* ── Info lists ── */
+.gp-footer__info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: var(--gp-stone, #6B6A63);
+}
+
+.gp-footer__info-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.gp-footer__info-item--top { align-items: flex-start; }
+
+.gp-footer__info-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    background: var(--gp-paper, #FAF7F0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--gp-line, #E3DDCF);
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+}
+
+.gp-footer__info-icon i { font-size: 18px; }
+
+.gp-footer__info-icon--teal i { color: var(--gp-teal, #2f5d53); }
+.gp-footer__info-icon--red i  { color: var(--gp-red,  #D6392C); }
+
+.gp-footer__info-link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.gp-footer__info-link:hover { color: var(--gp-teal, #2f5d53); }
+
+.gp-footer__info-address {
+    line-height: 1.5;
+    padding-top: 8px;
+}
+
+.gp-footer__info-hours { font-weight: 500; }
+
+/* ── Bottom bar ── */
+.gp-footer__bottom {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--gp-line, #E3DDCF);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13px;
+}
+
+.gp-footer__copyright {
+    margin: 0;
+    color: var(--gp-stone, #6B6A63);
+}
+
+.gp-footer__socials {
+    display: flex;
+    gap: 16px;
+}
+
+.gp-footer__social-link {
+    font-size: 20px;
+    color: var(--gp-stone, #6B6A63);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.gp-footer__social-link:hover { color: var(--gp-teal, #2f5d53); }
+
+/* ── Dark mode ── */
+body.gp-dark .gp-footer__info-icon {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.1);
+}
+
+body.gp-dark .gp-footer__trust-bar  { border-bottom-color: rgba(255,255,255,0.08); }
+body.gp-dark .gp-footer__columns    { border-top-color:    rgba(255,255,255,0.08); }
+body.gp-dark .gp-footer__bottom     { border-top-color:    rgba(255,255,255,0.08); }
+body.gp-dark .gp-footer__copyright  { color: rgba(250,247,240,0.5); }
+body.gp-dark .gp-footer__social-link { color: rgba(250,247,240,0.5); }
+body.gp-dark .gp-footer__social-link:hover { color: var(--gp-cream, #FAF7F0); }
+body.gp-dark .gp-footer__trust-label { color: rgba(250,247,240,0.8); }
+body.gp-dark .gp-footer__logo { color: var(--gp-cream, #FAF7F0); }
+
+
+/* ============================================================
+   MOBILE FIX PASS — Comprehensive responsive overrides
+   ============================================================ */
+
+/* ── Header container — establish flex baseline ── */
+#masthead .container,
+.top-nav .container {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    box-sizing: border-box !important;
+    min-height: 60px !important;
+}
+
+/* Actions row — must not grow and push things off screen */
+.nav-actions,
+.gp-header__actions {
+    display: flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+}
+
+/* ── ≤1100px: Tablet wide — start reducing padding ── */
+@media (max-width: 1100px) {
+    #masthead .container,
+    .top-nav .container {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+        gap: 8px !important;
+    }
+    .col-full {
+        padding: 0 24px !important;
+    }
+    .gp-footer__container {
+        padding: 0 24px;
+    }
+}
+
+/* ── ≤992px: Tablet ── */
+@media (max-width: 992px) {
+    /* Footer: single-span brand, 2-col grid */
+    .gp-footer__column--brand {
+        grid-column: span 1;
+    }
+    .gp-footer__columns {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+    }
+    .gp-footer__trust-bar {
+        gap: 20px;
+    }
+
+    /* Cart: reduce gap */
+    .woocommerce-cart #content .woocommerce {
+        gap: 24px !important;
+    }
+
+    /* Checkout: fix the rigid 320px min on summary column */
+    .woocommerce-checkout form.checkout {
+        grid-template-columns: minmax(0, 60%) minmax(0, 40%) !important;
+        gap: 24px !important;
+    }
+}
+
+/* ── ≤768px: Mobile ── */
+@media (max-width: 768px) {
+
+    /* ─ Header ─ */
+    #masthead .container,
+    .top-nav .container {
+        flex-wrap: wrap !important;
+        padding: 10px 16px !important;
+        gap: 6px !important;
+        min-height: auto !important;
+        position: relative !important;
+    }
+
+    .gp-header__branding {
+        order: 1 !important;
+        flex: 0 0 auto !important;
+        margin-right: auto !important;
+    }
+
+    .nav-actions,
+    .gp-header__actions {
+        order: 2 !important;
+        gap: 8px !important;
+        margin-left: 0 !important;
+        flex-shrink: 0 !important;
+    }
+
+    .gp-nav-toggle {
+        order: 3 !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Full-width nav drawer occupies row 2 */
+    #gp-primary-navigation {
+        order: 4 !important;
+        width: 100% !important;
+    }
+
+    /* Hide the search form in the header — too wide for mobile */
+    .nav-actions .woocommerce-product-search,
+    .gp-header__actions .woocommerce-product-search,
+    .nav-actions form.woocommerce-product-search,
+    .site-header-cart .widget_shopping_cart {
+        display: none !important;
+    }
+
+    /* ─ Hero ─ */
+    /* Floating ambient badges overlap text on mobile — hide them */
+    .ag-float-tag,
+    .ag-tag-1,
+    .ag-tag-2 {
+        display: none !important;
+    }
+
+    .hero {
+        padding: 2rem 1rem 3rem !important;
+        min-height: 280px !important;
+    }
+
+    .hero-card {
+        padding: 2rem 1.25rem !important;
+    }
+
+    /* ─ Footer ─ */
+    .gp-footer {
+        padding: 40px 0;
+    }
+    .gp-footer__container {
+        padding: 0 16px;
+    }
+    .gp-footer__columns {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        padding-top: 36px;
+    }
+    .gp-footer__column--brand {
+        grid-column: 1 / -1;
+    }
+    .gp-footer__tagline {
+        max-width: 100%;
+    }
+    .gp-footer__trust-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding-bottom: 28px;
+        margin-bottom: 28px;
+    }
+    .gp-footer__bottom {
+        margin-top: 36px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+    }
+
+    /* ─ Product grid ─ */
+    .woocommerce ul.products.columns-4,
+    ul.products.columns-4 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .gp-section { padding: 1.5rem 0 !important; }
+    .gp-section__title { font-size: 1.25rem !important; }
+
+    /* ─ Cart ─ */
+    .woocommerce-cart #content .woocommerce {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    .cart_totals {
+        position: static !important;
+        top: auto !important;
+    }
+
+    /* ─ Checkout ─ */
+    .woocommerce-checkout form.checkout {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    .woocommerce-checkout #customer_details,
+    .woocommerce-checkout .col2-set {
+        grid-column: 1 !important;
+    }
+    .woocommerce-checkout #order_review_heading,
+    .woocommerce-checkout #order_review {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+        position: static !important;
+    }
+
+    /* ─ My Account ─ */
+    .woocommerce-account #content .woocommerce {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    .woocommerce-account #content .woocommerce .u-columns.col2-set {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* ─ General padding fix ─ */
+    .col-full {
+        padding: 0 16px !important;
+    }
+    body.woocommerce-cart #content,
+    body.woocommerce-checkout #content,
+    body.woocommerce-page #content,
+    body.tax-product_cat #content {
+        padding: 0 16px !important;
+    }
+}
+
+/* ── ≤600px: Narrow mobile ── */
+@media (max-width: 600px) {
+    .hero-title {
+        font-size: clamp(1.6rem, 7vw, 2.6rem) !important;
+    }
+    .hero-card {
+        padding: 1.5rem 1rem !important;
+    }
+
+    /* Topbar: only first item visible to save space */
+    .gp-topbar__item:not(:first-child) {
+        display: none;
+    }
+    .gp-topbar__inner {
+        justify-content: center;
+    }
+
+    /* 2-col product grid with tighter gap */
+    .woocommerce ul.products.columns-4,
+    ul.products.columns-4 {
+        gap: 10px !important;
+    }
+
+    /* Cart actions stack */
+    .woocommerce-cart-form .actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+    .woocommerce-cart-form .actions .coupon {
+        flex-direction: column !important;
+        width: 100% !important;
+    }
+    .woocommerce-cart-form .actions .coupon input.input-text {
+        width: 100% !important;
+    }
+}
+
+/* ── ≤480px: Extra small (iPhone SE etc.) ── */
+@media (max-width: 480px) {
+    /* Footer single column */
+    .gp-footer__columns {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+    .gp-footer__logo     { font-size: 26px; }
+    .gp-footer__trust-label { font-size: 13px; }
+    .gp-footer__heading  { font-size: 13px; }
+
+    /* Product grid → 1 col */
+    .woocommerce ul.products.columns-4,
+    ul.products.columns-4 {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Cart row simplified */
+    table.shop_table.cart tbody tr.cart_item {
+        grid-template-columns: 28px 56px 1fr auto !important;
+        gap: 10px !important;
+        padding: 14px !important;
+    }
+    .woocommerce-cart-form td.product-thumbnail,
+    .woocommerce-cart-form td.product-thumbnail img,
+    .woocommerce-cart-form td.product-thumbnail a {
+        width: 56px !important;
+        height: 56px !important;
+    }
+
+    .hero {
+        padding: 1.5rem 0.75rem 2.5rem !important;
+    }
+    .hero-card {
+        padding: 1.25rem 0.875rem !important;
+    }
+    .ag-hero-badge {
+        font-size: 9px !important;
+        padding: 4px 10px !important;
+    }
+}
+
+/* ── ≤375px: iPhone mini ── */
+@media (max-width: 375px) {
+    .hero-title {
+        font-size: 1.5rem !important;
+    }
+
+    /* Checkout fields full width */
+    .form-row-first,
+    .form-row-last {
+        width: 100% !important;
+        display: block !important;
+    }
+    .form-row-first { margin-right: 0 !important; }
+
+    /* Tightest header actions */
+    .nav-actions,
+    .gp-header__actions {
+        gap: 4px !important;
+    }
+
+    /* Hide lang label — keep only icon */
+    .lang-switcher__current {
+        display: none;
+    }
+
+    .col-full {
+        padding: 0 10px !important;
+    }
+}
+
+/* ============================================================
+   MOBILE HEADER & LAYOUT COMPLETE FIX
+   (Addresses broken 3-row header, topbar waste, cart overflow,
+   hero height, and general page compactness on small screens)
+   ============================================================ */
+
+/* ── ≤768px — Core mobile fixes ── */
+@media (max-width: 768px) {
+
+    /* 1. Hide the topbar info-bar entirely on mobile.
+          Store hours & location are not primary mobile info. */
+    .info-bar,
+    .gp-topbar {
+        display: none !important;
+    }
+
+    /* 2. HEADER — force a strict SINGLE ROW: [Logo] → [Actions] → [Hamburger]
+          Remove all wrapping so items NEVER stack. */
+    #masthead .container,
+    .top-nav .container {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        padding: 0 14px !important;
+        gap: 6px !important;
+        min-height: 52px !important;
+        height: 52px !important;
+        overflow: visible !important;
+        position: relative !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Logo: anchors left, pushes everything else right */
+    .gp-header__branding {
+        order: 1 !important;
+        flex: 0 0 auto !important;
+        margin-right: auto !important;
+        margin-left: 0 !important;
+    }
+
+    /* Actions row: sits between logo and hamburger */
+    .nav-actions,
+    .gp-header__actions {
+        order: 2 !important;
+        flex: 0 0 auto !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Hamburger: fixed right-most item */
+    .gp-nav-toggle {
+        order: 3 !important;
+        flex: 0 0 38px !important;
+        width: 38px !important;
+        height: 38px !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+    }
+
+    /* Nav drawer: occupies its own full-width row below header */
+    #gp-primary-navigation {
+        order: 10 !important;
+        flex: 0 0 100% !important;
+        width: 100% !important;
+    }
+
+    /* 3. CART — hide the price/count text, show icon only.
+          Storefront renders: <a class="cart-contents">₺X · N item</a> */
+    .site-header-cart .cart-contents .woocommerce-Price-amount,
+    .site-header-cart .cart-contents .amount,
+    .header-widget-region .cart-contents .amount,
+    .site-header-cart .cart-contents > .count,
+    .header-cart-btn .amount,
+    .header-cart-btn .count {
+        display: none !important;
+    }
+
+    .site-header-cart .cart-contents,
+    .header-cart-btn {
+        min-width: 0 !important;
+        padding: 6px 8px !important;
+        gap: 0 !important;
+    }
+
+    /* 4. SEARCH — hide from header entirely on mobile */
+    .nav-actions .woocommerce-product-search,
+    .gp-header__actions .woocommerce-product-search,
+    form.woocommerce-product-search {
+        display: none !important;
+    }
+
+    /* 5. LAMP TOGGLE — tighter padding */
+    .theme-lamp-toggle {
+        padding: 4px !important;
+    }
+    .lamp-svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    /* 6. LANG SWITCHER — compact, hide caret on smallest */
+    .lang-switcher__toggle {
+        padding: 5px 8px !important;
+        font-size: 12px !important;
+        gap: 3px !important;
+    }
+
+    /* 7. HERO — much shorter on mobile */
+    .hero {
+        padding: 1.5rem 1rem 2rem !important;
+        min-height: 0 !important;
+    }
+
+    .hero-card {
+        padding: 1.5rem 1.125rem !important;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.15), 3px 3px 0 rgba(0,0,0,0.4) !important;
+    }
+
+    .hero-title {
+        font-size: clamp(1.5rem, 6.5vw, 2.2rem) !important;
+        margin-bottom: 0.5em !important;
+    }
+
+    .ag-hero-badge {
+        font-size: 9px !important;
+        padding: 4px 10px !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* 8. SECTIONS — reduce vertical whitespace */
+    .gp-section,
+    .gp-section--categories,
+    .gp-section--products {
+        padding: 1.25rem 0 !important;
+    }
+
+    .gp-section__title {
+        font-size: 1.15rem !important;
+        margin-bottom: 0.875rem !important;
+    }
+
+    /* 9. TICKER — tighter on mobile */
+    .gp-marquee {
+        font-size: 0.72rem !important;
+    }
+    .gp-marquee__track {
+        padding: 0.35em 0 !important;
+    }
+
+    /* 10. col-full tighter padding */
+    .col-full {
+        padding: 0 14px !important;
+    }
+}
+
+/* ── ≤480px — Extra compact ── */
+@media (max-width: 480px) {
+
+    /* Hide lang switcher label — icon only saves 20px */
+    .lang-switcher__current,
+    .lang-switcher__toggle .ti-chevron-down {
+        display: none !important;
+    }
+
+    .lang-switcher__toggle {
+        padding: 5px 7px !important;
+    }
+
+    /* Header even more compact */
+    #masthead .container,
+    .top-nav .container {
+        padding: 0 10px !important;
+        height: 48px !important;
+        min-height: 48px !important;
+    }
+
+    /* Logo slightly smaller */
+    .gp-header__branding .logo,
+    .gp-header__branding a.logo {
+        font-size: 1.3rem !important;
+        letter-spacing: -0.5px !important;
+    }
+
+    /* Hero minimal */
+    .hero {
+        padding: 1.25rem 0.75rem 1.75rem !important;
+    }
+
+    .hero-card {
+        padding: 1.125rem 0.875rem !important;
+    }
+
+    /* Section even tighter */
+    .gp-section,
+    .gp-section--categories,
+    .gp-section--products {
+        padding: 1rem 0 !important;
+    }
+
+    .gp-section__title {
+        font-size: 1.05rem !important;
+    }
+
+    /* Footer more compact */
+    .gp-footer {
+        padding: 30px 0 !important;
+    }
+    .gp-footer__trust-bar {
+        gap: 10px !important;
+        padding-bottom: 20px !important;
+        margin-bottom: 20px !important;
+    }
+    .gp-footer__columns {
+        padding-top: 24px !important;
+        gap: 18px !important;
+    }
+    .gp-footer__bottom {
+        margin-top: 24px !important;
+    }
+}
+
+/* ── ≤375px — iPhone mini tweaks ── */
+@media (max-width: 375px) {
+
+    .gp-nav-toggle {
+        width: 34px !important;
+        height: 34px !important;
+        flex: 0 0 34px !important;
+    }
+
+    .lang-svg,
+    .lang-switcher .ti-world {
+        font-size: 15px !important;
+    }
+
+    .hero-title {
+        font-size: 1.4rem !important;
+    }
+
+    .col-full {
+        padding: 0 10px !important;
+    }
+}
+
+/* ============================================================
+   MOBILE HEADER — DEFINITIVE FIX v3
+   High-specificity overrides using #masthead ID selector.
+   Fixes: 3-row broken layout, hidden actions, centered logo.
+   ============================================================ */
+
+/* ── Desktop: ensure flex container is set ── */
+#masthead > .container,
+header#masthead .container {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 10px !important;
+    padding: 0 40px !important;
+    height: 64px !important;
+    box-sizing: border-box !important;
+}
+
+@media (max-width: 992px) {
+    #masthead > .container,
+    header#masthead .container {
+        padding: 0 20px !important;
+        gap: 8px !important;
+    }
+}
+
+/* ── MOBILE: Single strict row ── */
+@media (max-width: 768px) {
+
+    /* ─ 1. Header dimensions ─ */
+    header#masthead,
+    #masthead {
+        height: 54px !important;
+        min-height: 54px !important;
+        overflow: visible !important;
+    }
+
+    /* ─ 2. Container: ONE horizontal row, no wrapping ─ */
+    #masthead > .container,
+    header#masthead .container {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        height: 54px !important;
+        padding: 0 12px !important;
+        gap: 4px !important;
+        overflow: visible !important;
+        position: relative !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+    }
+
+    /* ─ 3. LOGO — left anchor, flex-shrink so it doesn't take all space ─ */
+    #masthead .gp-header__branding {
+        order: 1 !important;
+        flex: 0 0 auto !important;
+        flex-shrink: 1 !important;
+        min-width: 0 !important;
+        margin-right: auto !important;
+        margin-left: 0 !important;
+    }
+
+    /* ─ 4. ACTIONS — right side, always visible ─ */
+    #masthead .nav-actions,
+    #masthead .gp-header__actions {
+        order: 2 !important;
+        flex: 0 0 auto !important;
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* ─ 5. HAMBURGER — far right ─ */
+    #masthead .gp-nav-toggle {
+        order: 3 !important;
+        flex: 0 0 36px !important;
+        width: 36px !important;
+        height: 36px !important;
+        display: flex !important;
+        flex-shrink: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* ─ 6. NAV DRAWER — absolute, removed from flex flow ─ */
+    #masthead #gp-primary-navigation,
+    #gp-primary-navigation {
+        order: 99 !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100vw !important;
+        flex: none !important;
+        z-index: 9998 !important;
+    }
+
+    /* ─ 7. Hide search bar from header (too wide) ─ */
+    #masthead .woocommerce-product-search,
+    #masthead form.woocommerce-product-search {
+        display: none !important;
+    }
+
+    /* ============================================================
+       DARK MODE TOGGLE — Professional icon button
+       ============================================================ */
+    #masthead .theme-lamp-toggle,
+    #masthead .js-dark-toggle {
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        border-radius: 9px !important;
+        border: 1px solid var(--gp-line, #E3DDCF) !important;
+        background: var(--gp-paper, #FAF7F0) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        cursor: pointer !important;
+        transition: border-color 0.2s ease, background 0.2s ease !important;
+        flex-shrink: 0 !important;
+    }
+
+    #masthead .theme-lamp-toggle:hover,
+    #masthead .js-dark-toggle:hover {
+        border-color: var(--gp-teal, #2f5d53) !important;
+        background: rgba(47,93,83,0.06) !important;
+    }
+
+    body.gp-dark #masthead .theme-lamp-toggle,
+    body.gp-dark #masthead .js-dark-toggle {
+        border-color: rgba(255,255,255,0.12) !important;
+        background: rgba(255,255,255,0.06) !important;
+    }
+
+    #masthead .lamp-svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    /* ============================================================
+       CART — Professional icon button with count badge
+       ============================================================ */
+
+    /* Cart wrapper */
+    #masthead .site-header-cart {
+        flex: 0 0 auto !important;
+        flex-shrink: 0 !important;
+        position: relative !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    /* Cart link: 36×36 icon button */
+    #masthead .site-header-cart .cart-contents {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        border: 1px solid var(--gp-line, #E3DDCF) !important;
+        border-radius: 9px !important;
+        background: var(--gp-paper, #FAF7F0) !important;
+        text-decoration: none !important;
+        padding: 0 !important;
+        position: relative !important;
+        box-sizing: border-box !important;
+        transition: border-color 0.2s ease, background 0.2s ease !important;
+        overflow: visible !important;
+    }
+
+    #masthead .site-header-cart .cart-contents:hover {
+        border-color: var(--gp-red, #D6392C) !important;
+        background: rgba(214,57,44,0.05) !important;
+    }
+
+    body.gp-dark #masthead .site-header-cart .cart-contents {
+        border-color: rgba(255,255,255,0.12) !important;
+        background: rgba(255,255,255,0.06) !important;
+    }
+
+    /* Cart bag SVG icon (light mode) */
+    #masthead .site-header-cart .cart-contents::before {
+        content: '' !important;
+        display: block !important;
+        width: 17px !important;
+        height: 17px !important;
+        flex-shrink: 0 !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='17' height='17' viewBox='0 0 24 24' fill='none' stroke='%231F2421' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z'/%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cpath d='M16 10a4 4 0 01-8 0'/%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-size: contain !important;
+        background-position: center !important;
+    }
+
+    /* Cart bag SVG icon (dark mode) */
+    body.gp-dark #masthead .site-header-cart .cart-contents::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='17' height='17' viewBox='0 0 24 24' fill='none' stroke='%23FAF7F0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z'/%3E%3Cline x1='3' y1='6' x2='21' y2='6'/%3E%3Cpath d='M16 10a4 4 0 01-8 0'/%3E%3C/svg%3E") !important;
+    }
+
+    /* Hide price text — show ONLY the icon */
+    #masthead .site-header-cart .cart-contents .woocommerce-Price-amount,
+    #masthead .site-header-cart .cart-contents .amount,
+    #masthead .site-header-cart .cart-contents bdi {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
+    }
+
+    /* Count badge: red pill with number */
+    #masthead .site-header-cart .cart-contents .count {
+        all: unset !important;
+        position: absolute !important;
+        top: -6px !important;
+        right: -6px !important;
+        background: #D6392C !important;
+        color: #FFFFFF !important;
+        font-family: 'Inter', sans-serif !important;
+        font-size: 9px !important;
+        font-weight: 700 !important;
+        line-height: 1 !important;
+        min-width: 16px !important;
+        height: 16px !important;
+        padding: 0 4px !important;
+        border-radius: 10px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+        pointer-events: none !important;
+        letter-spacing: 0 !important;
+        border: 1.5px solid #FAF7F0 !important;
+    }
+
+    /* ── Lang switcher: compact pill ── */
+    #masthead .lang-switcher__toggle {
+        height: 36px !important;
+        padding: 0 9px !important;
+        border-radius: 9px !important;
+        font-size: 12px !important;
+        font-weight: 600 !important;
+        gap: 3px !important;
+        box-sizing: border-box !important;
+        min-width: 0 !important;
+    }
+
+    /* Mini cart dropdown: no hover pop on mobile */
+    #masthead .site-header-cart .widget_shopping_cart {
+        display: none !important;
+    }
+}
+
+/* ── ≤480px: Ultra-compact ── */
+@media (max-width: 480px) {
+    #masthead > .container,
+    header#masthead .container {
+        padding: 0 10px !important;
+        gap: 3px !important;
+        height: 50px !important;
+    }
+    header#masthead,
+    #masthead {
+        height: 50px !important;
+        min-height: 50px !important;
+    }
+
+    /* Lang: icon only, no text */
+    #masthead .lang-switcher__current,
+    #masthead .lang-switcher__toggle .ti-chevron-down {
+        display: none !important;
+    }
+    #masthead .lang-switcher__toggle {
+        width: 34px !important;
+        min-width: 34px !important;
+        padding: 0 8px !important;
+    }
+
+    /* Slightly smaller buttons */
+    #masthead .site-header-cart .cart-contents,
+    #masthead .theme-lamp-toggle {
+        width: 34px !important;
+        height: 34px !important;
+        min-width: 34px !important;
+    }
+
+    #masthead .gp-nav-toggle {
+        flex: 0 0 34px !important;
+        width: 34px !important;
+        height: 34px !important;
+    }
+}
+
+/* ============================================================
+   MOBILE HEADER — PRECISION FIXES v4
+   (Logo clip, hamburger off-screen, badge text, lamp icon)
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+    /* ── Fix: logo "Güm" clipped on the left ──
+       The container's left padding was eating into the logo */
+    #masthead > .container,
+    header#masthead .container {
+        padding-left: 0 !important;
+        padding-right: 4px !important;
+        overflow: visible !important;
+    }
+
+    #masthead .gp-header__branding {
+        padding-left: 12px !important;  /* indent the logo, not the container */
+        flex-shrink: 0 !important;
+        min-width: 0 !important;
+        overflow: visible !important;
+    }
+
+    /* Shrink the logo font on mobile so it fits */
+    #masthead .gp-header__branding .logo,
+    #masthead .gp-header__branding a.logo {
+        font-size: 1.25rem !important;
+        letter-spacing: -0.5px !important;
+        white-space: nowrap !important;
+    }
+
+    /* ── Fix: hamburger pushed off screen ──
+       The TR dropdown is too wide. Keep actions compact so hamburger fits. */
+    #masthead .nav-actions,
+    #masthead .gp-header__actions {
+        flex-shrink: 0 !important;
+        gap: 5px !important;
+        padding-right: 6px !important;
+    }
+
+    /* Force the nav-actions to not overflow the container */
+    #masthead .gp-header__actions > *,
+    #masthead .nav-actions > * {
+        flex-shrink: 0 !important;
+    }
+
+    /* Hamburger: always visible at the very end */
+    #masthead .gp-nav-toggle {
+        flex-shrink: 0 !important;
+        margin-right: 8px !important;
+        order: 3 !important;
+    }
+
+    /* ── Fix: lang switcher — TR text only, no globe icon on small screens ── */
+    #masthead .lang-switcher__toggle {
+        min-width: 48px !important;
+        max-width: 60px !important;
+        padding: 0 8px !important;
+        font-size: 11px !important;
+        gap: 2px !important;
+        white-space: nowrap !important;
+    }
+
+    /* ── Fix: lamp toggle — ensure SVG shows, not a box ── */
+    #masthead .theme-lamp-toggle .ti,
+    #masthead .js-dark-toggle .ti {
+        font-size: 16px !important;
+        display: block !important;
+    }
+
+    /* Lamp SVG element */
+    #masthead .theme-lamp-toggle svg,
+    #masthead .js-dark-toggle svg,
+    #masthead .lamp-svg {
+        display: block !important;
+        width: 18px !important;
+        height: 18px !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* ── Fix: cart badge — Storefront outputs "1 item", we want just "1" ──
+       Use CSS font-size 0 trick: shrink all text then show
+       the ::first-line or use the existing count transform */
+
+    /* The .count span from Storefront contains "N item" or "N items".
+       We display it as a small absolute badge, but the text "item" part
+       is invisible because the badge is too small (9px) to show multi-char */
+    #masthead .site-header-cart .cart-contents .count {
+        font-size: 0 !important;  /* hide everything */
+        width: 16px !important;
+        height: 16px !important;
+        min-width: 16px !important;
+    }
+
+    /* Use a JS-replaced attribute OR the first character via overflow clipping */
+    /* Storefront outputs: <span class="count">1 item</span>
+       We show just a tiny red dot when there are items */
+    #masthead .site-header-cart .cart-contents .count::before {
+        content: attr(data-count) !important;
+        font-size: 9px !important;
+        font-weight: 700 !important;
+        font-family: 'Inter', sans-serif !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 100% !important;
+        color: #fff !important;
+        letter-spacing: 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #masthead > .container,
+    header#masthead .container {
+        padding-left: 0 !important;
+        padding-right: 2px !important;
+        gap: 3px !important;
+    }
+
+    #masthead .gp-header__branding {
+        padding-left: 10px !important;
+    }
+
+    /* Even tighter lang switcher */
+    #masthead .lang-switcher__toggle {
+        min-width: 40px !important;
+        max-width: 50px !important;
+        padding: 0 6px !important;
+    }
+
+    /* Hide globe icon on very small screens */
+    #masthead .lang-switcher__toggle .ti-world,
+    #masthead .lang-switcher__flag {
+        display: none !important;
+    }
+}
+
+/* ============================================================
+   ULTIMATE MOBILE HEADER FORCED LAYOUT (ALL MOBILE SIZES)
+   Fixes the disappearing actions / centered logo bug entirely
+   ============================================================ */
+
+@media screen and (max-width: 992px) {
+    /* 1. Force the header wrapper itself */
+    header#masthead.top-nav {
+        height: 60px !important;
+        min-height: 60px !important;
+        padding: 0 !important;
+        position: relative !important;
+        z-index: 9999 !important;
+        overflow: visible !important;
+    }
+
+    /* 2. Force the inner flex container */
+    header#masthead.top-nav > .container,
+    #masthead .container {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        height: 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 10px !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 3. Logo container: flush left */
+    #masthead .gp-header__branding {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        flex: 0 0 auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: auto !important;
+        max-width: 40% !important;
+        order: 1 !important;
+    }
+
+    #masthead .gp-header__branding a.logo {
+        font-size: 1.25rem !important;
+        white-space: nowrap !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* 4. Spacer to push actions right (just in case) */
+    header#masthead.top-nav::before {
+        content: none !important;
+    }
+
+    /* 5. Actions row: forced visible, flush right */
+    #masthead .nav-actions,
+    #masthead .gp-header__actions {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        flex: 1 1 auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        gap: 6px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        width: auto !important;
+        order: 2 !important;
+    }
+
+    /* 6. Hamburger: far right */
+    #masthead .gp-nav-toggle {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 0 0 36px !important;
+        width: 36px !important;
+        height: 36px !important;
+        margin: 0 0 0 4px !important;
+        padding: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        order: 3 !important;
+    }
+
+    /* Make sure Storefront or Woo doesn't hide them */
+    #masthead .nav-actions *,
+    #masthead .gp-header__actions *,
+    #masthead .gp-nav-toggle,
+    #masthead .gp-nav-toggle * {
+        visibility: visible !important;
+    }
+
+    /* Keep search hidden */
+    #masthead .woocommerce-product-search,
+    #masthead form.woocommerce-product-search {
+        display: none !important;
+    }
+
+    /* Lamp and Cart buttons */
+    #masthead .theme-lamp-toggle,
+    #masthead .site-header-cart .cart-contents {
+        display: flex !important;
+    }
+}
+
+/* ============================================================
+   PREMIUM MOBILE MENU DRAWER (≤992px)
+   ============================================================ */
+@media screen and (max-width: 992px) {
+    /* The main wrapper of the menu */
+    #masthead #gp-primary-navigation.gp-nav {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        width: 100vw !important;
+        background: #FFFFFF !important;
+        box-shadow: 0 16px 40px rgba(0,0,0,0.12) !important;
+        border-top: 1px solid #EBEBEB !important;
+        z-index: 9999 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        /* Animation / Display */
+        display: block !important;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-8px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s !important;
+        pointer-events: none;
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+    }
+
+    #masthead #gp-primary-navigation.gp-nav.is-open {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    /* Dark Mode */
+    body.gp-dark #masthead #gp-primary-navigation.gp-nav {
+        background: #15191C !important;
+        border-top: 1px solid #2A2F35 !important;
+        box-shadow: 0 16px 40px rgba(0,0,0,0.5) !important;
+    }
+
+    /* Menu List */
+    #masthead .gp-nav__menu {
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 12px 0 24px 0 !important;
+        margin: 0 !important;
+        gap: 0 !important;
+    }
+
+    /* Top Level Items */
+    #masthead .gp-nav__menu > .gp-nav__item {
+        border-bottom: 1px solid #F0F0F0 !important;
+        margin: 0 24px !important;
+        padding: 0 !important;
+        display: block !important;
+        position: relative !important;
+    }
+    
+    body.gp-dark #masthead .gp-nav__menu > .gp-nav__item {
+        border-bottom: 1px solid #23282D !important;
+    }
+
+    /* Remove the red underline on mobile entirely */
+    #masthead .gp-nav__menu > .gp-nav__item > .gp-nav__link::after {
+        display: none !important;
+    }
+
+    /* Links styling */
+    #masthead .gp-nav__menu .gp-nav__link {
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        padding: 16px 8px !important;
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        text-transform: capitalize !important;
+        letter-spacing: 0.01em !important;
+        color: #2D3748 !important;
+        transition: background 0.2s, color 0.2s, padding-left 0.2s !important;
+    }
+
+    body.gp-dark #masthead .gp-nav__menu .gp-nav__link {
+        color: #E2E8F0 !important;
+    }
+
+    /* Hover & Active States */
+    #masthead .gp-nav__menu .gp-nav__item.current-menu-item > .gp-nav__link,
+    #masthead .gp-nav__menu .gp-nav__item.current_page_item > .gp-nav__link,
+    #masthead .gp-nav__menu .gp-nav__link:hover {
+        color: #D6392C !important;
+        background: transparent !important;
+        padding-left: 12px !important;
+    }
+
+    body.gp-dark #masthead .gp-nav__menu .gp-nav__item.current-menu-item > .gp-nav__link,
+    body.gp-dark #masthead .gp-nav__menu .gp-nav__item.current_page_item > .gp-nav__link,
+    body.gp-dark #masthead .gp-nav__menu .gp-nav__link:hover {
+        color: #FF6B6B !important;
+    }
+
+    /* Toggle Button (Chevron) */
+    #masthead .gp-nav__toggle {
+        position: absolute !important;
+        right: 0 !important;
+        top: 0 !important;
+        height: 52px !important;
+        width: 50px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        padding: 0 10px 0 0 !important;
+        background: transparent !important;
+        border: none !important;
+        z-index: 2 !important;
+    }
+    
+    #masthead .gp-nav__toggle-icon {
+        width: 9px !important;
+        height: 9px !important;
+        border-width: 2px !important;
+        border-color: #A0AEC0 !important;
+        transition: transform 0.3s cubic-bezier(.16,1,.3,1), border-color 0.2s !important;
+        border-left: 0 !important;
+        border-top: 0 !important;
+    }
+    
+    #masthead .gp-nav__toggle:hover .gp-nav__toggle-icon {
+        border-color: #D6392C !important;
+    }
+    
+    body.gp-dark #masthead .gp-nav__toggle:hover .gp-nav__toggle-icon {
+        border-color: #FF6B6B !important;
+    }
+
+    #masthead .gp-nav__item.is-open > .gp-nav__toggle .gp-nav__toggle-icon {
+        transform: rotate(225deg) translate(-2px, -2px) !important;
+    }
+
+    /* Submenu (Accordion) */
+    #masthead .gp-nav__submenu {
+        position: static !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        display: none !important;
+        width: 100% !important;
+        background: #F7FAFC !important;
+        border: none !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        padding: 8px 0 12px 16px !important;
+        margin: 0 0 12px 0 !important;
+    }
+
+    /* Show submenu when parent is open */
+    #masthead .gp-nav__item.is-open > .gp-nav__submenu {
+        display: block !important;
+    }
+
+    body.gp-dark #masthead .gp-nav__submenu {
+        background: #161B20 !important; /* Explicit deep dark color, not rgba */
+    }
+
+    /* Submenu Links */
+    #masthead .gp-nav__submenu .gp-nav__item {
+        border: none !important;
+        margin: 0 !important;
+        display: block !important;
+    }
+
+    #masthead .gp-nav__submenu .gp-nav__link {
+        padding: 12px 16px !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        color: #4A5568 !important;
+        text-transform: capitalize !important;
+        border-radius: 6px !important;
+        transition: all 0.2s ease !important;
+        background: transparent !important;
+    }
+
+    body.gp-dark #masthead .gp-nav__submenu .gp-nav__link {
+        color: #CBD5E0 !important;
+        background: transparent !important;
+    }
+
+    /* Submenu hover */
+    #masthead .gp-nav__submenu .gp-nav__link:hover {
+        background: rgba(214,57,44,0.06) !important;
+        color: #D6392C !important;
+        padding-left: 22px !important;
+    }
+    
+    body.gp-dark #masthead .gp-nav__submenu .gp-nav__link:hover {
+        background: rgba(255,107,107,0.1) !important;
+        color: #FF6B6B !important;
+        padding-left: 22px !important;
+    }
+
+    /* Remove the weird dots in submenu */
+    #masthead .gp-nav__submenu .gp-nav__link::before {
+        display: none !important;
+    }
+}
+
+/* ============================================================
+   GLOBAL INPUT STYLES (Forms, Contact, Checkout)
+   ============================================================ */
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+textarea,
+select {
+    border: 1px solid #D2D6DC !important;
+    border-radius: 6px !important;
+    background-color: #FFFFFF !important;
+    color: #1F2937 !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    font-family: var(--gp-font-body), sans-serif !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02) !important;
+    outline: none !important;
+    width: 100%;
+}
+
+/* Prevent resizing textareas */
+textarea {
+    resize: none !important;
+    min-height: 120px;
+}
+
+/* Focus state */
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #9CA3AF !important;
+    box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.15) !important;
+}
+
+/* Dark Mode Input Styles */
+body.gp-dark input[type="text"],
+body.gp-dark input[type="email"],
+body.gp-dark input[type="url"],
+body.gp-dark input[type="password"],
+body.gp-dark input[type="search"],
+body.gp-dark input[type="number"],
+body.gp-dark input[type="tel"],
+body.gp-dark textarea,
+body.gp-dark select {
+    border-color: #374151 !important;
+    background-color: #1F2937 !important;
+    color: #F3F4F6 !important;
+}
+
+body.gp-dark input[type="text"]:focus,
+body.gp-dark input[type="email"]:focus,
+body.gp-dark input[type="url"]:focus,
+body.gp-dark input[type="password"]:focus,
+body.gp-dark input[type="search"]:focus,
+body.gp-dark input[type="number"]:focus,
+body.gp-dark input[type="tel"]:focus,
+body.gp-dark textarea:focus,
+body.gp-dark select:focus {
+    border-color: #4B5563 !important;
+    box-shadow: 0 0 0 3px rgba(75, 85, 99, 0.3) !important;
+}
+
+/* Fix Select Box Artifacts (Native Browser vs Custom Styling conflict) */
+select {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M6%209L12%2015L18%209%22%20stroke%3D%22%234B5563%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 14px center !important;
+    background-size: 16px 16px !important;
+    padding-right: 36px !important;
+}
+
+body.gp-dark select {
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M6%209L12%2015L18%209%22%20stroke%3D%22%23CBD5E0%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E") !important;
+}
+
+/* ============================================================
+   CHECKOUT PAGE LEGIBILITY & BLOCK STYLING
+   ============================================================ */
+
+/* 1. Wrap the entire checkout area in a solid card so the background map doesn't ruin text legibility */
+body.woocommerce-checkout .site-content > .container,
+body.woocommerce-checkout .site-main,
+body.woocommerce-checkout .wp-block-woocommerce-checkout {
+    background-color: #FFFFFF !important;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    margin-top: 24px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 10;
+}
+
+body.gp-dark.woocommerce-checkout .site-content > .container,
+body.gp-dark.woocommerce-checkout .site-main,
+body.gp-dark.woocommerce-checkout .wp-block-woocommerce-checkout {
+    background-color: #161B22 !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    border: 1px solid #30363D;
+}
+
+/* 2. WooCommerce Checkout Block Inputs should match our global inputs */
+.wc-block-components-text-input input,
+.wc-block-components-combobox-control input,
+.wc-block-checkout__form .wc-block-components-text-input input,
+.wc-block-checkout__form .wc-block-components-select-input select {
+    background-color: #FFFFFF !important;
+    border: 1.5px solid #E2E8F0 !important;
+    border-radius: 8px !important;
+    color: #2D3748 !important;
+    box-shadow: none !important;
+}
+
+/* Block Inputs Dark Mode */
+body.gp-dark .wc-block-components-text-input input,
+body.gp-dark .wc-block-components-combobox-control input,
+body.gp-dark .wc-block-checkout__form .wc-block-components-text-input input,
+body.gp-dark .wc-block-checkout__form .wc-block-components-select-input select {
+    background-color: #1A202C !important;
+    border-color: #2D3748 !important;
+    color: #F3F4F6 !important;
+}
+
+/* Fix weird transparent background on block components */
+.wc-block-components-text-input {
+    background: transparent !important;
+}
+
+/* 3. Mobile adjustments */
+@media (max-width: 768px) {
+    body.woocommerce-checkout .site-content > .container,
+    body.woocommerce-checkout .site-main,
+    body.woocommerce-checkout .wp-block-woocommerce-checkout {
+        padding: 16px 12px !important;
+        margin-top: 12px;
+        border-radius: 8px;
+    }
+}
